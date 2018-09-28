@@ -72,6 +72,24 @@ public class VectorTest
 		Vector vec1 = new Vector(3);
 		Vector vec2 = new Vector(3);
 
+		vec1.set(0, 3);
+		vec1.set(1, 0);
+		vec1.set(2, 2);
+
+		vec2.set(0, 4);
+		vec2.set(1, 1);
+		vec2.set(2, 8);
+
+		double result = Vector.dotProduct(vec1, vec2);
+
+		double expected = (3 * 4) + (0 * 1) + (2 * 8);
+
+		assertEquals(expected, result);
+	}
+
+	@Test
+	public void crossProduct()
+	{
 
 	}
 }
