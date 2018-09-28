@@ -77,6 +77,33 @@ public class Matrix
 		return result;
 	}
 
+	public Matrix multiply(Matrix m) throws InvalidParameterException
+	{
+		Matrix result = new Matrix(this.height(), m.width());
+
+		if(this.width() == m.height())
+		{
+			for(int i = 0; i < this.height(); i++)
+			{
+				for(int j = 0; j < m.width(); j++)
+				{
+					double sum = 0;
+					for(int k = 0; k < this.width(); k++)
+					{
+						sum += this.get(i, k) * m.get(k, j);
+					}
+
+					result.set(i, j, sum);
+				}
+			}
+			return result;
+		}
+		else
+		{
+			throw new InvalidParameterException("Matrix resolutions do not match");
+		}
+	}
+
 	public boolean equalSize(Matrix matrix)
 	{
 		if(this.height() == matrix.height())
