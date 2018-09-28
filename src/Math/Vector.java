@@ -48,15 +48,15 @@ public class Vector
 		return this.size;
 	}
 
-	public Vector add(Vector vec) throws InvalidParameterException
+	public static Vector add(Vector vec1, Vector vec2) throws InvalidParameterException
 	{
-		Vector result = new Vector(this.size());
+		Vector result = new Vector(vec1.size());
 
-		if(this.size() == vec.size())
+		if(vec1.size() == vec2.size())
 		{
-			for(int i = 0; i < this.size(); i++)
+			for(int i = 0; i < vec1.size(); i++)
 			{
-				result.set(i, this.get(i) + vec.get(i));
+				result.set(i, vec1.get(i) + vec2.get(i));
 			}
 			return result;
 		}
@@ -66,24 +66,42 @@ public class Vector
 		}
 	}
 
-	public Vector multiply(double s)
+	public static Vector subtract(Vector vec1, Vector vec2) throws InvalidParameterException
 	{
-		Vector result = new Vector(this.size());
-		for(int i = 0; i < this.size(); i++)
+		Vector result = new Vector(vec1.size);
+
+		if(vec1.size() == vec2.size())
 		{
-			result.set(i, this.get(i) * s);
+			for(int i = 0; i < vec1.size(); i++)
+			{
+				result.set(i, vec1.get(i) - vec2.get(i));
+			}
+			return result;
+		}
+		else
+		{
+			throw new InvalidParameterException("Cannot subtract Vectors of different sizes!");
+		}
+	}
+
+	public static Vector multiply(Vector vec, double s)
+	{
+		Vector result = new Vector(vec.size());
+		for(int i = 0; i < vec.size(); i++)
+		{
+			result.set(i, vec.get(i) * s);
 		}
 		return result;
 	}
 
-	public double dotProduct(Vector vec) throws InvalidParameterException
+	public static double dotProduct(Vector vec1, Vector vec2) throws InvalidParameterException
 	{
 		double result = 0;
-		if(this.size() == vec.size())
+		if(vec1.size() == vec2.size())
 		{
-			for(int i = 0; i < this.size(); i++)
+			for(int i = 0; i < vec1.size(); i++)
 			{
-				result += this.get(i) * vec.get(i);
+				result += vec1.get(i) * vec2.get(i);
 			}
 			return result;
 		}
@@ -93,18 +111,18 @@ public class Vector
 		}
 	}
 
-	public Vector crossProduct(Vector vec)
+	public static Vector crossProduct(Vector vec1, Vector vec2)
 	{
-		Vector result = new Vector(this.size());
+		Vector result = new Vector(vec1.size());
 
-		if(this.size() == vec.size())
+		if(vec1.size() == vec2.size())
 		{
 			// ONLY IMPLEMENT 3D CROSS PRODUCT
-			if(this.size() == 3)
+			if(vec1.size() == 3)
 			{
-				for(int i = 0; i < this.size(); i++)
+				for(int i = 0; i < vec1.size(); i++)
 				{
-					double element = (this.get((i + 1)%3) * vec.get((i + 2) % 3)) - (this.get((i + 2) % 3) * vec.get((i + 1) % 3));
+					double element = (vec1.get((i + 1)%3) * vec2.get((i + 2) % 3)) - (vec1.get((i + 2) % 3) * vec2.get((i + 1) % 3));
 					result.set(i, element);
 				}
 				return result;

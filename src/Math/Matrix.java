@@ -40,17 +40,17 @@ public class Matrix
 		this.elements[m][n] = element;
 	}
 
-	public Matrix add(Matrix matrix) throws InvalidParameterException
+	public static Matrix add(Matrix m1, Matrix m2) throws InvalidParameterException
 	{
-		Matrix result = new Matrix(this.height(), this.width());
+		Matrix result = new Matrix(m1.height(), m1.width());
 
-		if(this.equalSize(matrix))
+		if(m1.equalSize(m2))
 		{
-			for(int i = 0; i < this.height(); i++)
+			for(int i = 0; i < m1.height(); i++)
 			{
-				for(int j = 0; j < this.width(); j++)
+				for(int j = 0; j < m1.width(); j++)
 				{
-					double element = this.get(i, j) + matrix.get(i, j);
+					double element = m1.get(i, j) + m2.get(i, j);
 					result.set(i, j, element);
 				}
 			}
@@ -63,34 +63,34 @@ public class Matrix
 		}
 	}
 
-	public Matrix multiply(double s)
+	public static Matrix multiply(Matrix m, double s)
 	{
-		Matrix result = new Matrix(this.height(), this.width());
+		Matrix result = new Matrix(m.height(), m.width());
 
-		for(int i = 0; i < this.height(); i++)
+		for(int i = 0; i < m.height(); i++)
 		{
-			for(int j = 0; j < this.width(); j++)
+			for(int j = 0; j < m.width(); j++)
 			{
-				result.set(i, j, this.get(i, j) * s);
+				result.set(i, j, m.get(i, j) * s);
 			}
 		}
 		return result;
 	}
 
-	public Matrix multiply(Matrix m) throws InvalidParameterException
+	public static Matrix multiply(Matrix m1, Matrix m2) throws InvalidParameterException
 	{
-		Matrix result = new Matrix(this.height(), m.width());
+		Matrix result = new Matrix(m1.height(), m2.width());
 
-		if(this.width() == m.height())
+		if(m1.width() == m2.height())
 		{
-			for(int i = 0; i < this.height(); i++)
+			for(int i = 0; i < m1.height(); i++)
 			{
-				for(int j = 0; j < m.width(); j++)
+				for(int j = 0; j < m2.width(); j++)
 				{
 					double sum = 0;
-					for(int k = 0; k < this.width(); k++)
+					for(int k = 0; k < m1.width(); k++)
 					{
-						sum += this.get(i, k) * m.get(k, j);
+						sum += m1.get(i, k) * m2.get(k, j);
 					}
 
 					result.set(i, j, sum);
