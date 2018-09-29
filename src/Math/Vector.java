@@ -94,6 +94,13 @@ public class Vector
 		return result;
 	}
 
+	public static Vector divide(Vector vec, double s)
+	{
+		s = 1/s;
+
+		return Vector.multiply(vec, s);
+	}
+
 	public static double dotProduct(Vector vec1, Vector vec2) throws InvalidParameterException
 	{
 		double result = 0;

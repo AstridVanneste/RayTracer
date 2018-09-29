@@ -1,4 +1,4 @@
-package Math;
+package MathTest;
 
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -67,6 +67,23 @@ public class VectorTest
 	}
 
 	@Test
+	public void scalarDivideTest()
+	{
+		Vector vec = new Vector(3);
+		double scalar = 5;
+
+		vec.set(0, 10);
+		vec.set(1, 15);
+		vec.set(2, 35);
+
+		Vector result = Vector.divide(vec, scalar);
+
+		assertEquals(2, result.get(0));
+		assertEquals(3, result.get(1));
+		assertEquals(7, result.get(2));
+	}
+
+	@Test
 	public void dotProduct()
 	{
 		Vector vec1 = new Vector(3);
@@ -90,6 +107,21 @@ public class VectorTest
 	@Test
 	public void crossProduct()
 	{
+		Vector vec1 = new Vector(3);
+		Vector vec2 = new Vector(3);
 
+		vec1.set(0, 3);
+		vec1.set(1, 0);
+		vec1.set(2, 2);
+
+		vec2.set(0, 4);
+		vec2.set(1, 1);
+		vec2.set(2, 8);
+
+		Vector result = Vector.crossProduct(vec1, vec2);
+
+		assertEquals(-2, result.get(0));
+		assertEquals(-16, result.get(1));
+		assertEquals(3, result.get(2));
 	}
 }
