@@ -63,6 +63,28 @@ public class Matrix
 		}
 	}
 
+	public static Matrix subtract(Matrix m1, Matrix m2) throws InvalidParameterException
+	{
+		Matrix result = new Matrix(m1.height(), m1.width());
+
+		if(m1.equalSize(m2))
+		{
+			for(int i = 0; i < m1.height(); i++)
+			{
+				for(int j = 0; j < m1.width(); j++)
+				{
+					double element = m1.get(i, j) - m2.get(i, j);
+					result.set(i, j, element);
+				}
+			}
+			return result;
+		}
+		else
+		{
+			throw new InvalidParameterException("Cannot subtract Matrices with different sizes!");
+		}
+	}
+
 	public static Matrix multiply(Matrix m, double s)
 	{
 		Matrix result = new Matrix(m.height(), m.width());
