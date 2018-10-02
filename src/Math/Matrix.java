@@ -126,6 +126,27 @@ public class Matrix
 		}
 	}
 
+	public static Matrix identityMatrix(int m)
+	{
+		Matrix identityMatrix = new Matrix(m, m);
+
+		for(int i = 0; i < m; i++)
+		{
+			for(int j = 0; j < m; j++)
+			{
+				if(j == i)
+				{
+					identityMatrix.set(i, j, 1);
+				}
+				else
+				{
+					identityMatrix.set(i, j, 0);
+				}
+			}
+		}
+		return identityMatrix;
+	}
+
 	public boolean equalSize(Matrix matrix)
 	{
 		if(this.height() == matrix.height())

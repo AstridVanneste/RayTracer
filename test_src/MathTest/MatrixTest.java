@@ -84,4 +84,20 @@ public class MatrixTest
 		assertEquals(6, result.get(2, 1));
 		assertEquals(8, result.get(2, 2));
 	}
+
+	@Test
+	public void identityMatrixTest()
+	{
+		Matrix identityMatrix = Matrix.identityMatrix(3);
+
+		assertEquals(1, identityMatrix.get(0, 0));
+		assertEquals(0, identityMatrix.get(0, 1));
+		assertEquals(0, identityMatrix.get(0, 2));
+		assertEquals(0, identityMatrix.get(1, 0));
+		assertEquals(1, identityMatrix.get(1, 1));
+		assertEquals(0, identityMatrix.get(1, 2));
+		assertEquals(0, identityMatrix.get(2, 0));
+		assertEquals(0, identityMatrix.get(2, 1));
+		assertEquals(1, identityMatrix.get(2, 2));
+	}
 }
