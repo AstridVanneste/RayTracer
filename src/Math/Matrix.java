@@ -93,7 +93,7 @@ public class Matrix
 		{
 			for(int j = 0; j < m.width(); j++)
 			{
-				result.set(i, j, m.get(i, j) * s);
+				result.set(i, j, (m.get(i, j) * s));
 			}
 		}
 		return result;
@@ -157,5 +157,23 @@ public class Matrix
 			}
 		}
 		return false;
+	}
+
+	@Override
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+
+		for(int i = 0; i < this.height(); i++)
+		{
+			for(int j = 0; j < this.width(); j++)
+			{
+				builder.append(this.get(i, j));
+				builder.append("\t");
+			}
+			builder.append("\n");
+		}
+
+		return builder.toString();
 	}
 }
