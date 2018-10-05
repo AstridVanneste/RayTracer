@@ -1,5 +1,6 @@
 package RayTracer;
 
+import Factories.VectorFactory;
 import Math.Vector;
 
 public class RayTracer
@@ -21,7 +22,7 @@ public class RayTracer
 		{
 			for(int y = 0; y < yLimit; y++)
 			{
-				Vector pixelPoint = Vector.createPoint(x, y, zOffsetScreen);
+				Vector pixelPoint = VectorFactory.createPointVector(x, y, zOffsetScreen);
 				Vector ray = Vector.subtract(eye, pixelPoint);
 			}
 		}

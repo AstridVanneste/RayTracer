@@ -1,5 +1,6 @@
 package RayTracer;
 
+import Factories.VectorFactory;
 import Math.Vector;
 import java.security.InvalidParameterException;
 
@@ -10,7 +11,7 @@ public class Ray
 
 	public Ray(Vector eye, Vector dir)
 	{
-		if(eye.size() == 4)
+		if(VectorFactory.isPoint(eye))
 		{
 			this.eye = eye;
 		}
@@ -18,7 +19,7 @@ public class Ray
 		{
 			throw new InvalidParameterException("Eye vector size should be 4 but is " + eye.size());
 		}
-		if(dir.size() == 4)
+		if(VectorFactory.isVector(dir))
 		{
 			this.dir = dir;
 		}

@@ -126,9 +126,9 @@ public class Vector
 		{
 			// TODO implement for 4D vectors (ignoring the last element)
 			// ONLY IMPLEMENT 3D CROSS PRODUCT
-			if(vec1.size() == 3)
+			if(vec1.size() == 3 || vec1.size() == 4)
 			{
-				for(int i = 0; i < vec1.size(); i++)
+				for(int i = 0; i < 3; i++)
 				{
 					double element = (vec1.get((i + 1)%3) * vec2.get((i + 2) % 3)) - (vec1.get((i + 2) % 3) * vec2.get((i + 1) % 3));
 					result.set(i, element);
@@ -137,7 +137,7 @@ public class Vector
 			}
 			else
 			{
-				throw new InvalidParameterException("Cross product only implemented for 3D vectors!");
+				throw new InvalidParameterException("Cross product only implemented for 3D and 4D vectors!");
 			}
 		}
 		else
@@ -145,43 +145,4 @@ public class Vector
 			throw new InvalidParameterException("Cannot perform cross product on Vectors with different sizes");
 		}
 	}
-
-	public static boolean isPoint(Vector v)
-	{
-		if(v.size != 4)
-		{
-			return false;
-		}
-		if(v.get(3) != 1)
-		{
-			return false;
-		}
-		return true;
-	}
-
-	public static boolean isVector(Vector v)
-	{
-		if(v.size != 4)
-		{
-			return false;
-		}
-		if(v.get(3) != 0)
-		{
-			return false;
-		}
-		return true;
-	}
-
-	public static Vector createPoint(double x, double y, double z)
-	{
-		Vector point = new Vector(4);
-		point.set(0, x);
-		point.set(1, y);
-		point.set(2, z);
-		point.set(3, 1);
-
-		return point;
-	}
-
-	// TODO create point/vector factory shit that also checks if it's points or vectors
 }

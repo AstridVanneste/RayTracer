@@ -1,5 +1,6 @@
 package RayTracer.Objects;
 
+import Factories.VectorFactory;
 import RayTracer.HitObject;
 import RayTracer.Ray;
 import Math.Vector;
@@ -14,7 +15,7 @@ public class Plane extends Object
 
 	public Plane(Vector normal, Vector point) throws InvalidParameterException
 	{
-		if(Vector.isVector(normal))
+		if(VectorFactory.isVector(normal))
 		{
 			this.normal = normal;
 		}
@@ -22,7 +23,7 @@ public class Plane extends Object
 		{
 			throw new InvalidParameterException("Normal parameter is not vector");
 		}
-		if(Vector.isPoint(point))
+		if(VectorFactory.isPoint(point))
 		{
 			this.point = point;
 		}
@@ -55,7 +56,7 @@ public class Plane extends Object
 
 	public boolean isOn(Vector p)
 	{
-		if(Vector.isPoint(p))
+		if(VectorFactory.isPoint(p))
 		{
 			double product = Vector.dotProduct(Vector.subtract(p, this.point), this.normal);
 
