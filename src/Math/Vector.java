@@ -124,7 +124,6 @@ public class Vector
 
 		if(vec1.size() == vec2.size())
 		{
-			// TODO implement for 4D vectors (ignoring the last element)
 			// ONLY IMPLEMENT 3D CROSS PRODUCT
 			if(vec1.size() == 3 || vec1.size() == 4)
 			{

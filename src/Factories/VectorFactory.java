@@ -43,10 +43,12 @@ public class VectorFactory
 	{
 		if(v.size() != 4)
 		{
+			System.out.println("size != 4");
 			return false;
 		}
 		if(v.get(3) != 0)
 		{
+			System.out.println("vector[3] != 0");
 			return false;
 		}
 		return true;

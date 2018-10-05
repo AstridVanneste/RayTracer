@@ -14,4 +14,34 @@ public class HitObject
 		this.distance = distance;
 		this.color = color;
 	}
+
+	public Vector getHitpoint()
+	{
+		return this.hitpoint;
+	}
+
+	public void setHitpoint(Vector hitpoint)
+	{
+		this.hitpoint = hitpoint;
+	}
+
+	public double getDistance()
+	{
+		return this.distance;
+	}
+
+	public void setDistance(double distance)
+	{
+		this.distance = distance;
+	}
+
+	public Vector getColor()
+	{
+		return this.color;
+	}
+
+	public void setColor(Vector color)
+	{
+		this.color = color;
+	}
 }
