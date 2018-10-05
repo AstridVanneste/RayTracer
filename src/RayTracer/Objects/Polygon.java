@@ -22,7 +22,7 @@ public class Polygon extends Object
 		HitObject planeHit = this.plane.hit(r);
 		if(planeHit != null)
 		{
-			if (this.isOn(planeHit.getHitpoint()))
+			if (this.isInside(planeHit.getHitpoint()))
 			{
 				return planeHit;
 			}
@@ -30,12 +30,20 @@ public class Polygon extends Object
 		return null;
 	}
 
-	public boolean isOn(Vector testPoint)
+	public boolean isInside(Vector testPoint)
 	{
-		for(int i =0; i < this.limits.length; i++)
+		for(int i = 0 ; i < this.limits.length; i++)
 		{
+			//System.out.println("Testing " + testPoint);
+			if(testPoint.equals(this.limits[i]))
+			{
+				return true;
+			}
+
+			int nextIndex = (i + 1) % this.limits.length;
+
 			Vector current = this.limits[i];
-			Vector next = this.limits[(i + 1) % this.limits.length];
+			Vector next = this.limits[nextIndex];
 
 			Vector segment = Vector.subtract(next, current);
 			Vector normal = Vector.crossProduct(this.plane.getNormal(), segment);
@@ -44,11 +52,12 @@ public class Polygon extends Object
 
 			double dot = Vector.dotProduct(diff, normal);
 
-			if(dot <= 0)
+			if(dot < 0.0f)
 			{
 				return false;
 			}
 		}
+
 		return true;
 	}
 }

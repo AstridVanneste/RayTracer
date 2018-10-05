@@ -64,7 +64,7 @@ public class Plane extends Object
 		}
 	}
 
-	public boolean isOn(Vector p)
+	public boolean isInside(Vector p)
 	{
 		if(VectorFactory.isPoint(p))
 		{

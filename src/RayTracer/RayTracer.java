@@ -56,7 +56,7 @@ public class RayTracer extends JPanel
 		int xLimit = 1280;
 		int yLimit = 720;
 
-		Vector eye = VectorFactory.createPointVector(0, 100, 100);
+		Vector eye = VectorFactory.createPointVector(0, 200, 100);
 
 		double zOffsetScreen = 2;
 
@@ -82,6 +82,7 @@ public class RayTracer extends JPanel
 					{
 						if(hit.getDistance() < distance || distance == 0)
 						{
+							//System.out.println("hit [" + x + ", " + y + "]");
 							g2d.setColor(new Color(new Float(hit.getDistance() % 1), 0f, 0.7f));
 							g2d.drawLine(x, y, x, y);
 							distance = hit.getDistance();

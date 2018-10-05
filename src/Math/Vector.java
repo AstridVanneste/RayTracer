@@ -144,4 +144,47 @@ public class Vector
 			throw new InvalidParameterException("Cannot perform cross product on Vectors with different sizes");
 		}
 	}
+
+	@Override
+	public boolean equals(Object o)
+	{
+		if(o == this)
+		{
+			return true;
+		}
+		if(o instanceof Vector)
+		{
+			Vector v = (Vector) o;
+
+			if(this.size == v.size)
+			{
+				for(int i = 0; i < this.size; i++)
+				{
+					if(this.elements[i] != v.elements[i])
+					{
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+		return false;
+	}
+
+	@Override
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+
+		builder.append("[");
+
+		for(int i = 0; i < this.size; i++)
+		{
+			builder.append(this.elements[i]);
+			builder.append("\t");
+		}
+		builder.append("]");
+
+		return builder.toString();
+	}
 }
