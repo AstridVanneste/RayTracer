@@ -33,6 +33,16 @@ public class Plane extends Object
 		}
 	}
 
+	public Vector getNormal()
+	{
+		return this.normal;
+	}
+
+	public Vector getPoint()
+	{
+		return this.point;
+	}
+
 	@Override
 	public HitObject hit(Ray r)
 	{

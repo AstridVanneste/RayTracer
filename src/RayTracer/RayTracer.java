@@ -4,6 +4,7 @@ import RayTracer.Factories.VectorFactory;
 import Math.Vector;
 import RayTracer.Objects.Object;
 import RayTracer.Objects.Plane;
+import RayTracer.Objects.Polygon;
 
 import javax.swing.*;
 import java.awt.*;
@@ -30,8 +31,18 @@ public class RayTracer extends JPanel
 		Vector point = VectorFactory.createPointVector(0, 0, -5);
 		Vector normal = VectorFactory.createVector(0, 1, 1);
 
+		Vector[] limits = new Vector[4];
+
+		limits[0] = VectorFactory.createPointVector(0, 0, 25);
+		limits[1] = VectorFactory.createPointVector(25, 0, 0);
+		limits[2] = VectorFactory.createPointVector(0, 25, 0);
+		limits[3] = VectorFactory.createPointVector(0, 0, 0);
+
 		Plane plane = new Plane(normal, point);
-		objects.add(plane);
+
+		Polygon polygon = new Polygon(plane, limits);
+
+		objects.add(polygon);
 
 		return objects;
 	}
