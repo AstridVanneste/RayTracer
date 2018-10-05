@@ -8,7 +8,6 @@ import RayTracer.Objects.Plane;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
-import java.util.Random;
 
 public class RayTracer extends JPanel
 {
@@ -70,11 +69,9 @@ public class RayTracer extends JPanel
 
 					if(hit != null)
 					{
-						//System.out.println("Drawing [" + x + ", " + y + "]");
-						//System.out.println("Distance " + hit.getDistance());
 						if(hit.getDistance() < distance || distance == 0)
 						{
-							g2d.setColor(new Color(new Float(hit.getDistance()) % 1, 0, 0.7f));
+							g2d.setColor(new Color(new Float(hit.getDistance() % 1), 0f, 0.7f));
 							g2d.drawLine(x, y, x, y);
 							distance = hit.getDistance();
 						}
