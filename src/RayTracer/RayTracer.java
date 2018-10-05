@@ -1,6 +1,6 @@
 package RayTracer;
 
-import Factories.VectorFactory;
+import RayTracer.Factories.VectorFactory;
 import Math.Vector;
 import RayTracer.Objects.Object;
 import RayTracer.Objects.Plane;

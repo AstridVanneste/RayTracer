@@ -1,6 +1,6 @@
 package RayTracer.Objects;
 
-import Factories.VectorFactory;
+import RayTracer.Factories.VectorFactory;
 import RayTracer.HitObject;
 import RayTracer.Ray;
 import Math.Vector;

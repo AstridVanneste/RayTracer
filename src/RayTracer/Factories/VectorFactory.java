@@ -1,4 +1,4 @@
-package Factories;
+package RayTracer.Factories;
 
 import Math.Vector;
 
