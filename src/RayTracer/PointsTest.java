@@ -4,13 +4,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Random;
 
-public class Points extends JPanel
+public class PointsTest extends JPanel
 {
 	public static void main(String args[])
 	{
-		Points points = new Points();
+		PointsTest points = new PointsTest();
 
-		JFrame frame = new JFrame("RayTracer.Points");
+		JFrame frame = new JFrame("RayTracer.PointsTest");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(points);
 		frame.setSize(250, 200);

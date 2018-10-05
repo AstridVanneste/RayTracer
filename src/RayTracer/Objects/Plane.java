@@ -14,21 +14,21 @@ public class Plane extends Object
 
 	public Plane(Vector normal, Vector point) throws InvalidParameterException
 	{
-		if(normal.size() == 4)
+		if(Vector.isVector(normal))
 		{
 			this.normal = normal;
 		}
 		else
 		{
-			throw new InvalidParameterException("Normal vector size should be 4 but is " + normal.size());
+			throw new InvalidParameterException("Normal parameter is not vector");
 		}
-		if(point.size() == 4)
+		if(Vector.isPoint(point))
 		{
 			this.point = point;
 		}
 		else
 		{
-			throw new InvalidParameterException("Point vector size should be 4 but is " + point.size());
+			throw new InvalidParameterException("Point parameter is not point");
 		}
 	}
 
@@ -40,6 +40,31 @@ public class Plane extends Object
 
 		double k = numerator/denominator;
 
-		return null;
+		if(k > 0)
+		{
+			Vector hitpoint = r.getPoint(k);
+			Vector color = new Vector(4);
+
+			return new HitObject(hitpoint, k, color);
+		}
+		else
+		{
+			return null;
+		}
+	}
+
+	public boolean isOn(Vector p)
+	{
+		if(Vector.isPoint(p))
+		{
+			double product = Vector.dotProduct(Vector.subtract(p, this.point), this.normal);
+
+			if(product == 0)
+			{
+				return true;
+			}
+		}
+
+		return false;
 	}
 }

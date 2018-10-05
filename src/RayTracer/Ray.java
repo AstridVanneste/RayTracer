@@ -47,4 +47,9 @@ public class Ray
 	{
 		this.dir = dir;
 	}
+
+	public Vector getPoint(double k)
+	{
+		return Vector.add(this.eye, Vector.multiply(this.dir, k));
+	}
 }

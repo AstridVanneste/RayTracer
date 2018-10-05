@@ -124,6 +124,7 @@ public class Vector
 
 		if(vec1.size() == vec2.size())
 		{
+			// TODO implement for 4D vectors (ignoring the last element)
 			// ONLY IMPLEMENT 3D CROSS PRODUCT
 			if(vec1.size() == 3)
 			{
@@ -144,4 +145,43 @@ public class Vector
 			throw new InvalidParameterException("Cannot perform cross product on Vectors with different sizes");
 		}
 	}
+
+	public static boolean isPoint(Vector v)
+	{
+		if(v.size != 4)
+		{
+			return false;
+		}
+		if(v.get(3) != 1)
+		{
+			return false;
+		}
+		return true;
+	}
+
+	public static boolean isVector(Vector v)
+	{
+		if(v.size != 4)
+		{
+			return false;
+		}
+		if(v.get(3) != 0)
+		{
+			return false;
+		}
+		return true;
+	}
+
+	public static Vector createPoint(double x, double y, double z)
+	{
+		Vector point = new Vector(4);
+		point.set(0, x);
+		point.set(1, y);
+		point.set(2, z);
+		point.set(3, 1);
+
+		return point;
+	}
+
+	// TODO create point/vector factory shit that also checks if it's points or vectors
 }
