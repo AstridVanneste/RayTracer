@@ -9,9 +9,13 @@ import java.security.InvalidParameterException;
 
 public class Plane extends Object
 {
-	private Vector normal;
-	private Vector point;
+	protected Vector normal;
+	protected Vector point;
 
+	protected Plane()
+	{
+
+	}
 
 	public Plane(Vector normal, Vector point) throws InvalidParameterException
 	{

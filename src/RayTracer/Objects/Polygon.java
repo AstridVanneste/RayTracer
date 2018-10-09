@@ -5,21 +5,30 @@ import RayTracer.Ray;
 
 import Math.Vector;
 
-public class Polygon extends Object
+import java.security.InvalidParameterException;
+
+public class Polygon extends Plane
 {
-	private Plane plane;
 	private Vector[] limits;
 
-	public Polygon(Plane plane, Vector[] limits)
+	public Polygon(Vector[] limits)
 	{
-		this.plane = plane;
-		this.limits = limits;
+		if(limits.length >= 3)
+		{
+			this.limits = limits;
+			this.point = this.limits[0];
+			this.normal = Vector.crossProduct(Vector.subtract(this.limits[0], this.limits[1]), Vector.subtract(this.limits[0], this.limits[2]));
+		}
+		else
+		{
+			throw new InvalidParameterException("Cannot create a polygon with less than 3 limit points, given " + limits.length + " points");
+		}
 	}
 
 	@Override
 	public HitObject hit(Ray r)
 	{
-		HitObject planeHit = this.plane.hit(r);
+		HitObject planeHit = super.hit(r);
 		if(planeHit != null)
 		{
 			if (this.isInside(planeHit.getHitpoint()))
@@ -32,9 +41,8 @@ public class Polygon extends Object
 
 	public boolean isInside(Vector testPoint)
 	{
-		for(int i = 0 ; i < this.limits.length; i++)
+		for(int i = 0; i < this.limits.length; i++)
 		{
-			//System.out.println("Testing " + testPoint);
 			if(testPoint.equals(this.limits[i]))
 			{
 				return true;
@@ -42,22 +50,18 @@ public class Polygon extends Object
 
 			int nextIndex = (i + 1) % this.limits.length;
 
-			Vector current = this.limits[i];
-			Vector next = this.limits[nextIndex];
+			Vector segment = Vector.subtract(this.limits[i], this.limits[nextIndex]);
+			Vector diff = Vector.subtract(this.limits[i], testPoint);
 
-			Vector segment = Vector.subtract(next, current);
-			Vector normal = Vector.crossProduct(this.plane.getNormal(), segment);
+			Vector norm = Vector.crossProduct(segment, this.normal);
 
-			Vector diff = Vector.subtract(testPoint, current);
+			double dot = Vector.dotProduct(diff, norm);
 
-			double dot = Vector.dotProduct(diff, normal);
-
-			if(dot < 0.0f)
+			if(dot != 0)
 			{
 				return false;
 			}
 		}
-
 		return true;
 	}
 }

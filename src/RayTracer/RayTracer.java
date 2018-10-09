@@ -5,16 +5,35 @@ import Math.Vector;
 import RayTracer.Objects.Object;
 import RayTracer.Objects.Plane;
 import RayTracer.Objects.Polygon;
+import org.omg.CORBA.INITIALIZE;
 
 import javax.swing.*;
 import java.awt.*;
+import java.security.InvalidParameterException;
 import java.util.ArrayList;
+import java.util.List;
 
 public class RayTracer extends JPanel
 {
+	private Vector eye;
+
+	public RayTracer(Vector eye) throws InvalidParameterException
+	{
+		if(VectorFactory.isPoint(eye))
+		{
+			this.eye = eye;
+		}
+		else
+		{
+			throw new InvalidParameterException("Eye parameter is not a point");
+		}
+	}
+
 	public static void main(String args[])
 	{
-		RayTracer rayTracer = new RayTracer();
+		Vector eye = VectorFactory.createPointVector(0, 100, 100);
+
+		RayTracer rayTracer = new RayTracer(eye);
 		JFrame frame = new JFrame("RayTracer");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(rayTracer);
@@ -28,19 +47,19 @@ public class RayTracer extends JPanel
 	{
 		ArrayList<Object> objects = new ArrayList<>();
 
-		Vector point = VectorFactory.createPointVector(0, 0, -5);
+		Vector point = VectorFactory.createPointVector(0, 1, 1);
 		Vector normal = VectorFactory.createVector(0, 1, 1);
 
-		Vector[] limits = new Vector[4];
+		Vector[] limits = new Vector[3];
 
-		limits[0] = VectorFactory.createPointVector(0, 0, 25);
-		limits[1] = VectorFactory.createPointVector(25, 0, 0);
-		limits[2] = VectorFactory.createPointVector(0, 25, 0);
-		limits[3] = VectorFactory.createPointVector(0, 0, 0);
+		limits[0] = VectorFactory.createPointVector(-50 , 0, -50);
+		limits[1] = VectorFactory.createPointVector( -50, 0, 50);
+		limits[2] = VectorFactory.createPointVector( 50, 0, 50);
+		//limits[3] = VectorFactory.createPointVector( 50, 0, -50);
 
 		Plane plane = new Plane(normal, point);
 
-		Polygon polygon = new Polygon(plane, limits);
+		Polygon polygon = new Polygon(limits);
 
 		objects.add(polygon);
 
@@ -56,46 +75,67 @@ public class RayTracer extends JPanel
 		int xLimit = 1280;
 		int yLimit = 720;
 
-		Vector eye = VectorFactory.createPointVector(0, 200, 100);
+
 
 		double zOffsetScreen = 2;
 
 		ArrayList<Object> objects = RayTracer.populateWorld();
+
+		List<Pixel> screen = new ArrayList<>();
 
 		System.out.println("start drawing");
 		for(int x = 0; x < xLimit; x++)
 		{
 			for(int y = 0; y < yLimit; y++)
 			{
-				//System.out.println("Processing [" + x + ", " + y + "] ");
-				Vector pixelPoint = VectorFactory.createPointVector(x, y, zOffsetScreen);
-				Vector rayDirection = Vector.subtract(eye, pixelPoint);
+				screen.add(new Pixel(x, y));
+			}
+		}
 
-				Ray ray = new Ray(eye, rayDirection);
 
-				double distance = 0;
-				for(Object object: objects)
+		screen = this.trace(objects, screen);
+
+		for(Pixel pixel: screen)
+		{
+			g2d.setColor(pixel.getColor());
+			g2d.drawLine(pixel.x(), pixel.y(), pixel.x(), pixel.y());
+		}
+
+		System.out.println("finished drawing");
+	}
+
+	public List<Pixel> trace(List<Object> world, List<Pixel> screen)
+	{
+		int zOffsetScreen = 2;
+
+		for(int i = 0; i < screen.size(); i++)
+		{
+			int x = screen.get(i).x();
+			int y = screen.get(i).y();
+
+			//System.out.println("Processing [" + x + ", " + y + "] ");
+			Vector pixelPoint = VectorFactory.createPointVector(x, y, zOffsetScreen);
+			Vector rayDirection = Vector.subtract(this.eye, pixelPoint);
+
+			Ray ray = new Ray(this.eye, rayDirection);
+
+			double distance = 0;
+			for(Object object: world)
+			{
+				HitObject hit = object.hit(ray);
+
+				if(hit != null)
 				{
-					HitObject hit = object.hit(ray);
-
-					if(hit != null)
+					if(hit.getDistance() < distance || distance == 0)
 					{
-						if(hit.getDistance() < distance || distance == 0)
-						{
-							//System.out.println("hit [" + x + ", " + y + "]");
-							g2d.setColor(new Color(new Float(hit.getDistance() % 1), 0f, 0.7f));
-							g2d.drawLine(x, y, x, y);
-							distance = hit.getDistance();
-						}
+						System.out.println("hit [" + x + ", " + y + "]");
+						screen.get(i).setColor(new Color(new Float(hit.getDistance() % 1), 0f, 0.7f));
+						distance = hit.getDistance();
 					}
-				}
-				if(distance == 0)
-				{
-					g2d.setColor(Color.BLACK);
-					g2d.drawLine(x, y, x, y);
 				}
 			}
 		}
-		System.out.println("finished drawing");
+
+		return screen;
 	}
 }
