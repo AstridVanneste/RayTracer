@@ -38,10 +38,10 @@ public class RayTracer extends JPanel
 
 		Vector[] limits = new Vector[3];
 
-		limits[0] = VectorFactory.createPointVector(50 , 0, 50);
-		//limits[3] = VectorFactory.createPointVector( -50, 0, 50);
-		limits[2] = VectorFactory.createPointVector( -50, 0, -50);
+		limits[0] = VectorFactory.createPointVector(50 , 0, 0);
 		limits[1] = VectorFactory.createPointVector( 50, 0, -50);
+		limits[2] = VectorFactory.createPointVector( -50, 0, -50);
+		//limits[3] = VectorFactory.createPointVector( -50, 0, 50);
 
 		Plane plane = new Plane(normal, point);
 		Polygon polygon = new Polygon(limits);
@@ -58,7 +58,7 @@ public class RayTracer extends JPanel
 		Graphics2D g2d = (Graphics2D) g;
 		int xLimit = 1280;
 		int yLimit = 720;
-		Vector screenOffset = VectorFactory.createPointVector(0, 0, 0);
+		Vector screenOffset = VectorFactory.createPointVector(0, -100, 0);
 
 		ArrayList<Hittable> objects = this.populateWorld();
 
@@ -72,7 +72,7 @@ public class RayTracer extends JPanel
 		for(Pixel pixel: pixels)
 		{
 			g2d.setColor(pixel.getColor());
-			g2d.drawLine(pixel.x(), pixel.y(), pixel.x(), pixel.y());
+			g2d.drawLine(xLimit - pixel.x(), yLimit - pixel.y(), xLimit - pixel.x(), yLimit -  pixel.y());
 		}
 
 		System.out.println("finished drawing");
@@ -102,6 +102,7 @@ public class RayTracer extends JPanel
 					{
 						System.out.println("hit [" + x + ", " + y + "]");
 						screen.get(i).setColor(hit.getColor());
+						System.out.println(hit.getColor());
 						distance = hit.getDistance();
 					}
 				}

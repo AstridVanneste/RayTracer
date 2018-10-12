@@ -91,6 +91,6 @@ public class Plane implements Hittable
 		float b = Math.abs((float)((point.get(2)) / 100) % 1);
 
 		Color color = new Color(r, g, b);
-		return color;
+		return Color.RED;
 	}
 }
