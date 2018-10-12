@@ -48,7 +48,7 @@ public class Main
 
 		Plane plane = new Plane(normal, point);
 		Polygon polygon = new Polygon(limits);
-		objects.add(polygon);
+		objects.add(plane);
 
 		return objects;
 	}

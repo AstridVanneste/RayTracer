@@ -43,7 +43,7 @@ public class RayTracer extends JPanel
 		//System.out.println("NUMBER OF PIXELS = " + pixels.size());
 		for(Pixel pixel: pixels)
 		{
-			//System.out.println("pixel: [" + pixel.x() + ", " + pixel.y() + "]");
+			System.out.println("pixel: [" + (this.screen.width() - pixel.x()) + ", " + (this.screen.height() - pixel.y()) + "]");
 			g2d.setColor(pixel.getColor());
 			g2d.drawLine(this.screen.width() - pixel.x(), this.screen.width() - pixel.y(), this.screen.height() - pixel.x(), this.screen.height() -  pixel.y());
 		}
