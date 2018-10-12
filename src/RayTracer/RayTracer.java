@@ -5,13 +5,14 @@ import Math.Vector;
 import RayTracer.Objects.Object;
 import RayTracer.Objects.Plane;
 import RayTracer.Objects.Polygon;
-import org.omg.CORBA.INITIALIZE;
+import ch.qos.logback.classic.Logger;
 
 import javax.swing.*;
 import java.awt.*;
 import java.security.InvalidParameterException;
 import java.util.ArrayList;
 import java.util.List;
+
 
 public class RayTracer extends JPanel
 {
@@ -52,15 +53,13 @@ public class RayTracer extends JPanel
 
 		Vector[] limits = new Vector[3];
 
-		limits[0] = VectorFactory.createPointVector(-50 , 0, -50);
-		limits[1] = VectorFactory.createPointVector( -50, 0, 50);
-		limits[2] = VectorFactory.createPointVector( 50, 0, 50);
-		//limits[3] = VectorFactory.createPointVector( 50, 0, -50);
+		limits[0] = VectorFactory.createPointVector(50 , 0, 50);
+		//limits[3] = VectorFactory.createPointVector( -50, 0, 50);
+		limits[2] = VectorFactory.createPointVector( -50, 0, -50);
+		limits[1] = VectorFactory.createPointVector( 50, 0, -50);
 
 		Plane plane = new Plane(normal, point);
-
 		Polygon polygon = new Polygon(limits);
-
 		objects.add(polygon);
 
 		return objects;
@@ -74,10 +73,6 @@ public class RayTracer extends JPanel
 		Graphics2D g2d = (Graphics2D) g;
 		int xLimit = 1280;
 		int yLimit = 720;
-
-
-
-		double zOffsetScreen = 2;
 
 		ArrayList<Object> objects = RayTracer.populateWorld();
 

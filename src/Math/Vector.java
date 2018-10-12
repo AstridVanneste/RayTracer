@@ -176,14 +176,14 @@ public class Vector
 	{
 		StringBuilder builder = new StringBuilder();
 
-		builder.append("[");
+		builder.append("(");
 
 		for(int i = 0; i < this.size; i++)
 		{
 			builder.append(this.elements[i]);
-			builder.append("\t");
+			builder.append(" ");
 		}
-		builder.append("]");
+		builder.append(")");
 
 		return builder.toString();
 	}

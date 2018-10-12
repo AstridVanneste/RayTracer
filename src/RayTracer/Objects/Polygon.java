@@ -50,15 +50,20 @@ public class Polygon extends Plane
 
 			int nextIndex = (i + 1) % this.limits.length;
 
-			Vector segment = Vector.subtract(this.limits[i], this.limits[nextIndex]);
-			Vector diff = Vector.subtract(this.limits[i], testPoint);
+			Vector segment = Vector.subtract(this.limits[nextIndex], this.limits[i]);
+			Vector diff = Vector.subtract(testPoint, this.limits[i]);
 
-			Vector norm = Vector.crossProduct(segment, this.normal);
+			Vector norm = Vector.crossProduct(this.normal, segment);
 
 			double dot = Vector.dotProduct(diff, norm);
 
-			if(dot != 0)
+			if(dot < 0.0f)
 			{
+				if(i != 0)
+				{
+					System.out.println("failed on side " + i + " -> " + nextIndex);
+				}
+
 				return false;
 			}
 		}
