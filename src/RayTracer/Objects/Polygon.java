@@ -39,6 +39,7 @@ public class Polygon extends Plane
 		return null;
 	}
 
+	@Override
 	public boolean isInside(Vector testPoint)
 	{
 		for(int i = 0; i < this.limits.length; i++)
@@ -59,11 +60,7 @@ public class Polygon extends Plane
 
 			if(Double.compare(dot, 0.0f) < 0)
 			{
-				if(i != 0)
-				{
-					System.out.println("failed on side " + i + " -> " + nextIndex);
-				}
-
+				System.out.println("failed on side " + i + " -> " + nextIndex);
 				return false;
 			}
 		}

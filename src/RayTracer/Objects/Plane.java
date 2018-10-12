@@ -56,7 +56,7 @@ public class Plane implements Hittable
 
 		double k = numerator/denominator;
 
-		if(k > 0)
+		if(Double.compare(k, 0) <= 0)
 		{
 			Vector hitpoint = r.getPoint(k);
 			Color color = this.sampleColor(hitpoint);
