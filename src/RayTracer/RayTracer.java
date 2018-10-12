@@ -36,30 +36,32 @@ public class RayTracer extends JPanel
 		Graphics2D g2d = (Graphics2D) g;
 
 		System.out.println("TRACING...");
-		List<Pixel> pixels = this.trace(screen.getPixels(Screen.PixelOrder.COLUMN_TDLR));
+		List<Pixel> pixels = this.trace();
 		System.out.println("FINISHED!");
 
 		System.out.println("DRAWING...");
 		//System.out.println("NUMBER OF PIXELS = " + pixels.size());
 		for(Pixel pixel: pixels)
 		{
-			System.out.println("pixel: [" + (this.screen.width() - pixel.x()) + ", " + (this.screen.height() - pixel.y()) + "]");
+			//System.out.println("pixel: [" + (this.screen.width() - pixel.x()) + ", " + (this.screen.height() - pixel.y()) + "]");
 			g2d.setColor(pixel.getColor());
-			g2d.drawLine(this.screen.width() - pixel.x(), this.screen.width() - pixel.y(), this.screen.height() - pixel.x(), this.screen.height() -  pixel.y());
+			g2d.drawLine(this.screen.width() - pixel.x(), this.screen.height() - pixel.y(), this.screen.width() - pixel.x(), this.screen.height() -  pixel.y());
 		}
 
 		System.out.println("FINISHED!");
 	}
 
-	private List<Pixel> trace(List<Pixel> screen)
+	private List<Pixel> trace()
 	{
-		for(int i = 0; i < screen.size(); i++)
+		List<Pixel> pixels = this.screen.getPixels(Screen.PixelOrder.COLUMN_TDLR);
+
+		for(int i = 0; i < pixels.size(); i++)
 		{
-			int x = screen.get(i).x();
-			int y = screen.get(i).y();
+			int x = pixels.get(i).x();
+			int y = pixels.get(i).y();
 
 			//System.out.println("Processing [" + x + ", " + y + "] ");
-			Vector pixelPoint = screen.get(i).getLoc();
+			Vector pixelPoint = pixels.get(i).getLoc();
 			Vector rayDirection = Vector.subtract(this.eye, pixelPoint);
 
 			Ray ray = new Ray(this.eye, rayDirection);
@@ -74,13 +76,13 @@ public class RayTracer extends JPanel
 					if(hit.getDistance() < distance || distance == 0)
 					{
 						System.out.println("hit [" + x + ", " + y + "]");
-						screen.get(i).setColor(hit.getColor());
+						pixels.get(i).setColor(hit.getColor());
 						//System.out.println(hit.getColor());
 						distance = hit.getDistance();
 					}
 				}
 			}
 		}
-		return screen;
+		return pixels;
 	}
 }

@@ -13,20 +13,23 @@ public class Main
 {
 	public static void main(String args[])
 	{
-		Vector eye = VectorFactory.createPointVector(0, 200, 100);
-		int xLimit = 1280;
-		int yLimit = 720;
-		Vector screenOffset = VectorFactory.createPointVector(0, 0, 50);
+		int width = 1280;
+		int height = 720;
+
+		Vector eye = VectorFactory.createPointVector(0, 5, 2);
+
+		Vector screenOffset = VectorFactory.createPointVector(-1, 1, 1);
+		Screen screen = new Screen(width, height, screenOffset, 0.01);
 
 		ArrayList<Hittable> objects = populateWorld();
 
-		Screen screen = new Screen(xLimit, yLimit, screenOffset, 1);
-
 		RayTracer rayTracer = new RayTracer(eye, screen, objects);
+
+
 		JFrame frame = new JFrame("RayTracer");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(rayTracer);
-		frame.setSize(xLimit, yLimit);
+		frame.setSize(width, height);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		frame.setResizable(false);
@@ -41,14 +44,14 @@ public class Main
 
 		Vector[] limits = new Vector[3];
 
-		limits[0] = VectorFactory.createPointVector(50 , 0, -50);
-		limits[1] = VectorFactory.createPointVector( 50, 20, -100);
-		limits[2] = VectorFactory.createPointVector( -50, 20, -100);
+		limits[0] = VectorFactory.createPointVector(1 , 0, 0);
+		limits[1] = VectorFactory.createPointVector( 1, 1, -1);
+		limits[2] = VectorFactory.createPointVector( -1, 1, -1);
 		//limits[3] = VectorFactory.createPointVector( -50, 0, 50);
 
 		Plane plane = new Plane(normal, point);
 		Polygon polygon = new Polygon(limits);
-		objects.add(plane);
+		objects.add(polygon);
 
 		return objects;
 	}
