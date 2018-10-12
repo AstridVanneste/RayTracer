@@ -3,7 +3,7 @@ package RayTracer.Objects;
 import RayTracer.HitObject;
 import RayTracer.Ray;
 
-public abstract class Object
+public interface Hittable
 {
-	public abstract HitObject hit(Ray r);
+	public HitObject hit(Ray r);
 }

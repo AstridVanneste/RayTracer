@@ -2,13 +2,15 @@ package RayTracer;
 
 import Math.Vector;
 
+import java.awt.*;
+
 public class HitObject
 {
 	private Vector hitpoint;
 	private double distance;
-	private Vector color;
+	private Color color;
 
-	public HitObject(Vector hitpoint, double distance, Vector color)
+	public HitObject(Vector hitpoint, double distance, Color color)
 	{
 		this.hitpoint = hitpoint;
 		this.distance = distance;
@@ -35,12 +37,12 @@ public class HitObject
 		this.distance = distance;
 	}
 
-	public Vector getColor()
+	public Color getColor()
 	{
 		return this.color;
 	}
 
-	public void setColor(Vector color)
+	public void setColor(Color color)
 	{
 		this.color = color;
 	}

@@ -2,10 +2,9 @@ package RayTracer;
 
 import RayTracer.Factories.VectorFactory;
 import Math.Vector;
-import RayTracer.Objects.Object;
+import RayTracer.Objects.Hittable;
 import RayTracer.Objects.Plane;
-import RayTracer.Objects.Polygon;
-import ch.qos.logback.classic.Logger;
+import RayTracer.Objects.Polygon;;
 
 import javax.swing.*;
 import java.awt.*;
@@ -32,7 +31,7 @@ public class RayTracer extends JPanel
 
 	public static void main(String args[])
 	{
-		Vector eye = VectorFactory.createPointVector(0, 100, 100);
+		Vector eye = VectorFactory.createPointVector(0, 0, 100);
 
 		RayTracer rayTracer = new RayTracer(eye);
 		JFrame frame = new JFrame("RayTracer");
@@ -44,9 +43,9 @@ public class RayTracer extends JPanel
 		frame.setResizable(false);
 	}
 
-	private static ArrayList<Object> populateWorld()
+	private static ArrayList<Hittable> populateWorld()
 	{
-		ArrayList<Object> objects = new ArrayList<>();
+		ArrayList<Hittable> objects = new ArrayList<>();
 
 		Vector point = VectorFactory.createPointVector(0, 1, 1);
 		Vector normal = VectorFactory.createVector(0, 1, 1);
@@ -60,7 +59,7 @@ public class RayTracer extends JPanel
 
 		Plane plane = new Plane(normal, point);
 		Polygon polygon = new Polygon(limits);
-		objects.add(polygon);
+		objects.add(plane);
 
 		return objects;
 	}
@@ -73,24 +72,18 @@ public class RayTracer extends JPanel
 		Graphics2D g2d = (Graphics2D) g;
 		int xLimit = 1280;
 		int yLimit = 720;
+		Vector screenOffset = VectorFactory.createPointVector(1, 1, 1);
 
-		ArrayList<Object> objects = RayTracer.populateWorld();
+		ArrayList<Hittable> objects = RayTracer.populateWorld();
 
-		List<Pixel> screen = new ArrayList<>();
+		Screen screen = new Screen(xLimit, yLimit, screenOffset, 0.5);
 
 		System.out.println("start drawing");
-		for(int x = 0; x < xLimit; x++)
-		{
-			for(int y = 0; y < yLimit; y++)
-			{
-				screen.add(new Pixel(x, y));
-			}
-		}
 
 
-		screen = this.trace(objects, screen);
+		List<Pixel> pixels = this.trace(objects, screen.getPixels(Screen.PixelOrder.COLUMN_TDLR));
 
-		for(Pixel pixel: screen)
+		for(Pixel pixel: pixels)
 		{
 			g2d.setColor(pixel.getColor());
 			g2d.drawLine(pixel.x(), pixel.y(), pixel.x(), pixel.y());
@@ -99,7 +92,7 @@ public class RayTracer extends JPanel
 		System.out.println("finished drawing");
 	}
 
-	public List<Pixel> trace(List<Object> world, List<Pixel> screen)
+	public List<Pixel> trace(List<Hittable> world, List<Pixel> screen)
 	{
 		int zOffsetScreen = 2;
 
@@ -115,7 +108,7 @@ public class RayTracer extends JPanel
 			Ray ray = new Ray(this.eye, rayDirection);
 
 			double distance = 0;
-			for(Object object: world)
+			for(Hittable object: world)
 			{
 				HitObject hit = object.hit(ray);
 
@@ -124,7 +117,7 @@ public class RayTracer extends JPanel
 					if(hit.getDistance() < distance || distance == 0)
 					{
 						System.out.println("hit [" + x + ", " + y + "]");
-						screen.get(i).setColor(new Color(new Float(hit.getDistance() % 1), 0f, 0.7f));
+						screen.get(i).setColor(hit.getColor());
 						distance = hit.getDistance();
 					}
 				}

@@ -57,7 +57,7 @@ public class Polygon extends Plane
 
 			double dot = Vector.dotProduct(diff, norm);
 
-			if(dot < 0.0f)
+			if(Double.compare(dot, 0.0f) < 0)
 			{
 				if(i != 0)
 				{
