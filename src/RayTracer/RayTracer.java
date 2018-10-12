@@ -2,7 +2,11 @@ package RayTracer;
 
 import RayTracer.Factories.VectorFactory;
 import Math.Vector;
+import RayTracer.Hit.HitObject;
+import RayTracer.Hit.Ray;
 import RayTracer.Objects.Hittable;
+import RayTracer.Screen.Pixel;
+import RayTracer.Screen.Screen;
 
 import javax.swing.*;
 import java.awt.*;

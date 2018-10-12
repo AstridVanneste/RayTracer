@@ -1,7 +1,8 @@
-package RayTracer;
+package RayTracer.Screen;
 
 import Math.Vector;
 import RayTracer.Factories.VectorFactory;
+import RayTracer.Screen.Pixel;
 
 import java.security.InvalidParameterException;
 import java.util.ArrayList;

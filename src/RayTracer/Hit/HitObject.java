@@ -1,6 +1,7 @@
-package RayTracer;
+package RayTracer.Hit;
 
 import Math.Vector;
+import RayTracer.RayTracer;
 
 import java.awt.*;
 

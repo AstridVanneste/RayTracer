@@ -1,7 +1,9 @@
-package RayTracer;
+package RayTracer.Hit;
 
 import RayTracer.Factories.VectorFactory;
 import Math.Vector;
+import RayTracer.RayTracer;
+
 import java.security.InvalidParameterException;
 
 public class Ray

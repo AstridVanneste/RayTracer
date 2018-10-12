@@ -1,7 +1,7 @@
 package RayTracer.Objects;
 
-import RayTracer.HitObject;
-import RayTracer.Ray;
+import RayTracer.Hit.HitObject;
+import RayTracer.Hit.Ray;
 
 import Math.Vector;
 

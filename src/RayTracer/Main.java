@@ -5,6 +5,7 @@ import Math.Vector;
 import RayTracer.Objects.Hittable;
 import RayTracer.Objects.Plane;
 import RayTracer.Objects.Polygon;
+import RayTracer.Screen.Screen;
 
 import javax.swing.*;
 import java.util.ArrayList;
@@ -13,8 +14,8 @@ public class Main
 {
 	public static void main(String args[])
 	{
-		int width = 1280;
-		int height = 720;
+		int width = 1000;
+		int height = 1000;
 
 		Vector eye = VectorFactory.createPointVector(0, 5, 2);
 
@@ -42,12 +43,12 @@ public class Main
 		Vector point = VectorFactory.createPointVector(0, 1, 1);
 		Vector normal = VectorFactory.createVector(0, 1, 1);
 
-		Vector[] limits = new Vector[3];
+		Vector[] limits = new Vector[4];
 
 		limits[0] = VectorFactory.createPointVector(1 , 0, 0);
 		limits[1] = VectorFactory.createPointVector( 1, 1, -1);
 		limits[2] = VectorFactory.createPointVector( -1, 1, -1);
-		//limits[3] = VectorFactory.createPointVector( -50, 0, 50);
+		limits[3] = VectorFactory.createPointVector( -1, 0, 0);
 
 		Plane plane = new Plane(normal, point);
 		Polygon polygon = new Polygon(limits);
