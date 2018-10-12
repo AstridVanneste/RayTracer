@@ -60,7 +60,7 @@ public class Polygon extends Plane
 
 			if(Double.compare(dot, 0.0f) < 0)
 			{
-				System.out.println("failed on side " + i + " -> " + nextIndex);
+				//System.out.println("failed on side " + i + " -> " + nextIndex);
 				return false;
 			}
 		}

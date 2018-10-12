@@ -22,7 +22,7 @@ public class Pixel
 		this.x = x;
 		this.y = y;
 		this.loc = loc;
-		this.color = Color.BLACK;
+		this.color = Color.DARK_GRAY;
 	}
 
 	public Color getColor()

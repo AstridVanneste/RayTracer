@@ -58,4 +58,14 @@ public class Screen
 
 		return pixels;
 	}
+
+	public int height()
+	{
+		return this.height;
+	}
+
+	public int width()
+	{
+		return this.width;
+	}
 }
