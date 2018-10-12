@@ -2,12 +2,13 @@ package RayTracer;
 
 import RayTracer.Factories.VectorFactory;
 import Math.Vector;
-import RayTracer.Objects.Hittable;
+import RayTracer.Hit.Hittable;
 import RayTracer.Objects.Plane;
 import RayTracer.Objects.Polygon;
 import RayTracer.Screen.Screen;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.ArrayList;
 
 public class Main
@@ -50,8 +51,8 @@ public class Main
 		limits[2] = VectorFactory.createPointVector( -1, 1, -1);
 		limits[3] = VectorFactory.createPointVector( -1, 0, 0);
 
-		Plane plane = new Plane(normal, point);
-		Polygon polygon = new Polygon(limits);
+		Plane plane = new Plane(normal, point, Color.YELLOW);
+		Polygon polygon = new Polygon(limits, Color.YELLOW);
 		objects.add(polygon);
 
 		return objects;

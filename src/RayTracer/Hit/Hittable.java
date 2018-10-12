@@ -1,4 +1,4 @@
-package RayTracer.Objects;
+package RayTracer.Hit;
 
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;

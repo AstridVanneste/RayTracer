@@ -4,7 +4,7 @@ import RayTracer.Factories.VectorFactory;
 import Math.Vector;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
-import RayTracer.Objects.Hittable;
+import RayTracer.Hit.Hittable;
 import RayTracer.Screen.Pixel;
 import RayTracer.Screen.Screen;
 
@@ -79,7 +79,7 @@ public class RayTracer extends JPanel
 				{
 					if(hit.getDistance() < distance || distance == 0)
 					{
-						System.out.println("hit [" + x + ", " + y + "]");
+						//System.out.println("hit [" + x + ", " + y + "]");
 						pixels.get(i).setColor(hit.getColor());
 						//System.out.println(hit.getColor());
 						distance = hit.getDistance();

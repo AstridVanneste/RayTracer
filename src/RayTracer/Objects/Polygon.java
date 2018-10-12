@@ -5,6 +5,7 @@ import RayTracer.Hit.Ray;
 
 import Math.Vector;
 
+import java.awt.*;
 import java.security.InvalidParameterException;
 
 public class Polygon extends Plane
@@ -23,6 +24,12 @@ public class Polygon extends Plane
 		{
 			throw new InvalidParameterException("Cannot create a polygon with less than 3 limit points, given " + limits.length + " points");
 		}
+	}
+
+	public Polygon(Vector[] limits, Color color)
+	{
+		this(limits);
+		this.setColor(color);
 	}
 
 	@Override

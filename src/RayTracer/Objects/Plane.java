@@ -2,24 +2,26 @@ package RayTracer.Objects;
 
 import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
+import RayTracer.Hit.Hittable;
 import RayTracer.Hit.Ray;
 import Math.Vector;
 
 import java.awt.*;
 import java.security.InvalidParameterException;
 
-public class Plane implements Hittable
+public class Plane extends Object
 {
 	protected Vector normal;
 	protected Vector point;
 
 	protected Plane()
 	{
-
+		super();
 	}
 
 	public Plane(Vector normal, Vector point) throws InvalidParameterException
 	{
+		super();
 		if(VectorFactory.isVector(normal))
 		{
 			this.normal = normal;
@@ -36,6 +38,12 @@ public class Plane implements Hittable
 		{
 			throw new InvalidParameterException("Point parameter is not point");
 		}
+	}
+
+	public Plane(Vector normal, Vector point, Color color)
+	{
+		this(normal, point);
+		this.setColor(color);
 	}
 
 	public Vector getNormal()
@@ -59,9 +67,8 @@ public class Plane implements Hittable
 		if(Double.compare(k, 0) <= 0)
 		{
 			Vector hitpoint = r.getPoint(k);
-			Color color = this.sampleColor(hitpoint);
 
-			return new HitObject(hitpoint, k, color);
+			return new HitObject(hitpoint, k, this.getColor());
 		}
 		else
 		{
@@ -82,15 +89,5 @@ public class Plane implements Hittable
 		}
 
 		return false;
-	}
-
-	public Color sampleColor(Vector point)
-	{
-		float r = Math.abs((float)((point.get(0)) / 100) % 1);
-		float g = Math.abs((float)((point.get(1)) / 100) % 1);
-		float b = Math.abs((float)((point.get(2)) / 100) % 1);
-
-		Color color = new Color(r, g, b);
-		return Color.RED;
 	}
 }
