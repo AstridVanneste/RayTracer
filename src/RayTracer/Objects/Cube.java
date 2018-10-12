@@ -33,9 +33,15 @@ public class Cube extends Object
 		for(int i = 0; i < NUMBER_SIDES; i++)
 		{
 			HitObject currentHit = this.sides[i].hit(r);
-			if(hit == null || hit.getDistance() > currentHit.getDistance())
+			if(currentHit != null)
 			{
-				hit = currentHit;
+				if (hit == null)
+				{
+					hit = currentHit;
+				} else if (hit.getDistance() > currentHit.getDistance())
+				{
+					hit = currentHit;
+				}
 			}
 		}
 

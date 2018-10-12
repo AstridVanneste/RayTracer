@@ -3,6 +3,7 @@ package RayTracer;
 import RayTracer.Factories.VectorFactory;
 import Math.Vector;
 import RayTracer.Hit.Hittable;
+import RayTracer.Objects.Cube;
 import RayTracer.Objects.Plane;
 import RayTracer.Objects.Polygon;
 import RayTracer.Screen.Screen;
@@ -18,7 +19,7 @@ public class Main
 		int width = 1000;
 		int height = 1000;
 
-		Vector eye = VectorFactory.createPointVector(0, 5, 2);
+		Vector eye = VectorFactory.createPointVector(2, 5, 2);
 
 		Vector screenOffset = VectorFactory.createPointVector(-1, 1, 1);
 		Screen screen = new Screen(width, height, screenOffset, 0.01);
@@ -43,17 +44,66 @@ public class Main
 
 		Vector point = VectorFactory.createPointVector(0, 1, 1);
 		Vector normal = VectorFactory.createVector(0, 1, 1);
-
-		Vector[] limits = new Vector[4];
-
-		limits[0] = VectorFactory.createPointVector(1 , 0, 0);
-		limits[1] = VectorFactory.createPointVector( 1, 1, -1);
-		limits[2] = VectorFactory.createPointVector( -1, 1, -1);
-		limits[3] = VectorFactory.createPointVector( -1, 0, 0);
-
 		Plane plane = new Plane(normal, point, Color.YELLOW);
-		Polygon polygon = new Polygon(limits, Color.YELLOW);
-		objects.add(polygon);
+
+		Vector[] limits1 = new Vector[4];
+		limits1[0] = VectorFactory.createPointVector(1 , 0, 0);
+		limits1[1] = VectorFactory.createPointVector( 1, 0, -1);
+		limits1[2] = VectorFactory.createPointVector( -1, 0, -1);
+		limits1[3] = VectorFactory.createPointVector( -1, 0, 0);
+		Polygon square1 = new Polygon(limits1, Color.YELLOW);
+
+		Vector[] limits2 = new Vector[4];
+		limits2[0] = VectorFactory.createPointVector(1 , 0, 0);
+		limits2[1] = VectorFactory.createPointVector( 1, 0, -1);
+		limits2[2] = VectorFactory.createPointVector( 1, 1, -1);
+		limits2[3] = VectorFactory.createPointVector( 1, 1, 0);
+		Polygon square2 = new Polygon(limits2, Color.CYAN);
+
+		Vector[] limits3 = new Vector[4];
+		limits3[0] = VectorFactory.createPointVector(1 , 0, -1);
+		limits3[1] = VectorFactory.createPointVector( 1, 1, -1);
+		limits3[2] = VectorFactory.createPointVector( -1, 1, -1);
+		limits3[3] = VectorFactory.createPointVector( -1, 0, -1);
+		Polygon square3 = new Polygon(limits3, Color.BLUE);
+
+		Vector[] limits4 = new Vector[4];
+		limits4[0] = VectorFactory.createPointVector(1 , 1, 0);
+		limits4[1] = VectorFactory.createPointVector( 1, 1, -1);
+		limits4[2] = VectorFactory.createPointVector( -1, 1, -1);
+		limits4[3] = VectorFactory.createPointVector( -1, 1, 0);
+		Polygon square4 = new Polygon(limits4, Color.GREEN);
+
+		Vector[] limits5 = new Vector[4];
+		limits5[0] = VectorFactory.createPointVector(-1 , 0, 0);
+		limits5[1] = VectorFactory.createPointVector( -1, 0, -1);
+		limits5[2] = VectorFactory.createPointVector( -1, 1, -1);
+		limits5[3] = VectorFactory.createPointVector( -1, 1, 0);
+		Polygon square5 = new Polygon(limits5, Color.PINK);
+
+		Vector[] limits6 = new Vector[4];
+		limits6[0] = VectorFactory.createPointVector(1 , 0, 0);
+		limits6[1] = VectorFactory.createPointVector( 1, 1, 0);
+		limits6[2] = VectorFactory.createPointVector( -1, 1, 0);
+		limits6[3] = VectorFactory.createPointVector( -1, 0, 0);
+		Polygon square6 = new Polygon(limits6, Color.RED);
+
+		Polygon[] sides = new Polygon[6];
+		sides[0] = square1;
+		sides[1] = square2;
+		sides[2] = square3;
+		sides[3] = square4;
+		sides[4] = square5;
+		sides[5] = square6;
+
+		/*objects.add(square1);
+		objects.add(square2);
+		objects.add(square3);
+		objects.add(square4);
+		objects.add(square5);
+		objects.add(square6);*/
+
+		objects.add(new Cube(sides));
 
 		return objects;
 	}

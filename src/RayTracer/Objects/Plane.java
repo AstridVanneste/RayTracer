@@ -68,7 +68,7 @@ public class Plane extends Object
 		{
 			Vector hitpoint = r.getPoint(k);
 
-			return new HitObject(hitpoint, k, this.getColor());
+			return new HitObject(hitpoint, -k, this.getColor());
 		}
 		else
 		{
