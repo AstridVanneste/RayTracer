@@ -29,21 +29,7 @@ public class RayTracer extends JPanel
 		}
 	}
 
-	public static void main(String args[])
-	{
-		Vector eye = VectorFactory.createPointVector(0, 0, 100);
-
-		RayTracer rayTracer = new RayTracer(eye);
-		JFrame frame = new JFrame("RayTracer");
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.add(rayTracer);
-		frame.setSize(1280, 720);
-		frame.setLocationRelativeTo(null);
-		frame.setVisible(true);
-		frame.setResizable(false);
-	}
-
-	private static ArrayList<Hittable> populateWorld()
+	private ArrayList<Hittable> populateWorld()
 	{
 		ArrayList<Hittable> objects = new ArrayList<>();
 
@@ -74,7 +60,7 @@ public class RayTracer extends JPanel
 		int yLimit = 720;
 		Vector screenOffset = VectorFactory.createPointVector(0, 0, 0);
 
-		ArrayList<Hittable> objects = RayTracer.populateWorld();
+		ArrayList<Hittable> objects = this.populateWorld();
 
 		Screen screen = new Screen(xLimit, yLimit, screenOffset, 1);
 
