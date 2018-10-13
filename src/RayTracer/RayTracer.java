@@ -40,8 +40,11 @@ public class RayTracer extends JPanel
 		Graphics2D g2d = (Graphics2D) g;
 
 		System.out.println("TRACING...");
+		long start = System.nanoTime();
 		List<Pixel> pixels = this.trace();
+		long end = System.nanoTime();
 		System.out.println("FINISHED!");
+		System.out.println("TRACE TIME: " + ((float)(end - start))/1000000000);
 
 		System.out.println("DRAWING...");
 		//System.out.println("NUMBER OF PIXELS = " + pixels.size());
