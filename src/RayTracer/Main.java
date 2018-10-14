@@ -19,7 +19,7 @@ public class Main
 		int width = 1000;
 		int height = 1000;
 
-		Vector eye = VectorFactory.createPointVector(2, 5, 2);
+		Vector eye = VectorFactory.createPointVector(2, 6, 2);
 
 		Vector screenOffset = VectorFactory.createPointVector(-1, 1, 1);
 		Screen screen = new Screen(width, height, screenOffset, 0.01);
@@ -58,14 +58,14 @@ public class Main
 		limits2[1] = VectorFactory.createPointVector( 1, 0, -1);
 		limits2[2] = VectorFactory.createPointVector( 1, 1, -1);
 		limits2[3] = VectorFactory.createPointVector( 1, 1, 0);
-		Polygon square2 = new Polygon(limits2, Color.CYAN);
+		Polygon square2 = new Polygon(limits2, Color.BLUE);
 
 		Vector[] limits3 = new Vector[4];
 		limits3[0] = VectorFactory.createPointVector(1 , 0, -1);
 		limits3[1] = VectorFactory.createPointVector( 1, 1, -1);
 		limits3[2] = VectorFactory.createPointVector( -1, 1, -1);
 		limits3[3] = VectorFactory.createPointVector( -1, 0, -1);
-		Polygon square3 = new Polygon(limits3, Color.BLUE);
+		Polygon square3 = new Polygon(limits3, Color.CYAN);
 
 		Vector[] limits4 = new Vector[4];
 		limits4[0] = VectorFactory.createPointVector(1 , 1, 0);
@@ -96,14 +96,14 @@ public class Main
 		sides[4] = square5;
 		sides[5] = square6;
 
-		/*objects.add(square1);
+		objects.add(square1);
 		objects.add(square2);
 		objects.add(square3);
 		objects.add(square4);
 		objects.add(square5);
-		objects.add(square6);*/
+		objects.add(square6);
 
-		objects.add(new Cube(sides));
+		//objects.add(new Cube(sides));
 
 		return objects;
 	}

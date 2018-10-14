@@ -52,8 +52,11 @@ public class RayTracer extends JPanel
 		{
 			//System.out.println("pixel: [" + (this.screen.width() - pixel.x()) + ", " + (this.screen.height() - pixel.y()) + "]");
 			g2d.setColor(pixel.getColor());
-			g2d.drawLine(this.screen.width() - pixel.x(), this.screen.height() - pixel.y(), this.screen.width() - pixel.x(), this.screen.height() -  pixel.y());
+			//g2d.drawLine(this.screen.width() - pixel.x(), this.screen.height() - pixel.y(), this.screen.width() - pixel.x(), this.screen.height() -  pixel.y());
+			g2d.drawLine(pixel.x(), this.screen.height() - pixel.y(), pixel.x(), this.screen.height() - pixel.y());
 		}
+
+
 
 		System.out.println("FINISHED!");
 	}
@@ -64,12 +67,9 @@ public class RayTracer extends JPanel
 
 		for(int i = 0; i < pixels.size(); i++)
 		{
-			int x = pixels.get(i).x();
-			int y = pixels.get(i).y();
-
 			//System.out.println("Processing [" + x + ", " + y + "] ");
 			Vector pixelPoint = pixels.get(i).getLoc();
-			Vector rayDirection = Vector.subtract(this.eye, pixelPoint);
+			Vector rayDirection = Vector.subtract(pixelPoint, this.eye);
 
 			Ray ray = new Ray(this.eye, rayDirection);
 

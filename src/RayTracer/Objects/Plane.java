@@ -64,11 +64,11 @@ public class Plane extends Object
 
 		double k = numerator/denominator;
 
-		if(Double.compare(k, 0) <= 0)
+		if(Double.compare(k, 0) > 0)
 		{
 			Vector hitpoint = r.getPoint(k);
 
-			return new HitObject(hitpoint, -k, this.getColor());
+			return new HitObject(hitpoint, k, this.getColor());
 		}
 		else
 		{
