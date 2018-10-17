@@ -7,10 +7,12 @@ import RayTracer.Objects.Cube;
 import RayTracer.Objects.Plane;
 import RayTracer.Objects.Polygon;
 import RayTracer.Screen.Screen;
+import Util.OBJReader;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.List;
 
 public class Main
 {
@@ -19,12 +21,14 @@ public class Main
 		int width = 1000;
 		int height = 1000;
 
-		Vector eye = VectorFactory.createPointVector(2, 6, 2);
+		Vector eye = VectorFactory.createPointVector(1, 2, 2);
 
-		Vector screenOffset = VectorFactory.createPointVector(-1, 1, 1);
-		Screen screen = new Screen(width, height, screenOffset, 0.01);
+		Vector screenOffset = VectorFactory.createPointVector(-3, -1, 1);
+		Screen screen = new Screen(width, height, screenOffset, 0.02);
 
-		ArrayList<Hittable> objects = populateWorld();
+		//ArrayList<Hittable> objects = populateWorld();
+
+		List<Hittable> objects = OBJReader.read("res/OBJ/cube.obj");
 
 		RayTracer rayTracer = new RayTracer(eye, screen, objects);
 

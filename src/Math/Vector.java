@@ -50,6 +50,15 @@ public class Vector
 
 	public static Vector add(Vector vec1, Vector vec2) throws InvalidParameterException
 	{
+		if(vec1 == null)
+		{
+			throw new IllegalArgumentException("Parameter 1 cannot be null");
+		}
+		if(vec2 == null)
+		{
+			throw new IllegalArgumentException("Parameter 2 cannot be null");
+		}
+
 		Vector result = new Vector(vec1.size());
 
 		if(vec1.size() == vec2.size())
@@ -68,6 +77,14 @@ public class Vector
 
 	public static Vector subtract(Vector vec1, Vector vec2) throws InvalidParameterException
 	{
+		if(vec1 == null)
+		{
+			throw new IllegalArgumentException("Parameter 1 cannot be null");
+		}
+		if(vec2 == null)
+		{
+			throw new IllegalArgumentException("Parameter 2 cannot be null");
+		}
 		Vector result = new Vector(vec1.size);
 
 		if(vec1.size() == vec2.size())
