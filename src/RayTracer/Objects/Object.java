@@ -10,7 +10,7 @@ public abstract class Object implements Hittable
 
 	public Object()
 	{
-		this.color = Color.RED;
+		this.color = Color.LIGHT_GRAY;
 	}
 
 	public Object(Color color)

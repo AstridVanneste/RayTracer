@@ -86,7 +86,6 @@ public class OBJReader
 			int pointIndex = Integer.parseInt(element[0]) - 1;
 
 			limits[i] = points.get(pointIndex);
-			System.out.println("LIMIT: " + i + " = " + points.get(pointIndex));
 		}
 
 		return new Polygon(limits);
