@@ -41,7 +41,8 @@ public class RayTracer extends JPanel
 
 		System.out.println("TRACING...");
 		long start = System.nanoTime();
-		List<Pixel> pixels = this.trace();
+		List<Pixel> pixels = this.screen.getPixels(Screen.PixelOrder.ROW_TDLR);
+		pixels = this.trace(pixels);
 		long end = System.nanoTime();
 		System.out.println("FINISHED!");
 		System.out.println("TRACE TIME: " + ((float)(end - start))/1000000000);
@@ -61,10 +62,8 @@ public class RayTracer extends JPanel
 		System.out.println("FINISHED!");
 	}
 
-	private List<Pixel> trace()
+	private List<Pixel> trace(List<Pixel> pixels)
 	{
-		List<Pixel> pixels = this.screen.getPixels(Screen.PixelOrder.COLUMN_TDLR);
-
 		for(int i = 0; i < pixels.size(); i++)
 		{
 			//System.out.println("Processing [" + x + ", " + y + "] ");

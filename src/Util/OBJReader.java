@@ -63,7 +63,6 @@ public class OBJReader
 
 	private static Vector parsePoint(String line)
 	{
-		System.out.println(line);
 		String split[] = line.split("\\s+");
 
 		Double x = Double.parseDouble(split[1]);
