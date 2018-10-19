@@ -46,14 +46,14 @@ public class Screen
 	{
 		List<Pixel> pixels = new ArrayList<>();
 
-		for(int i = 0; i < this.width; i++)
+		for(int i = 0; i < this.height; i++)
 		{
-			for(int j = 0; j < this.height; j++)
+			for(int j = 0; j < this.width; j++)
 			{
-				Vector std = VectorFactory.createPointVector(i, j, 0);
+				Vector std = VectorFactory.createPointVector(j, i, 0);
 				Vector loc = Vector.add(this.offset, Vector.multiply(std, scalingFactor));
 				loc.set(3, 1);
-				pixels.add(new Pixel(i, j, loc));
+				pixels.add(new Pixel(j, i, loc));
 			}
 		}
 

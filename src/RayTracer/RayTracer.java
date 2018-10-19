@@ -7,6 +7,7 @@ import RayTracer.Hit.Ray;
 import RayTracer.Hit.Hittable;
 import RayTracer.Screen.Pixel;
 import RayTracer.Screen.Screen;
+import Util.PPMWriter;
 
 import javax.swing.*;
 import java.awt.*;
@@ -57,6 +58,16 @@ public class RayTracer extends JPanel
 			g2d.drawLine(pixel.x(), this.screen.height() - pixel.y(), pixel.x(), this.screen.height() - pixel.y());
 		}
 
+		try
+		{
+			PPMWriter ppmWriter = new PPMWriter("trace.ppm", PPMWriter.Format.P6, this.screen.width(), this.screen.height());
+			ppmWriter.write(pixels);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
+
 
 
 		System.out.println("FINISHED!");
@@ -85,6 +96,11 @@ public class RayTracer extends JPanel
 						pixels.get(i).setColor(hit.getColor());
 						//System.out.println(hit.getColor());
 						distance = hit.getDistance();
+
+						if(pixels.get(i).y() == 600)
+						{
+							System.out.println("HIT on " + pixels.get(i).x() + " " + pixels.get(i).y() + "	" + pixels.get(i).getColor());
+						}
 					}
 				}
 			}
