@@ -19,7 +19,7 @@ public class Polygon extends Plane
 			this.limits = limits;
 			this.point = this.limits[0];
 			this.normal = Vector.crossProduct(Vector.subtract(this.limits[0], this.limits[1]), Vector.subtract(this.limits[0], this.limits[2]));
-			this.setColor(new Color(new Float(Math.abs((this.normal.get(0)/10) % 1)), new Float(Math.abs((this.normal.get(1)/10) % 1)),new Float(Math.abs((this.normal.get(2)/10) % 1))));
+			this.setColor(new Color(new Float(Math.abs((this.normal.get(0)/7) % 1)), new Float(Math.abs((this.normal.get(1)/7) % 1)),new Float(Math.abs((this.normal.get(2)/7) % 1))));
 		}
 		else
 		{

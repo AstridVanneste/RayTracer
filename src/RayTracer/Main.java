@@ -21,14 +21,14 @@ public class Main
 		int width = 1000;
 		int height = 1000;
 
-		Vector eye = VectorFactory.createPointVector(0, 1, 150);
+		Vector eye = VectorFactory.createPointVector(2, 4, 5);
 
-		Vector screenOffset = VectorFactory.createPointVector(-5, -5, 60);
+		Vector screenOffset = VectorFactory.createPointVector(-5, -5, 2);
 		Screen screen = new Screen(width, height, screenOffset, 0.01);
 
 		//ArrayList<Hittable> objects = populateWorld();
 
-		List<Hittable> objects = OBJReader.read("res/OBJ/shuttle.obj");
+		List<Hittable> objects = OBJReader.read("res/OBJ/cube.obj");
 
 		RayTracer rayTracer = new RayTracer(eye, screen, objects);
 
