@@ -48,6 +48,22 @@ public class Vector
 		return this.size;
 	}
 
+	public void normalize()
+	{
+		this.elements = Vector.divide(this, this.length()).elements;
+	}
+
+	public double length()
+	{
+		double squareSum = 0;
+		for(int i = 0; i < this.elements.length; i++)
+		{
+			squareSum += Math.pow(this.elements[i], 2);
+		}
+
+		return Math.sqrt(squareSum);
+	}
+
 	public static Vector add(Vector vec1, Vector vec2) throws InvalidParameterException
 	{
 		if(vec1 == null)

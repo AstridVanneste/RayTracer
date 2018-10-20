@@ -25,6 +25,7 @@ public class Plane extends Object
 		if(VectorFactory.isVector(normal))
 		{
 			this.normal = normal;
+			this.normal.normalize();
 		}
 		else
 		{
@@ -64,7 +65,7 @@ public class Plane extends Object
 
 		double k = numerator/denominator;
 
-		if(Double.compare(k, 0) > 0)
+		if(Double.compare(k, 0.0) > 0)
 		{
 			Vector hitpoint = r.getPoint(k);
 
@@ -82,7 +83,7 @@ public class Plane extends Object
 		{
 			double product = Vector.dotProduct(Vector.subtract(p, this.point), this.normal);
 
-			if(product == 0)
+			if(Double.compare(product, 0.0) == 0)
 			{
 				return true;
 			}

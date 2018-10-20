@@ -21,7 +21,7 @@ public class Main
 		int width = 1000;
 		int height = 1000;
 
-		Vector eye = VectorFactory.createPointVector(0, 1, 5);
+		Vector eye = VectorFactory.createPointVector(2, 4, 5);
 
 		Vector screenOffset = VectorFactory.createPointVector(-5, -5, 2);
 		Screen screen = new Screen(width, height, screenOffset, 0.01);

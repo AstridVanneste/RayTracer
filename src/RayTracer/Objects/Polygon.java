@@ -63,9 +63,10 @@ public class Polygon extends Plane
 			Vector diff = Vector.subtract(testPoint, this.limits[i]);
 
 			Vector norm = Vector.crossProduct(this.normal, segment);
+			norm.normalize();
 			double dot = Vector.dotProduct(diff, norm);
 
-			if(Double.compare(dot, 0.0f) < 0)
+			if(Double.compare(dot, 0.0) < 0)
 			{
 				return false;
 			}
