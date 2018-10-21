@@ -90,7 +90,7 @@ public class RayTracer extends JPanel
 
 						if(pixels.get(i).y() == 900)
 						{
-							System.out.println("HIT on " + pixels.get(i).x() + " " + pixels.get(i).y() + "	" + pixels.get(i).getColor());
+							//System.out.println("HIT on [" + pixels.get(i).x() + ", " + pixels.get(i).y() + "]\tRAY:\t" + ray + "\tOBJECT: " + object + "\tDISTANCE: " + hit.getDistance());
 						}
 					}
 				}

@@ -63,6 +63,11 @@ public class Plane extends Object
 		double numerator = Vector.dotProduct(this.normal, this.point) - Vector.dotProduct(this.normal, r.getEye());
 		double denominator = Vector.dotProduct(this.normal, r.getDir());
 
+		if(Double.compare(denominator, 0.0) == 0)
+		{
+			return null;			// if dot product of plane normal and ray direction is 0 then you are looking straight at a flat plane
+		}
+
 		double k = numerator/denominator;
 
 		if(Double.compare(k, 0.0) > 0)

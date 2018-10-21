@@ -55,4 +55,10 @@ public class Ray
 	{
 		return Vector.add(this.eye, Vector.multiply(this.dir, k));
 	}
+
+	@Override
+	public String toString()
+	{
+		return "EYE: " + this.eye + " DIRECTION: " + this.dir;
+	}
 }

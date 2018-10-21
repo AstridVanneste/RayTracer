@@ -73,4 +73,20 @@ public class Polygon extends Plane
 		}
 		return true;
 	}
+
+	@Override
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+
+		builder.append("Polygon -> ");
+		builder.append("LIMITS:\t");
+		for(int i = 0; i < this.limits.length; i++)
+		{
+			builder.append(this.limits[i]);
+			builder.append("\t");
+		}
+
+		return builder.toString();
+	}
 }

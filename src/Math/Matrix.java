@@ -151,10 +151,7 @@ public class Matrix
 	{
 		if(this.height() == matrix.height())
 		{
-			if(this.width() == matrix.width())
-			{
-				return true;
-			}
+			return this.width() == matrix.width();
 		}
 		return false;
 	}
