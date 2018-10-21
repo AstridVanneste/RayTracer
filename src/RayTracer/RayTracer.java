@@ -49,27 +49,21 @@ public class RayTracer extends JPanel
 		System.out.println("TRACE TIME: " + ((float)(end - start))/1000000000);
 
 		System.out.println("DRAWING...");
-		//System.out.println("NUMBER OF PIXELS = " + pixels.size());
 		for(Pixel pixel: pixels)
 		{
-			//System.out.println("pixel: [" + (this.screen.width() - pixel.x()) + ", " + (this.screen.height() - pixel.y()) + "]");
 			g2d.setColor(pixel.getColor());
-			//g2d.drawLine(this.screen.width() - pixel.x(), this.screen.height() - pixel.y(), this.screen.width() - pixel.x(), this.screen.height() -  pixel.y());
 			g2d.drawLine(pixel.x(), this.screen.height() - pixel.y(), pixel.x(), this.screen.height() - pixel.y());
 		}
 
 		try
 		{
-			PPMWriter ppmWriter = new PPMWriter("trace.ppm", PPMWriter.Format.P6, this.screen.width(), this.screen.height());
+			PPMWriter ppmWriter = new PPMWriter("trace.ppm", PPMWriter.Format.P3, this.screen.width(), this.screen.height());
 			ppmWriter.write(pixels);
 		}
 		catch (Exception e)
 		{
 			e.printStackTrace();
 		}
-
-
-
 		System.out.println("FINISHED!");
 	}
 
@@ -77,7 +71,6 @@ public class RayTracer extends JPanel
 	{
 		for(int i = 0; i < pixels.size(); i++)
 		{
-			//System.out.println("Processing [" + x + ", " + y + "] ");
 			Vector pixelPoint = pixels.get(i).getLoc();
 			Vector rayDirection = Vector.subtract(pixelPoint, this.eye);
 
@@ -92,9 +85,7 @@ public class RayTracer extends JPanel
 				{
 					if(hit.getDistance() < distance || distance == 0)
 					{
-						//System.out.println("hit [" + x + ", " + y + "]");
 						pixels.get(i).setColor(hit.getColor());
-						//System.out.println(hit.getColor());
 						distance = hit.getDistance();
 
 						if(pixels.get(i).y() == 900)

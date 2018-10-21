@@ -38,8 +38,8 @@ public class PPMWriter
 		Pixel ordered[][] = this.orderPixels(pixels);
 		switch(this.format)
 		{
-			case P6:
-				this.writeP6(ordered);
+			case P3:
+				this.writeP3(ordered);
 		}
 	}
 
@@ -57,7 +57,7 @@ public class PPMWriter
 		return result;
 	}
 
-	private void writeP6(Pixel pixels[][]) throws IOException
+	private void writeP3(Pixel pixels[][]) throws IOException
 	{
 		this.writer.write("P3\n"); // TODO cleanup
 
