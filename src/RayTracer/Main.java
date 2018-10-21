@@ -28,7 +28,7 @@ public class Main
 
 		//ArrayList<Hittable> objects = populateWorld();
 
-		List<Hittable> objects = OBJReader.read("res/OBJ/cube.obj");
+		List<Hittable> objects = OBJReader.read("res/OBJ/shuttle.obj");
 
 		RayTracer rayTracer = new RayTracer(eye, screen, objects);
 

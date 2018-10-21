@@ -47,16 +47,6 @@ public class Plane extends Object
 		this.setColor(color);
 	}
 
-	public Vector getNormal()
-	{
-		return this.normal;
-	}
-
-	public Vector getPoint()
-	{
-		return this.point;
-	}
-
 	@Override
 	public HitObject hit(Ray r)
 	{
