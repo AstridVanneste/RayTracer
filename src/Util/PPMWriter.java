@@ -35,14 +35,29 @@ public class PPMWriter
 
 	public void write(List<Pixel> pixels) throws IOException
 	{
+		Pixel ordered[][] = this.orderPixels(pixels);
 		switch(this.format)
 		{
 			case P6:
-				this.writeP6(pixels);
+				this.writeP6(ordered);
 		}
 	}
 
-	private void writeP6(List<Pixel> pixels) throws IOException
+	private Pixel[][] orderPixels(List<Pixel> pixels)
+	{
+		Pixel result[][] = new Pixel[this.width][this.height];
+
+		for(int i = 0; i < pixels.size(); i++)
+		{
+			Pixel pixel = pixels.get(i);
+
+			result[pixel.x()][this.height - pixel.y() - 1] = pixel;
+		}
+
+		return result;
+	}
+
+	private void writeP6(Pixel pixels[][]) throws IOException
 	{
 		this.writer.write("P3\n"); // TODO cleanup
 
@@ -52,21 +67,19 @@ public class PPMWriter
 		this.writer.write("\n");
 		this.writer.write("255\n"); // TODO cleanup
 
-		int x = 0;
-		for(int i = 0; i < pixels.size(); i++)
+		for(int y = 0; y < this.height; y++ )
 		{
-			Color color = pixels.get(i).getColor();
-			if(pixels.get(i).x() > x)
+			for(int x = 0; x < this.width; x++)
 			{
-				this.writer.write("\n");
-				x = pixels.get(i).x();
+				Color color = pixels[x][y].getColor();
+
+				this.writer.write(Integer.toString(color.getRed()));
+				this.writer.write(" ");
+				this.writer.write(Integer.toString(color.getGreen()));
+				this.writer.write(" ");
+				this.writer.write(Integer.toString(color.getBlue()));
+				this.writer.write(" ");
 			}
-			this.writer.write(Integer.toString(color.getRed()));
-			this.writer.write(" ");
-			this.writer.write(Integer.toString(color.getGreen()));
-			this.writer.write(" ");
-			this.writer.write(Integer.toString(color.getBlue()));
-			this.writer.write(" ");
 		}
 	}
 }
