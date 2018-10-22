@@ -2,9 +2,15 @@ package RayTracer.Factories;
 
 import Math.Matrix;
 import Math.Vector;
+import javafx.util.Pair;
 
 public class TransformationFactory
 {
+	public static Pair<Matrix, Matrix> translationPair(double x, double y, double z)
+	{
+		return new Pair<Matrix, Matrix>(translation(x, y, z), inverseTranslation(x, y, z));
+	}
+
 	public static Matrix translation(double x, double y, double z)
 	{
 		Matrix matrix = Matrix.identityMatrix(4);
@@ -19,6 +25,11 @@ public class TransformationFactory
 	public static Matrix inverseTranslation(double x, double y, double z)
 	{
 		return translation(-x, -y, -z);
+	}
+
+	public static Pair<Matrix, Matrix> scalingPair(double x, double y, double z)
+	{
+		return new Pair<Matrix, Matrix>(scaling(x, y, z), inverseScaling(x, y, z));
 	}
 
 	public static Matrix scaling(double x, double y, double z)
@@ -36,6 +47,11 @@ public class TransformationFactory
 	public static Matrix inverseScaling(double x, double y, double z)
 	{
 		return scaling(1/x, 1/y, 1/z);
+	}
+
+	public static Pair<Matrix, Matrix> rotationPair(double x, double y, double z, double theta)
+	{
+		return new Pair<Matrix, Matrix>(rotation(x, y, z, theta), inverseRotation(x, y, z, theta));
 	}
 
 	public static Matrix rotation(double x, double y, double z, double theta)
