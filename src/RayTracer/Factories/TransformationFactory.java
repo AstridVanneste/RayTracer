@@ -1,7 +1,6 @@
 package RayTracer.Factories;
 
 import Math.Matrix;
-import Math.Vector;
 import javafx.util.Pair;
 
 public class TransformationFactory
