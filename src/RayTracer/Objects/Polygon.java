@@ -16,25 +16,18 @@ public class Polygon extends Plane
 	public Polygon(Vector[] limits)
 	{
 		super(Vector.crossProduct(Vector.subtract(limits[0], limits[1]), Vector.subtract(limits[0], limits[2])), limits[0]);
-		if(limits.length >= 3)
+		this.limits = limits;
+		this.setColor(new Color(new Float(Math.abs((this.normal.get(0)/7) % 1)), new Float(Math.abs((this.normal.get(1)/7) % 1)),new Float(Math.abs((this.normal.get(2)/7) % 1))));
+
+		this.segmentNormals = new Vector[limits.length];
+
+		for(int i = 0; i < limits.length; i++)
 		{
-			this.limits = limits;
-			this.setColor(new Color(new Float(Math.abs((this.normal.get(0)/7) % 1)), new Float(Math.abs((this.normal.get(1)/7) % 1)),new Float(Math.abs((this.normal.get(2)/7) % 1))));
+			int nextIndex = (i + 1) % this.limits.length;
 
-			this.segmentNormals = new Vector[limits.length];
-
-			for(int i = 0; i < limits.length; i++)
-			{
-				int nextIndex = (i + 1) % this.limits.length;
-
-				Vector segment = Vector.subtract(this.limits[nextIndex], this.limits[i]);
-				this.segmentNormals[i] = Vector.crossProduct(this.normal, segment);
-				this.segmentNormals[i].normalize();
-			}
-		}
-		else
-		{
-			throw new InvalidParameterException("Cannot create a polygon with less than 3 limit points, given " + limits.length + " points");
+			Vector segment = Vector.subtract(this.limits[nextIndex], this.limits[i]);
+			this.segmentNormals[i] = Vector.crossProduct(this.normal, segment);
+			this.segmentNormals[i].normalize();
 		}
 	}
 
