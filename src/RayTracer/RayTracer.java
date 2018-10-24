@@ -69,9 +69,9 @@ public class RayTracer extends JPanel
 
 	private List<Pixel> trace(List<Pixel> pixels)
 	{
-		for(int i = 0; i < pixels.size(); i++)
+		for(Pixel pixel: pixels)
 		{
-			Vector pixelPoint = pixels.get(i).getLoc();
+			Vector pixelPoint = pixel.getLoc();
 			Vector rayDirection = Vector.subtract(pixelPoint, this.eye);
 
 			Ray ray = new Ray(this.eye, rayDirection);
@@ -85,7 +85,7 @@ public class RayTracer extends JPanel
 				{
 					if(hit.getDistance() < distance || distance == 0)
 					{
-						pixels.get(i).setColor(hit.getColor());
+						pixel.setColor(hit.getColor());
 						distance = hit.getDistance();
 					}
 				}

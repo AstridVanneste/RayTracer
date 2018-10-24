@@ -11,24 +11,30 @@ import Util.OBJReader;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Main
 {
+	public static int WIDTH = 1000;
+	public static int HEIGHT = 1000;
+
+
+	public static String OBJ_FILE  = "res/OBJ/shuttle.obj";
+
 	public static void main(String args[])
 	{
-		int width = 1000;
-		int height = 1000;
 
-		Vector eye = VectorFactory.createPointVector(2, 4, 5);
+		Vector eye = VectorFactory.createPointVector(2, 4, 10);
 
-		Vector screenOffset = VectorFactory.createPointVector(-5, -5, 2);
-		Screen screen = new Screen(width, height, screenOffset, 0.01);
+		Vector screenOffset = VectorFactory.createPointVector(-4, -5, 5);
+		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.01);
 
 		//ArrayList<Hittable> objects = populateWorld();
 
-		List<Hittable> objects = OBJReader.read("res/OBJ/cube.obj");
+		System.out.println("Tracing file: " + OBJ_FILE);
+		List<Hittable> objects = OBJReader.read(OBJ_FILE);
 
 		RayTracer rayTracer = new RayTracer(eye, screen, objects);
 
@@ -36,7 +42,7 @@ public class Main
 		JFrame frame = new JFrame("RayTracer");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(rayTracer);
-		frame.setSize(width, height);
+		frame.setSize(WIDTH, HEIGHT);
 		frame.setLocationRelativeTo(null);
 		frame.setVisible(true);
 		frame.setResizable(false);
