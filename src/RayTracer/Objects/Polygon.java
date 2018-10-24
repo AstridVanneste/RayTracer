@@ -37,6 +37,11 @@ public class Polygon extends Plane
 		this.setColor(color);
 	}
 
+	public Vector[] getLimits()
+	{
+		return this.limits;
+	}
+
 	@Override
 	public HitObject hit(Ray r)
 	{

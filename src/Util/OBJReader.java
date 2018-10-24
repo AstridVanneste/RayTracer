@@ -2,6 +2,7 @@ package Util;
 
 import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.Hittable;
+import RayTracer.Objects.Mesh;
 import RayTracer.Objects.Object;
 
 import java.io.BufferedReader;
@@ -39,7 +40,7 @@ public class OBJReader
 
 	public static List<Hittable> read(BufferedReader reader) throws IOException
 	{
-		List<Hittable> objects = new ArrayList<>();
+		List<Polygon> faces = new ArrayList<>();
 
 		String line;
 
@@ -53,12 +54,18 @@ public class OBJReader
 			}
 			else if(line.startsWith(Prefixes.FACE))
 			{
-				objects.add(parseFace(line, points));
+				faces.add(parseFace(line, points));
 			}
 		}
 
 		System.out.println("#Verteces: " + points.size());
-		System.out.println("#Faces: " + objects.size());
+		System.out.println("#Faces: " + faces.size());
+
+		Mesh mesh = new Mesh(faces);
+
+		List<Hittable> objects = new ArrayList<>();
+
+		objects.add(mesh);
 
 		return objects;
 	}
@@ -76,7 +83,7 @@ public class OBJReader
 	}
 
 
-	private static Hittable parseFace(String line, List<Vector> points)
+	private static Polygon parseFace(String line, List<Vector> points)
 	{
 		String split[] = line.split("\\s+");
 
