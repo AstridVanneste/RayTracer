@@ -60,8 +60,8 @@ public class Polygon extends Plane
 			{
 				return true;
 			}
-			Vector diff = Vector.subtract(testPoint, this.limits[i]);
 
+			Vector diff = Vector.subtract(testPoint, this.limits[i]);
 			double dot = Vector.dotProduct(diff, this.segmentNormals[i]);
 
 			if(Double.compare(dot, 0.0) < 0)

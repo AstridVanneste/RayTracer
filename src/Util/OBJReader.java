@@ -57,6 +57,9 @@ public class OBJReader
 			}
 		}
 
+		System.out.println("#Verteces: " + points.size());
+		System.out.println("#Faces: " + objects.size());
+
 		return objects;
 	}
 
