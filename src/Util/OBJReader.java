@@ -65,9 +65,9 @@ public class OBJReader
 	{
 		String split[] = line.split("\\s+");
 
-		Double x = Double.parseDouble(split[1]);
-		Double y = Double.parseDouble(split[2]);
-		Double z = Double.parseDouble(split[3]);
+		double x = Double.parseDouble(split[1]);
+		double y = Double.parseDouble(split[3]);
+		double z = Double.parseDouble(split[2]);
 
 		return VectorFactory.createPointVector(x, y, z);
 	}
