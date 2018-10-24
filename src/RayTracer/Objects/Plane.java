@@ -14,6 +14,8 @@ public class Plane extends Object
 	protected Vector normal;
 	protected Vector point;
 
+	private double dot;
+
 	protected Plane()
 	{
 		super();
@@ -39,6 +41,10 @@ public class Plane extends Object
 		{
 			throw new InvalidParameterException("Point parameter is not point");
 		}
+
+		this.dot = Vector.dotProduct(normal, point);
+
+
 	}
 
 	public Plane(Vector normal, Vector point, Color color)
@@ -50,7 +56,7 @@ public class Plane extends Object
 	@Override
 	public HitObject hit(Ray r)
 	{
-		double numerator = Vector.dotProduct(this.normal, this.point) - Vector.dotProduct(this.normal, r.getEye());
+		double numerator = this.dot - Vector.dotProduct(this.normal, r.getEye());
 		double denominator = Vector.dotProduct(this.normal, r.getDir());
 
 		if(Double.compare(denominator, 0.0) == 0)

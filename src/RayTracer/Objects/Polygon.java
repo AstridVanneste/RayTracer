@@ -11,15 +11,26 @@ import java.security.InvalidParameterException;
 public class Polygon extends Plane
 {
 	private Vector[] limits;
+	private Vector[] segmentNormals;
 
 	public Polygon(Vector[] limits)
 	{
+		super(Vector.crossProduct(Vector.subtract(limits[0], limits[1]), Vector.subtract(limits[0], limits[2])), limits[0]);
 		if(limits.length >= 3)
 		{
 			this.limits = limits;
-			this.point = this.limits[0];
-			this.normal = Vector.crossProduct(Vector.subtract(this.limits[0], this.limits[1]), Vector.subtract(this.limits[0], this.limits[2]));
 			this.setColor(new Color(new Float(Math.abs((this.normal.get(0)/7) % 1)), new Float(Math.abs((this.normal.get(1)/7) % 1)),new Float(Math.abs((this.normal.get(2)/7) % 1))));
+
+			this.segmentNormals = new Vector[limits.length];
+
+			for(int i = 0; i < limits.length; i++)
+			{
+				int nextIndex = (i + 1) % this.limits.length;
+
+				Vector segment = Vector.subtract(this.limits[nextIndex], this.limits[i]);
+				this.segmentNormals[i] = Vector.crossProduct(this.normal, segment);
+				this.segmentNormals[i].normalize();
+			}
 		}
 		else
 		{
@@ -56,15 +67,9 @@ public class Polygon extends Plane
 			{
 				return true;
 			}
-
-			int nextIndex = (i + 1) % this.limits.length;
-
-			Vector segment = Vector.subtract(this.limits[nextIndex], this.limits[i]);
 			Vector diff = Vector.subtract(testPoint, this.limits[i]);
 
-			Vector norm = Vector.crossProduct(this.normal, segment);
-			norm.normalize();
-			double dot = Vector.dotProduct(diff, norm);
+			double dot = Vector.dotProduct(diff, this.segmentNormals[i]);
 
 			if(Double.compare(dot, 0.0) < 0)
 			{
