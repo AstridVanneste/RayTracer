@@ -6,6 +6,7 @@ import RayTracer.Hit.Hittable;
 import RayTracer.Objects.Cube;
 import RayTracer.Objects.Plane;
 import RayTracer.Objects.Polygon;
+import RayTracer.Objects.Sphere;
 import RayTracer.Screen.Screen;
 import Util.OBJReader;
 
@@ -26,15 +27,15 @@ public class Main
 	public static void main(String args[])
 	{
 
-		Vector eye = VectorFactory.createPointVector(2, 4, 10);
+		Vector eye = VectorFactory.createPointVector(0, 0, 5);
 
-		Vector screenOffset = VectorFactory.createPointVector(-4, -5, 5);
+		Vector screenOffset = VectorFactory.createPointVector(0, 0, 3);
 		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.01);
 
-		//ArrayList<Hittable> objects = populateWorld();
+		ArrayList<Hittable> objects = populateWorld();
 
 		System.out.println("Tracing file: " + OBJ_FILE);
-		List<Hittable> objects = OBJReader.read(OBJ_FILE);
+		//List<Hittable> objects = OBJReader.read(OBJ_FILE);
 
 		RayTracer rayTracer = new RayTracer(eye, screen, objects);
 
@@ -106,14 +107,17 @@ public class Main
 		sides[4] = square5;
 		sides[5] = square6;
 
-		objects.add(square1);
+		/*objects.add(square1);
 		objects.add(square2);
 		objects.add(square3);
 		objects.add(square4);
 		objects.add(square5);
 		objects.add(square6);
 
-		//objects.add(new Cube(sides));
+		objects.add(new Cube(sides));*/
+
+		Sphere sphere = new Sphere(VectorFactory.createPointVector(0, 0, 0), 1);
+		objects.add(sphere);
 
 		return objects;
 	}
