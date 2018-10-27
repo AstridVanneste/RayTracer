@@ -53,7 +53,6 @@ public class Sphere extends Object
 		{
 			System.out.println("1 HITPOINT");
 			k = -B/A;
-
 		}
 		else if(Double.compare(discriminant, 0) > 0)				// 2 HITPOINTS
 		{
