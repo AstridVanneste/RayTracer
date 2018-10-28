@@ -48,6 +48,11 @@ public class Vector
 		return this.size;
 	}
 
+	public double[] toArray()
+	{
+		return this.elements;
+	}
+
 	public void normalize()
 	{
 		this.elements = Vector.divide(this, this.length()).elements;

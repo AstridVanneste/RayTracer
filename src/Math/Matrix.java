@@ -20,6 +20,15 @@ public class Matrix
 		this.elements = elements;
 	}
 
+	public Matrix(Vector vector)
+	{
+		this.m = 1;
+		this.n = vector.size();
+
+		this.elements = new double[this.m][this.n];
+		this.elements[0] = vector.toArray();
+	}
+
 	public int height()
 	{
 		return this.m;
@@ -38,6 +47,11 @@ public class Matrix
 	public void set(int m, int n, double element)
 	{
 		this.elements[m][n] = element;
+	}
+
+	public Vector toVector(int i)
+	{
+		return new Vector(this.elements[i]);
 	}
 
 	public static Matrix add(Matrix m1, Matrix m2) throws InvalidParameterException
