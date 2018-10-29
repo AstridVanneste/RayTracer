@@ -22,20 +22,20 @@ public class Main
 	public static int HEIGHT = 1000;
 
 
-	public static String OBJ_FILE  = "res/OBJ/shuttle.obj";
+	public static String OBJ_FILE  = "res/OBJ/cube.obj";
 
 	public static void main(String args[])
 	{
 
-		Vector eye = VectorFactory.createPointVector(0, 0, 5);
+		Vector eye = VectorFactory.createPointVector(-4, -2, 10);
 
-		Vector screenOffset = VectorFactory.createPointVector(0, 0, 3);
+		Vector screenOffset = VectorFactory.createPointVector(0, 0, 7);
 		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.01);
 
-		ArrayList<Hittable> objects = populateWorld();
+		//ArrayList<Hittable> objects = populateWorld();
 
 		System.out.println("Tracing file: " + OBJ_FILE);
-		//List<Hittable> objects = OBJReader.read(OBJ_FILE);
+		List<Hittable> objects = OBJReader.read(OBJ_FILE);
 
 		RayTracer rayTracer = new RayTracer(eye, screen, objects);
 

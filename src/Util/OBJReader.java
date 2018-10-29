@@ -1,5 +1,6 @@
 package Util;
 
+import RayTracer.Factories.TransformationFactory;
 import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.Hittable;
 import RayTracer.Objects.Mesh;
@@ -13,6 +14,8 @@ import java.util.List;
 import Math.Vector;
 import RayTracer.Objects.Polygon;
 import com.sun.org.apache.xerces.internal.impl.dv.xs.DurationDV;
+
+import javax.xml.transform.TransformerFactory;
 
 public class OBJReader
 {
@@ -62,6 +65,7 @@ public class OBJReader
 		System.out.println("#Faces: " + faces.size());
 
 		Mesh mesh = new Mesh(faces);
+		//mesh.setTransformation(TransformationFactory.scalingTransformation(1, 1, 1));
 
 		List<Hittable> objects = new ArrayList<>();
 

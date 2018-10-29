@@ -3,6 +3,7 @@ package RayTracer.Hit;
 import RayTracer.Factories.VectorFactory;
 import Math.Vector;
 import RayTracer.RayTracer;
+import RayTracer.Transformation;
 
 import java.security.InvalidParameterException;
 
@@ -54,6 +55,12 @@ public class Ray
 	public Vector getPoint(double k)
 	{
 		return Vector.add(this.eye, Vector.multiply(this.dir, k));
+	}
+
+	public void inverseTransform(Transformation transformation)
+	{
+		this.eye = transformation.inverse(this.eye);
+		this.dir = transformation.inverse(this.dir);
 	}
 
 	@Override

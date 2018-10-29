@@ -113,24 +113,26 @@ public class Mesh extends Object
 	{
 		HitObject hit = null;
 
-		return this.boundingBox.hit(r);
+		//return this.boundingBox.hit(r);
 		/*if(this.boundingBox.hit(r) != null)									// only check all faces if ray hits bounding box
 		{
-			double distance = 0;
-			for(Hittable element: this.elements)
-			{
-				HitObject tempHit = element.hit(r);
+			*/
+		double distance = 0;
+		for(Hittable element: this.elements)
+		{
+			HitObject tempHit = element.hit(r);
 
-				if(tempHit != null)
+			if(tempHit != null)
+			{
+				System.out.println("hit something");
+				if(tempHit.getDistance() < distance || distance == 0)
 				{
-					if(tempHit.getDistance() > distance || distance == 0)
-					{
-						hit = tempHit;
-						distance = hit.getDistance();
-					}
+					hit = tempHit;
+					distance = hit.getDistance();
 				}
 			}
 		}
-		return hit;*/
+		//}
+		return hit;
 	}
 }
