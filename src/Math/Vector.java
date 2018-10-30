@@ -16,6 +16,7 @@ public class Vector
 	public Vector(double[] elements)
 	{
 		this.elements = elements;
+		this.size = elements.length;
 	}
 
 	public void set(int index, double element) throws IndexOutOfBoundsException

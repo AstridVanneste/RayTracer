@@ -1,8 +1,9 @@
 package RayTracer.Factories;
 
 import Math.Matrix;
+import Math.Vector;
 import RayTracer.Transformation;
-import javafx.util.Pair;
+
 
 public class TransformationFactory
 {
@@ -49,9 +50,10 @@ public class TransformationFactory
 		return scaling(1/x, 1/y, 1/z);
 	}
 
-	public static Transformation rotationTransformation(double x, double y, double z, double theta)
+	public static Transformation rotationTransformation(Vector axis, double theta)
 	{
-		return new Transformation(rotation(x, y, z, theta), inverseRotation(x, y, z, theta));
+		axis.normalize();
+		return new Transformation(rotation(axis.get(0), axis.get(1), axis.get(2), theta), inverseRotation(axis.get(0), axis.get(1), axis.get(2), theta));
 	}
 
 	public static Matrix rotation(double x, double y, double z, double theta)

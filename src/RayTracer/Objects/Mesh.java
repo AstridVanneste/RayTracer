@@ -111,6 +111,11 @@ public class Mesh extends Object
 	@Override
 	public HitObject hit(Ray r)
 	{
+		if(this.transform)
+		{
+			r.inverseTransform(this.transformation);
+		}
+
 		HitObject hit = null;
 
 		//return this.boundingBox.hit(r);
@@ -124,7 +129,6 @@ public class Mesh extends Object
 
 			if(tempHit != null)
 			{
-				System.out.println("hit something");
 				if(tempHit.getDistance() < distance || distance == 0)
 				{
 					hit = tempHit;

@@ -58,7 +58,7 @@ public class Plane extends Object
 	{
 		if(this.transform)
 		{
-			//r.inverseTransform(this.transformation);
+			r.inverseTransform(this.transformation);
 		}
 
 		double numerator = this.dot - Vector.dotProduct(this.normal, r.getEye());

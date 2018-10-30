@@ -27,9 +27,9 @@ public class Main
 	public static void main(String args[])
 	{
 
-		Vector eye = VectorFactory.createPointVector(-4, -2, 10);
+		Vector eye = VectorFactory.createPointVector(2, 2, 2);
 
-		Vector screenOffset = VectorFactory.createPointVector(0, 0, 7);
+		Vector screenOffset = VectorFactory.createPointVector(-4, -4, 1);
 		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.01);
 
 		//ArrayList<Hittable> objects = populateWorld();
@@ -55,7 +55,7 @@ public class Main
 
 		Vector point = VectorFactory.createPointVector(0, 1, 1);
 		Vector normal = VectorFactory.createVector(0, 1, 1);
-		Plane plane = new Plane(normal, point, Color.YELLOW);
+		Plane plane = new Plane(normal, point, Color.RED);
 
 		Vector[] limits1 = new Vector[4];
 		limits1[0] = VectorFactory.createPointVector(1 , 0, 0);
@@ -112,12 +112,14 @@ public class Main
 		objects.add(square3);
 		objects.add(square4);
 		objects.add(square5);
-		objects.add(square6);
+		objects.add(square6);*/
 
-		objects.add(new Cube(sides));*/
+		//objects.add(new Cube(sides));
+
+		objects.add(plane);
 
 		Sphere sphere = new Sphere(VectorFactory.createPointVector(0, 0, 0), 1);
-		objects.add(sphere);
+		//objects.add(sphere);
 
 		return objects;
 	}
