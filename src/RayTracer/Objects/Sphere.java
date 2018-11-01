@@ -10,8 +10,6 @@ import java.security.InvalidParameterException;
 
 public class Sphere extends Object
 {
-	private Vector center;
-	private double radius;
 
 	public Sphere(Vector center, double radius) throws InvalidParameterException
 	{
@@ -25,28 +23,25 @@ public class Sphere extends Object
 		{
 			throw new InvalidParameterException("Radius of sphere cannot be negative");
 		}
-
-		this.center = center;
-		this.radius = radius;
 	}
 
 	@Override
 	public HitObject hit(Ray r)
 	{
 		double A = Vector.dotProduct(r.getDir(), r.getDir());
-		double B = Vector.dotProduct(r.getEye(), r.getDir());
-		double C = Vector.dotProduct(r.getEye(), r.getEye()) - 1;
+		double B = Vector.dotProduct(r.getDir(), r.getEye());
+		double C = Vector.dotProduct(r.getEye(), r.getEye());
 
-		double discriminant =  Math.pow(B, 2) - A * C;
-		System.out.println("A = " + A);
+		double discriminant =  Math.pow(B, 2) - A * (C - 1);
+		/*System.out.println("A = " + A);
 		System.out.println("B = " + B);
 		System.out.println("C = " + C);
-		System.out.println("discriminant = " + discriminant);
+		System.out.println("discriminant = " + discriminant);*/
 
 		double k = 0;
 		if(Double.compare(discriminant, 0) < 0)						// NO HITPOINT
 		{
-			System.out.println("NO HITPOINT");
+			//System.out.println("NO HITPOINT");
 			return null;
 		}
 		else if(Double.compare(discriminant, 0) == 0)				// 1 HITPOINT

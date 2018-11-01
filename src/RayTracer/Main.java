@@ -25,19 +25,19 @@ public class Main
 	public static void main(String args[])
 	{
 
-		Vector eye = VectorFactory.createPointVector(2, 2, 15);
+		Vector eye = VectorFactory.createPointVector(1, 1, 5);
 
-		Vector screenOffset = VectorFactory.createPointVector(-4, -4, 10);
-		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.01);
+		Vector screenOffset = VectorFactory.createPointVector(0, 0, 4);
+		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.02);
 		List<Hittable> objects = new ArrayList<>();
 
-		//objects.addAll(populateWorld());
+		objects.addAll(populateWorld());
 
 		System.out.println("Tracing file: " + OBJ_FILE);
 		Mesh mesh = OBJReader.read(OBJ_FILE);
 
 
-		objects.add(mesh);
+		//objects.add(mesh);
 
 
 		RayTracer rayTracer = new RayTracer(eye, screen, objects);
@@ -119,10 +119,10 @@ public class Main
 
 		//objects.add(new Cube(sides));
 
-		objects.add(plane);
+		//objects.add(plane);
 
 		Sphere sphere = new Sphere(VectorFactory.createPointVector(0, 0, 0), 1);
-		//objects.add(sphere);
+		objects.add(sphere);
 
 		return objects;
 	}
