@@ -16,11 +16,11 @@ import java.util.List;
 
 public class Main
 {
-	public static int WIDTH = 1000;
-	public static int HEIGHT = 1000;
+	private static int WIDTH = 1000;
+	private static int HEIGHT = 1000;
 
 
-	public static String OBJ_FILE  = "res/OBJ/shuttle.obj";
+	private static String OBJ_FILE  = "res/OBJ/shuttle.obj";
 
 	public static void main(String args[])
 	{
