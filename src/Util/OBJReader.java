@@ -26,7 +26,7 @@ public class OBJReader
 	}
 
 
-	public static List<Hittable> read(String path)
+	public static Mesh read(String path)
 	{
 		// TODO check file path stuffs
 
@@ -41,7 +41,7 @@ public class OBJReader
 		}
 	}
 
-	public static List<Hittable> read(BufferedReader reader) throws IOException
+	public static Mesh read(BufferedReader reader) throws IOException
 	{
 		List<Polygon> faces = new ArrayList<>();
 
@@ -64,15 +64,7 @@ public class OBJReader
 		System.out.println("#Verteces: " + points.size());
 		System.out.println("#Faces: " + faces.size());
 
-		Mesh mesh = new Mesh(faces);
-
-		mesh.setTransformation(TransformationFactory.translationTransformation(1, 2, 3));
-
-		List<Hittable> objects = new ArrayList<>();
-
-		objects.add(mesh);
-
-		return objects;
+		return new Mesh(faces);
 	}
 
 

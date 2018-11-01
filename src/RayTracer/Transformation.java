@@ -1,13 +1,14 @@
 package RayTracer;
 
 import Math.*;
+import javafx.util.Pair;
 
 import java.security.InvalidParameterException;
 
 public class Transformation
 {
-	Matrix forward;
-	Matrix inverse;
+	private Matrix forward;
+	private Matrix inverse;
 
 	public Transformation(Matrix forward, Matrix inverse) throws InvalidParameterException
 	{
@@ -41,6 +42,11 @@ public class Transformation
 		this.inverse = Matrix.multiply(this.inverse, inverse);
 
 		return this;
+	}
+
+	public Transformation add(Pair<Matrix, Matrix> transformation)
+	{
+		return this.add(transformation.getKey(), transformation.getValue());
 	}
 
 	public Vector transform(Vector vector)

@@ -3,10 +3,8 @@ package RayTracer;
 import RayTracer.Factories.VectorFactory;
 import Math.Vector;
 import RayTracer.Hit.Hittable;
-import RayTracer.Objects.Cube;
-import RayTracer.Objects.Plane;
+import RayTracer.Objects.*;
 import RayTracer.Objects.Polygon;
-import RayTracer.Objects.Sphere;
 import RayTracer.Screen.Screen;
 import Util.OBJReader;
 
@@ -22,7 +20,7 @@ public class Main
 	public static int HEIGHT = 1000;
 
 
-	public static String OBJ_FILE  = "res/OBJ/shuttle.obj";
+	public static String OBJ_FILE  = "res/OBJ/cube.obj";
 
 	public static void main(String args[])
 	{
@@ -31,11 +29,16 @@ public class Main
 
 		Vector screenOffset = VectorFactory.createPointVector(-4, -4, 10);
 		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.01);
+		List<Hittable> objects = new ArrayList<>();
 
-		//ArrayList<Hittable> objects = populateWorld();
+		//objects.addAll(populateWorld());
 
 		System.out.println("Tracing file: " + OBJ_FILE);
-		List<Hittable> objects = OBJReader.read(OBJ_FILE);
+		Mesh mesh = OBJReader.read(OBJ_FILE);
+
+
+		objects.add(mesh);
+
 
 		RayTracer rayTracer = new RayTracer(eye, screen, objects);
 
