@@ -39,7 +39,7 @@ public class Transformation
 		}
 
 		this.forward = Matrix.multiply(this.forward, forward);
-		this.inverse = Matrix.multiply(this.inverse, inverse);
+		this.inverse = Matrix.multiply(inverse, this.inverse);
 
 		return this;
 	}
