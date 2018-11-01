@@ -66,8 +66,7 @@ public class OBJReader
 
 		Mesh mesh = new Mesh(faces);
 
-		double[] transformation = {1, 1, 1};
-		mesh.setTransformation(TransformationFactory.rotationTransformation(new Vector(transformation), 2));
+		mesh.setTransformation(TransformationFactory.translationTransformation(1, 2, 3));
 
 		List<Hittable> objects = new ArrayList<>();
 

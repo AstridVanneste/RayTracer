@@ -27,7 +27,7 @@ public class Plane extends Object
 		if(VectorFactory.isVector(normal))
 		{
 			this.normal = normal;
-			this.normal.normalize();
+			this.normal.normalize(false);
 		}
 		else
 		{

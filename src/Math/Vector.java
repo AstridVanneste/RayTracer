@@ -1,5 +1,7 @@
 package Math;
 
+import RayTracer.Factories.VectorFactory;
+
 import java.security.InvalidParameterException;
 
 public class Vector
@@ -54,9 +56,17 @@ public class Vector
 		return this.elements;
 	}
 
-	public void normalize()
+	public void normalize(boolean point)
 	{
-		this.elements = Vector.divide(this, this.length()).elements;
+		if(point)
+		{
+			this.elements[this.elements.length - 1] = 1;
+		}
+		else
+		{
+			this.elements = Vector.divide(this, this.length()).elements;
+			this.elements[this.elements.length - 1] = 0;
+		}
 	}
 
 	public double length()
@@ -89,6 +99,7 @@ public class Vector
 			{
 				result.set(i, vec1.get(i) + vec2.get(i));
 			}
+			result.normalize(VectorFactory.isPoint(vec1) || VectorFactory.isPoint(vec2));
 			return result;
 		}
 		else
@@ -115,6 +126,8 @@ public class Vector
 			{
 				result.set(i, vec1.get(i) - vec2.get(i));
 			}
+			result.normalize(Utils.XOR(VectorFactory.isPoint(vec1), VectorFactory.isPoint(vec2)));
+
 			return result;
 		}
 		else
@@ -130,14 +143,13 @@ public class Vector
 		{
 			result.set(i, vec.get(i) * s);
 		}
+		//result.normalize(VectorFactory.isPoint(vec));
 		return result;
 	}
 
 	public static Vector divide(Vector vec, double s)
 	{
-		s = 1/s;
-
-		return Vector.multiply(vec, s);
+		return Vector.multiply(vec, 1/s);
 	}
 
 	public static double dotProduct(Vector vec1, Vector vec2) throws InvalidParameterException
@@ -171,6 +183,7 @@ public class Vector
 					double element = (vec1.get((i + 1)%3) * vec2.get((i + 2) % 3)) - (vec1.get((i + 2) % 3) * vec2.get((i + 1) % 3));
 					result.set(i, element);
 				}
+				result.normalize(Utils.XOR(VectorFactory.isPoint(vec1), VectorFactory.isPoint(vec2)));
 				return result;
 			}
 			else

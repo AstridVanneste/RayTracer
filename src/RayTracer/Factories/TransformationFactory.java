@@ -52,7 +52,7 @@ public class TransformationFactory
 
 	public static Transformation rotationTransformation(Vector axis, double theta)
 	{
-		axis.normalize();
+		axis.normalize(false);
 		return new Transformation(rotation(axis.get(0), axis.get(1), axis.get(2), theta), inverseRotation(axis.get(0), axis.get(1), axis.get(2), theta));
 	}
 

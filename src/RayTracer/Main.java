@@ -22,14 +22,14 @@ public class Main
 	public static int HEIGHT = 1000;
 
 
-	public static String OBJ_FILE  = "res/OBJ/cube.obj";
+	public static String OBJ_FILE  = "res/OBJ/shuttle.obj";
 
 	public static void main(String args[])
 	{
 
-		Vector eye = VectorFactory.createPointVector(2, 2, 2);
+		Vector eye = VectorFactory.createPointVector(2, 2, 15);
 
-		Vector screenOffset = VectorFactory.createPointVector(-4, -4, 1);
+		Vector screenOffset = VectorFactory.createPointVector(-4, -4, 10);
 		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.01);
 
 		//ArrayList<Hittable> objects = populateWorld();

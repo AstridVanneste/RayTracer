@@ -20,7 +20,7 @@ public class Ray
 		}
 		else
 		{
-			throw new InvalidParameterException("Eye vector size should be 4 but is " + eye.size());
+			throw new InvalidParameterException("Eye should be a point");
 		}
 		if(VectorFactory.isVector(dir))
 		{
@@ -28,7 +28,7 @@ public class Ray
 		}
 		else
 		{
-			throw new InvalidParameterException("Direction vector size should be 4 but is " + dir.size());
+			throw new InvalidParameterException("Direction should be a vector");
 		}
 	}
 
