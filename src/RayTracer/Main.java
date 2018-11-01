@@ -20,7 +20,7 @@ public class Main
 	public static int HEIGHT = 1000;
 
 
-	public static String OBJ_FILE  = "res/OBJ/cube.obj";
+	public static String OBJ_FILE  = "res/OBJ/shuttle.obj";
 
 	public static void main(String args[])
 	{

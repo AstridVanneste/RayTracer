@@ -12,6 +12,8 @@ import Util.PPMWriter;
 import javax.swing.*;
 import java.awt.*;
 import java.security.InvalidParameterException;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
 
@@ -57,7 +59,8 @@ public class RayTracer extends JPanel
 
 		try
 		{
-			PPMWriter ppmWriter = new PPMWriter("trace.ppm", PPMWriter.Format.P3, this.screen.width(), this.screen.height());
+			String time = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Timestamp(System.currentTimeMillis()));
+			PPMWriter ppmWriter = new PPMWriter("traces/" + time + ".ppm", PPMWriter.Format.P3, this.screen.width(), this.screen.height());
 			ppmWriter.write(pixels);
 		}
 		catch (Exception e)
