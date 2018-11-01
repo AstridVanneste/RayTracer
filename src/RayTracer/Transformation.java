@@ -10,6 +10,12 @@ public class Transformation
 	private Matrix forward;
 	private Matrix inverse;
 
+	public Transformation()
+	{
+		this.forward = Matrix.identityMatrix(4);
+		this.inverse = Matrix.identityMatrix(4);
+	}
+
 	public Transformation(Matrix forward, Matrix inverse) throws InvalidParameterException
 	{
 		if(forward.height() != 4 || forward.width() != 4)
@@ -19,7 +25,7 @@ public class Transformation
 
 		if(inverse.height() != 4 || inverse.width() != 4)
 		{
-			throw new InvalidParameterException("Forward transformation matrix dimensions should be 4x4 but are " + inverse.height() + "x" + inverse.width());
+			throw new InvalidParameterException("Inverse transformation matrix dimensions should be 4x4 but are " + inverse.height() + "x" + inverse.width());
 		}
 
 		this.forward = forward;
