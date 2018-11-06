@@ -109,17 +109,12 @@ public class Mesh extends Object
 	}
 
 	@Override
-	public HitObject hit(Ray r)
+	protected HitObject internalHit(Ray r)
 	{
-		if(this.transform)
-		{
-			r.inverseTransform(this.transformation);
-		}
-
 		HitObject hit = null;
 
-		//return this.boundingBox.hit(r);
-		/*if(this.boundingBox.hit(r) != null)									// only check all faces if ray hits bounding box
+		//return this.boundingBox.internalHit(r);
+		/*if(this.boundingBox.internalHit(r) != null)									// only check all faces if ray hits bounding box
 		{
 			*/
 		double distance = 0;

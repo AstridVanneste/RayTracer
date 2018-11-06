@@ -89,11 +89,6 @@ public class RayTracer extends JPanel
 					if(hit.getDistance() < distance || distance == 0)
 					{
 						pixel.setColor(hit.getColor());
-						if(!hit.getColor().equals(Color.DARK_GRAY))
-						{
-							System.out.println("[" + pixel.x() + ", " + pixel.y() +"]");
-							System.out.println(pixel.getColor());
-						}
 						distance = hit.getDistance();
 					}
 				}

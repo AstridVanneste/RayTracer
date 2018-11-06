@@ -1,6 +1,8 @@
 package RayTracer.Objects;
 
+import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Hittable;
+import RayTracer.Hit.Ray;
 import RayTracer.Transformation;
 import Math.Matrix;
 
@@ -48,4 +50,16 @@ public abstract class Object implements Hittable
 		this.transform = true;
 		this.transformation = transformation;
 	}
+
+
+	public HitObject hit(Ray r)
+	{
+		if(this.transform)
+		{
+			r.inverseTransform(this.transformation);
+		}
+		return this.internalHit(r);
+	}
+
+	abstract protected HitObject internalHit(Ray r);
 }

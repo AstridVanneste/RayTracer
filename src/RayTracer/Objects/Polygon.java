@@ -6,7 +6,6 @@ import RayTracer.Hit.Ray;
 import Math.Vector;
 
 import java.awt.*;
-import java.security.InvalidParameterException;
 
 public class Polygon extends Plane
 {
@@ -43,9 +42,9 @@ public class Polygon extends Plane
 	}
 
 	@Override
-	public HitObject hit(Ray r)
+	protected HitObject internalHit(Ray r)
 	{
-		HitObject planeHit = super.hit(r);
+		HitObject planeHit = super.internalHit(r);
 		if(planeHit != null)
 		{
 			if (this.isInside(planeHit.getHitpoint()))
