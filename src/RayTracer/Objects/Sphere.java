@@ -39,7 +39,7 @@ public class Sphere extends Object
 		System.out.println("discriminant = " + discriminant);/*/
 
 		double k = 0.0;
-		if(Double.compare(discriminant, 0.0) < 0)						// NO HITPOINT
+		if(Double.compare(discriminant, 0.0) < 0)					// NO HITPOINT
 		{
 			//System.out.println("NO HITPOINT");
 			return null;
