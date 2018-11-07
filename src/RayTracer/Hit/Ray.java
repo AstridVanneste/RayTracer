@@ -25,6 +25,7 @@ public class Ray
 		if(VectorFactory.isVector(dir))
 		{
 			this.dir = dir;
+			this.dir.normalize(false);
 		}
 		else
 		{

@@ -30,34 +30,34 @@ public class Sphere extends Object
 	{
 		double A = Vector.dotProduct(r.getDir(), r.getDir());
 		double B = Vector.dotProduct(r.getDir(), r.getEye());
-		double C = Vector.dotProduct(r.getEye(), r.getEye());
+		double C = Vector.dotProduct(r.getEye(), r.getEye()) - 1;
 
-		double discriminant =  Math.pow(B, 2) - A * (C - 1);
+		double discriminant =  Math.pow(B, 2.0) - (A * C);
 		/*System.out.println("A = " + A);
 		System.out.println("B = " + B);
 		System.out.println("C = " + C);
-		System.out.println("discriminant = " + discriminant);*/
+		System.out.println("discriminant = " + discriminant);/*/
 
-		double k = 0;
-		if(Double.compare(discriminant, 0) < 0)						// NO HITPOINT
+		double k = 0.0;
+		if(Double.compare(discriminant, 0.0) < 0)						// NO HITPOINT
 		{
 			//System.out.println("NO HITPOINT");
 			return null;
 		}
-		else if(Double.compare(discriminant, 0) == 0)				// 1 HITPOINT
+		else if(Double.compare(discriminant, 0.0) == 0)				// 1 HITPOINT
 		{
 			System.out.println("1 HITPOINT");
 			k = -B/A;
 		}
-		else if(Double.compare(discriminant, 0) > 0)				// 2 HITPOINTS
+		else if(Double.compare(discriminant, 0.0) > 0)				// 2 HITPOINTS
 		{
 			System.out.println("2 HITPOINTS");
 			double k1 = (-B + Math.sqrt(discriminant))/(A);
 			double k2 = (-B - Math.sqrt(discriminant))/(A);
 
 			// hits behind eye
-			boolean compareK1 = Double.compare(k1, 0) < 0;
-			boolean compareK2 = Double.compare(k2, 0) < 0;
+			boolean compareK1 = Double.compare(k1, 0.0) < 0;
+			boolean compareK2 = Double.compare(k2, 0.0) < 0;
 			if(compareK1 && compareK2)
 			{
 				return null;

@@ -29,7 +29,7 @@ public class Main
 		Vector eye = VectorFactory.createPointVector(2, 2, 3);
 
 		Vector screenOffset = VectorFactory.createPointVector(-2, -2, 1.5);
-		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.01);
+		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.005);
 		List<Hittable> objects = new ArrayList<>();
 
 		objects.addAll(populateWorld());
