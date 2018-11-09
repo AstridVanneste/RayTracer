@@ -25,6 +25,13 @@ public class Color
 		this.b = b;
 	}
 
+	public Color(Color c)
+	{
+		this.r = c.r;
+		this.g = c.g;
+		this.b = c.b;
+	}
+
 	public java.awt.Color get()
 	{
 		this.clip();
@@ -60,6 +67,13 @@ public class Color
 		this.g = (int) (this.g * s);
 		this.b = (int) (this.b * s);
 		this.clip();
+	}
+
+	public void add(Color c)
+	{
+		this.r += c.r;
+		this.g += c.g;
+		this.b += c.b;
 	}
 
 	private void clip()

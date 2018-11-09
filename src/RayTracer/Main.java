@@ -42,7 +42,7 @@ public class Main
 
 
 		List<Light> lights = new ArrayList<>();
-		lights.add(new Light(VectorFactory.createPointVector(5, 5, 5), Color.WHITE, 0.5));
+		lights.add(new Light(VectorFactory.createPointVector(5, 5, 5), Color.WHITE, 0.15));
 
 		RayTracer rayTracer = new RayTracer(eye, screen, new World(objects, lights));
 

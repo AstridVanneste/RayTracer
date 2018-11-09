@@ -27,7 +27,7 @@ public class Shader
 
 	private Color getAmbientComponent(Light light)
 	{
-		Color lightColor = light.getColor();
+		Color lightColor = new Color(light.getColor());
 
 		lightColor.scale(light.getAmbient());
 
@@ -40,7 +40,7 @@ public class Shader
 
 		double fraction = Vector.dotProduct(lightDir, hit.getNormal());
 
-		Color lightColor = light.getColor();
+		Color lightColor = new Color(light.getColor());
 
 		lightColor.scale(fraction);
 
@@ -61,7 +61,9 @@ public class Shader
 
 	private Color getLighterComponent(Light light, Ray r, HitObject hit)
 	{
-		return this.getAmbientComponent(light);
+		Color color = this.getAmbientComponent(light);
+		color.add(this.getDiffuseComponent(light, hit));
+		return color;
 	}
 
 	private Vector calcFacetNormal(Ray ray, Ray light)
