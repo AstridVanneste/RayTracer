@@ -2,6 +2,8 @@ package RayTracer.Scene.Objects;
 
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
+import RayTracer.Scene.World;
+import RayTracer.Tracer;
 
 import java.awt.*;
 
@@ -26,12 +28,12 @@ public class Cube extends Object
 	}
 
 	@Override
-	protected HitObject internalHit(Ray r)
+	protected HitObject internalHit(Ray r, Tracer tracer, World world)
 	{
 		HitObject hit = null;
 		for(int i = 0; i < NUMBER_SIDES; i++)
 		{
-			HitObject currentHit = this.sides[i].internalHit(r);
+			HitObject currentHit = this.sides[i].internalHit(r, tracer, world);
 			if(currentHit != null)
 			{
 				if (hit == null)

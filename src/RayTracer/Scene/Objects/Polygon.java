@@ -4,6 +4,8 @@ import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 
 import Math.Vector;
+import RayTracer.Scene.World;
+import RayTracer.Tracer;
 
 import java.awt.*;
 
@@ -42,9 +44,9 @@ public class Polygon extends Plane
 	}
 
 	@Override
-	protected HitObject internalHit(Ray r)
+	protected HitObject internalHit(Ray r, Tracer tracer, World world)
 	{
-		HitObject planeHit = super.internalHit(r);
+		HitObject planeHit = super.internalHit(r, tracer, world);
 		if(planeHit != null)
 		{
 			if (this.isInside(planeHit.getHitpoint()))

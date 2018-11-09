@@ -51,7 +51,7 @@ public class Shader
 
 	private Color getLighterComponent(Light light, Ray r, Vector hitpoint)
 	{
-		return Color.RED;
+		return this.getAmbientComponent(light);
 	}
 
 	private Vector calcFacetNormal(Ray ray, Ray light)

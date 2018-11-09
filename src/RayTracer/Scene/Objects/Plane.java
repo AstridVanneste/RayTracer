@@ -4,6 +4,8 @@ import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import Math.Vector;
+import RayTracer.Scene.World;
+import RayTracer.Tracer;
 
 import java.awt.*;
 import java.security.InvalidParameterException;
@@ -53,7 +55,7 @@ public class Plane extends Object
 	}
 
 	@Override
-	protected HitObject internalHit(Ray r)
+	protected HitObject internalHit(Ray r, Tracer tracer, World world)
 	{
 		double numerator = this.dot - Vector.dotProduct(this.normal, r.getEye());
 		double denominator = Vector.dotProduct(this.normal, r.getDir());

@@ -4,6 +4,8 @@ import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import Math.Vector;
+import RayTracer.Scene.World;
+import RayTracer.Tracer;
 
 import java.awt.*;
 import java.security.InvalidParameterException;
@@ -26,7 +28,7 @@ public class Sphere extends Object
 	}
 
 	@Override
-	protected HitObject internalHit(Ray r)
+	protected HitObject internalHit(Ray r, Tracer tracer, World world)
 	{
 		double A = Vector.dotProduct(r.getDir(), r.getDir());
 		double B = Vector.dotProduct(r.getDir(), r.getEye());

@@ -3,6 +3,7 @@ package RayTracer;
 import RayTracer.Factories.VectorFactory;
 import Math.Vector;
 import RayTracer.Hit.Hittable;
+import RayTracer.Lighting.Light;
 import RayTracer.Scene.Objects.*;
 import RayTracer.Scene.Objects.Polygon;
 import RayTracer.Scene.World;
@@ -40,7 +41,7 @@ public class Main
 		objects.add(mesh);
 
 
-		RayTracer rayTracer = new RayTracer(eye, screen, new World(objects, null));
+		RayTracer rayTracer = new RayTracer(eye, screen, new World(objects, new ArrayList<Light>()));
 
 
 		JFrame frame = new JFrame("RayTracer");

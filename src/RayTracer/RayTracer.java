@@ -104,7 +104,7 @@ public class RayTracer extends JPanel implements Tracer
 		{
 			if(object != excluded)
 			{
-				HitObject hit = object.hit(r);
+				HitObject hit = object.hit(r, this, this.world);
 
 				if (hit != null)
 				{
