@@ -65,12 +65,11 @@ public abstract class Object implements Hittable
 		}
 		HitObject hit = this.internalHit(r,tracer, world);
 
+		// LIGHTING
 		if(hit != null)
 		{
-			hit.setColor(this.lighting.illuminate(tracer, world, r, hit.getHitpoint()));
+			hit.setColor(this.lighting.illuminate(tracer, world, r, hit.getHitpoint(), hit.getColor()));
 		}
-
-		// LIGHTING
 
 		return hit;
 	}

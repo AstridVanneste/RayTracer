@@ -41,7 +41,10 @@ public class Main
 		objects.add(mesh);
 
 
-		RayTracer rayTracer = new RayTracer(eye, screen, new World(objects, new ArrayList<Light>()));
+		List<Light> lights = new ArrayList<>();
+		lights.add(new Light(VectorFactory.createPointVector(5, 5, 5), Color.WHITE));
+
+		RayTracer rayTracer = new RayTracer(eye, screen, new World(objects, lights));
 
 
 		JFrame frame = new JFrame("RayTracer");
