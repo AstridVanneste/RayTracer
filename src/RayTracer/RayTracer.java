@@ -8,7 +8,6 @@ import RayTracer.Hit.Hittable;
 import RayTracer.Screen.Pixel;
 import RayTracer.Screen.Screen;
 import Util.PPMWriter;
-import apple.laf.JRSUIConstants;
 
 import javax.swing.*;
 import java.awt.*;

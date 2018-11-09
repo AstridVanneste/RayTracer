@@ -1,17 +1,15 @@
 package RayTracer;
 
-import RayTracer.Factories.TransformationFactory;
 import RayTracer.Factories.VectorFactory;
 import Math.Vector;
 import RayTracer.Hit.Hittable;
-import RayTracer.Objects.*;
-import RayTracer.Objects.Polygon;
+import RayTracer.Scene.Objects.*;
+import RayTracer.Scene.Objects.Polygon;
 import RayTracer.Screen.Screen;
 import Util.OBJReader;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.image.ImageObserver;
 import java.util.ArrayList;
 import java.util.List;
 

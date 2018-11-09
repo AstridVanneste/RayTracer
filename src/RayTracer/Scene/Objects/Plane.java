@@ -1,8 +1,7 @@
-package RayTracer.Objects;
+package RayTracer.Scene.Objects;
 
 import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
-import RayTracer.Hit.Hittable;
 import RayTracer.Hit.Ray;
 import Math.Vector;
 

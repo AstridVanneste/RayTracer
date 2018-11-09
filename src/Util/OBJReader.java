@@ -1,10 +1,7 @@
 package Util;
 
-import RayTracer.Factories.TransformationFactory;
 import RayTracer.Factories.VectorFactory;
-import RayTracer.Hit.Hittable;
-import RayTracer.Objects.Mesh;
-import RayTracer.Objects.Object;
+import RayTracer.Scene.Objects.Mesh;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -12,10 +9,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import Math.Vector;
-import RayTracer.Objects.Polygon;
-import com.sun.org.apache.xerces.internal.impl.dv.xs.DurationDV;
-
-import javax.xml.transform.TransformerFactory;
+import RayTracer.Scene.Objects.Polygon;
 
 public class OBJReader
 {
