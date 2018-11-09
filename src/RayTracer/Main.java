@@ -32,13 +32,13 @@ public class Main
 		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.005);
 		List<Hittable> objects = new ArrayList<>();
 
-		objects.addAll(populateWorld());
+		//objects.addAll(populateWorld());
 
 		System.out.println("Tracing file: " + OBJ_FILE);
 		Mesh mesh = OBJReader.read(OBJ_FILE);
 
 
-		//objects.add(mesh);
+		objects.add(mesh);
 
 
 		RayTracer rayTracer = new RayTracer(eye, screen, objects);
