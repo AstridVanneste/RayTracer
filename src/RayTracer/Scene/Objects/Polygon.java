@@ -6,8 +6,7 @@ import RayTracer.Hit.Ray;
 import Math.Vector;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
-
-import java.awt.*;
+import Util.Color;
 
 public class Polygon extends Plane
 {

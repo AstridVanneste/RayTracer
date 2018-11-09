@@ -54,7 +54,7 @@ public class RayTracer extends JPanel implements Tracer
 		System.out.println("DRAWING...");
 		for(Pixel pixel: pixels)
 		{
-			g2d.setColor(pixel.getColor());
+			g2d.setColor(pixel.getColor().get());
 			g2d.drawLine(pixel.x(), this.screen.height() - pixel.y(), pixel.x(), this.screen.height() - pixel.y());
 		}
 

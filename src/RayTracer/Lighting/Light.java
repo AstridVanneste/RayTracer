@@ -2,8 +2,8 @@ package RayTracer.Lighting;
 
 import Math.Vector;
 import RayTracer.Factories.VectorFactory;
+import Util.Color;
 
-import java.awt.*;
 import java.security.InvalidParameterException;
 
 public class Light

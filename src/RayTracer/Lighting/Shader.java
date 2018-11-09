@@ -5,8 +5,8 @@ import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
+import Util.Color;
 
-import java.awt.*;
 import java.security.InvalidParameterException;
 
 public class Shader

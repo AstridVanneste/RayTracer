@@ -73,11 +73,11 @@ public class PPMWriter
 			{
 				Color color = pixels[x][y].getColor();
 
-				this.writer.write(Integer.toString(color.getRed()));
+				this.writer.write(Integer.toString(color.getRed255()));
 				this.writer.write(" ");
-				this.writer.write(Integer.toString(color.getGreen()));
+				this.writer.write(Integer.toString(color.getGreen255()));
 				this.writer.write(" ");
-				this.writer.write(Integer.toString(color.getBlue()));
+				this.writer.write(Integer.toString(color.getBlue255()));
 				this.writer.write(" ");
 			}
 		}

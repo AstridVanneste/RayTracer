@@ -6,8 +6,8 @@ import RayTracer.Hit.Ray;
 import Math.Vector;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
+import Util.Color;
 
-import java.awt.*;
 import java.security.InvalidParameterException;
 
 public class Plane extends Object

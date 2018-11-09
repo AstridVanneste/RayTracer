@@ -7,8 +7,8 @@ import Math.Vector;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import RayTracer.Transformation;
+import Util.Color;
 
-import java.awt.*;
 import java.security.InvalidParameterException;
 
 public class Sphere extends Object

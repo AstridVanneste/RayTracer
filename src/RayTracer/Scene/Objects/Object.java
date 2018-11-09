@@ -8,8 +8,7 @@ import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import RayTracer.Transformation;
 import Math.*;
-
-import java.awt.*;
+import Util.Color;
 
 public abstract class Object implements Hittable
 {
@@ -68,7 +67,7 @@ public abstract class Object implements Hittable
 		// LIGHTING
 		if(hit != null)
 		{
-			hit.setColor(this.lighting.illuminate(tracer, world, r, hit, hit.getColor()));
+			//hit.setColor(this.lighting.illuminate(tracer, world, r, hit, hit.getColor()));
 		}
 
 		return hit;

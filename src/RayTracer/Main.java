@@ -9,9 +9,9 @@ import RayTracer.Scene.Objects.Polygon;
 import RayTracer.Scene.World;
 import RayTracer.Screen.Screen;
 import Util.OBJReader;
+import Util.Color;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.ArrayList;
 import java.util.List;
 

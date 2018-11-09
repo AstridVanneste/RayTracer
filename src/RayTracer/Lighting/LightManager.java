@@ -1,11 +1,11 @@
 package RayTracer.Lighting;
 
-import java.awt.*;
 import Math.Vector;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
+import Util.Color;
 
 public class LightManager
 {
@@ -23,7 +23,7 @@ public class LightManager
 	 */
 	public Color illuminate(Tracer tracer, World world, Ray ray, HitObject hit, Color color)
 	{
-		int r, g, b;
+		double r, g, b;
 
 		Color shade = this.shader.getLight(world, ray, hit);
 

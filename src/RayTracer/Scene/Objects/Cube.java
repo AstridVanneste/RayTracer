@@ -4,8 +4,7 @@ import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
-
-import java.awt.*;
+import Util.Color;
 
 public class Cube extends Object
 {
