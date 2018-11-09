@@ -1,25 +1,23 @@
 package RayTracer.Lighting;
 
-import java.awt.*;
 import Math.Vector;
-import RayTracer.Tracer;
+import RayTracer.Factories.VectorFactory;
+
+import java.security.InvalidParameterException;
 
 public class Lighter
 {
-	private Color color;
 	private Vector normal;
 
-	public Color getColor()
+	public Lighter(Vector normal)
 	{
-		return this.color;
+		if(!VectorFactory.isVector(normal))
+		{
+			throw new InvalidParameterException("Normal parameter is not a vector");
+		}
+
+		this.normal = normal;
 	}
 
-	/**
-	 * Will determine the color that will be seen through a certain ray, taking into account refraction, reflection and lighting.
-	 * @return
-	 */
-	public Color illuminate(Tracer tracer)
-	{
-		return this.color;
-	}
+
 }
