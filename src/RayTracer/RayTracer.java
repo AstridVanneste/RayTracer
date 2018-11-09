@@ -18,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 
-public class RayTracer extends JPanel
+public class RayTracer extends JPanel implements Tracer
 {
 	private Vector eye;
 	private Screen screen;
@@ -90,22 +90,31 @@ public class RayTracer extends JPanel
 		return pixels;
 	}
 
+	@Override
 	public HitObject trace(Ray r)
+	{
+		return this.trace(r, null);
+	}
+
+	@Override
+	public HitObject trace(Ray r, Hittable excluded)
 	{
 		HitObject closestHit = null;
 		for(Hittable object: this.world)
 		{
-			HitObject hit = object.hit(r);
-
-			if(hit != null)
+			if(object != excluded)
 			{
-				if(closestHit == null)
+				HitObject hit = object.hit(r);
+
+				if (hit != null)
 				{
-					closestHit = hit;
-				}
-				else if(hit.getDistance() < closestHit.getDistance())
-				{
-					closestHit = hit;
+					if (closestHit == null)
+					{
+						closestHit = hit;
+					} else if (hit.getDistance() < closestHit.getDistance())
+					{
+						closestHit = hit;
+					}
 				}
 			}
 		}
