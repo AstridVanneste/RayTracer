@@ -2,6 +2,7 @@ package RayTracer.Lighting;
 
 import java.awt.*;
 import Math.Vector;
+import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
@@ -20,11 +21,11 @@ public class LightManager
 	 * Will determine the color that will be seen through a certain ray, taking into account refraction, reflection and lighting.
 	 * @return
 	 */
-	public Color illuminate(Tracer tracer, World world, Ray ray, Vector hitpoint, Color color)
+	public Color illuminate(Tracer tracer, World world, Ray ray, HitObject hit, Color color)
 	{
 		int r, g, b;
 
-		Color shade = this.shader.getLighterComponent(world, ray, hitpoint);
+		Color shade = this.shader.getLight(world, ray, hit);
 
 		r = shade.getRed() * color.getRed()/255;
 		g = shade.getGreen() * color.getGreen()/255;

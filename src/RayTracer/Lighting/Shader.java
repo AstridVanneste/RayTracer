@@ -2,6 +2,7 @@ package RayTracer.Lighting;
 
 import Math.Vector;
 import RayTracer.Factories.VectorFactory;
+import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
 
@@ -37,21 +38,41 @@ public class Shader
 		return new Color(r, g, b);
 	}
 
+	private Color getDiffuseComponent(Light light, HitObject hit)
+	{
+		Vector lightDir = Vector.subtract(light.getPosition(), hit.getHitpoint());
 
-	public Color getLighterComponent(World world, Ray r, Vector hitpoint)
+		double fraction = Vector.dotProduct(lightDir, hit.getNormal());
+
+		Color lightColor = light.getColor();
+
+		int r, g, b;
+
+		r = (int) (lightColor.getRed() * fraction);
+		g = (int) (lightColor.getGreen() * fraction);
+		b = (int) (lightColor.getBlue() * fraction);
+
+		System.out.println(fraction);
+		System.out.println(r + " " + g + " " + b);
+
+		return new Color(r, g, b);
+	}
+
+
+	public Color getLight(World world, Ray r, HitObject hit)
 	{
 		Color component = Color.BLACK;
 		for(Light light: world.getLights())
 		{
-			component = this.getLighterComponent(light, r, hitpoint);
+			component = this.getLighterComponent(light, r, hit);
 		}
 
 		return component;
 	}
 
-	private Color getLighterComponent(Light light, Ray r, Vector hitpoint)
+	private Color getLighterComponent(Light light, Ray r, HitObject hit)
 	{
-		return this.getAmbientComponent(light);
+		return this.getDiffuseComponent(light, hit);
 	}
 
 	private Vector calcFacetNormal(Ray ray, Ray light)
