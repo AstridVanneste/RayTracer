@@ -29,13 +29,9 @@ public class Shader
 	{
 		Color lightColor = light.getColor();
 
-		int r, g, b;
+		lightColor.scale(light.getAmbient());
 
-		r = (int) (lightColor.getRed() * light.getAmbient());
-		g = (int) (lightColor.getGreen() * light.getAmbient());
-		b = (int) (lightColor.getBlue() * light.getAmbient());
-
-		return new Color(r, g, b);
+		return lightColor;
 	}
 
 	private Color getDiffuseComponent(Light light, HitObject hit)
@@ -46,16 +42,9 @@ public class Shader
 
 		Color lightColor = light.getColor();
 
-		int r, g, b;
+		lightColor.scale(fraction);
 
-		r = (int) (lightColor.getRed() * fraction);
-		g = (int) (lightColor.getGreen() * fraction);
-		b = (int) (lightColor.getBlue() * fraction);
-
-		System.out.println(fraction);
-		System.out.println(r + " " + g + " " + b);
-
-		return new Color(r, g, b);
+		return lightColor;
 	}
 
 
@@ -72,7 +61,7 @@ public class Shader
 
 	private Color getLighterComponent(Light light, Ray r, HitObject hit)
 	{
-		return this.getDiffuseComponent(light, hit);
+		return this.getAmbientComponent(light);
 	}
 
 	private Vector calcFacetNormal(Ray ray, Ray light)

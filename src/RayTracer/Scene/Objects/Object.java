@@ -67,7 +67,7 @@ public abstract class Object implements Hittable
 		// LIGHTING
 		if(hit != null)
 		{
-			//hit.setColor(this.lighting.illuminate(tracer, world, r, hit, hit.getColor()));
+			hit.setColor(this.lighting.illuminate(tracer, world, r, hit, hit.getColor()));
 		}
 
 		return hit;

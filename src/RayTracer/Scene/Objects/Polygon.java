@@ -17,7 +17,7 @@ public class Polygon extends Plane
 	{
 		super(Vector.crossProduct(Vector.subtract(limits[0], limits[1]), Vector.subtract(limits[0], limits[2])), limits[0]);
 		this.limits = limits;
-		this.setColor(new Color(new Float(Math.abs((this.normal.get(0)/7) % 1)), new Float(Math.abs((this.normal.get(1)/7) % 1)),new Float(Math.abs((this.normal.get(2)/7) % 1))));
+		this.setColor(new Color((int) (this.normal.get(0) * 255), (int) (this.normal.get(1) * 255),(int) (this.normal.get(2) * 255)));
 
 		this.segmentNormals = new Vector[limits.length];
 
