@@ -8,7 +8,7 @@ public class LightManager
 {
 	private Color color;
 
-	private Lighter lighter;
+	private Shader shader;
 
 	public LightManager(Color color, Vector normal)
 	{
