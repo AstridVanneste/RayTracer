@@ -8,6 +8,7 @@ import RayTracer.Hit.Hittable;
 import RayTracer.Screen.Pixel;
 import RayTracer.Screen.Screen;
 import Util.PPMWriter;
+import apple.laf.JRSUIConstants;
 
 import javax.swing.*;
 import java.awt.*;
@@ -79,21 +80,36 @@ public class RayTracer extends JPanel
 
 			Ray ray = new Ray(this.eye, rayDirection);
 
-			double distance = 0;
-			for(Hittable object: this.world)
-			{
-				HitObject hit = object.hit(ray);
+			HitObject hit = this.trace(ray);
 
-				if(hit != null)
-				{
-					if(hit.getDistance() < distance || distance == 0)
-					{
-						pixel.setColor(hit.getColor());
-						distance = hit.getDistance();
-					}
-				}
+			if(hit != null)
+			{
+				pixel.setColor(hit.getColor());
 			}
 		}
 		return pixels;
+	}
+
+	public HitObject trace(Ray r)
+	{
+		HitObject closestHit = null;
+		for(Hittable object: this.world)
+		{
+			HitObject hit = object.hit(r);
+
+			if(hit != null)
+			{
+				if(closestHit == null)
+				{
+					closestHit = hit;
+				}
+				else if(hit.getDistance() < closestHit.getDistance())
+				{
+					closestHit = hit;
+				}
+			}
+		}
+
+		return closestHit;
 	}
 }
