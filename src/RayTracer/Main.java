@@ -125,7 +125,7 @@ public class Main
 
 		//objects.add(plane);
 
-		Sphere sphere = new Sphere(VectorFactory.createPointVector(0, 0, 0), 1);
+		Sphere sphere = new Sphere();
 		objects.add(sphere);
 
 		return objects;

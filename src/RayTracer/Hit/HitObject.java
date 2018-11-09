@@ -10,12 +10,14 @@ public class HitObject
 	private Vector hitpoint;
 	private double distance;
 	private Color color;
+	private Vector normal;
 
-	public HitObject(Vector hitpoint, double distance, Color color)
+	public HitObject(Vector hitpoint, double distance, Color color, Vector normal)
 	{
 		this.hitpoint = hitpoint;
 		this.distance = distance;
 		this.color = color;
+		this.normal = normal;
 	}
 
 	public Vector getHitpoint()
@@ -23,19 +25,9 @@ public class HitObject
 		return this.hitpoint;
 	}
 
-	public void setHitpoint(Vector hitpoint)
-	{
-		this.hitpoint = hitpoint;
-	}
-
 	public double getDistance()
 	{
 		return this.distance;
-	}
-
-	public void setDistance(double distance)
-	{
-		this.distance = distance;
 	}
 
 	public Color getColor()
@@ -46,5 +38,10 @@ public class HitObject
 	public void setColor(Color color)
 	{
 		this.color = color;
+	}
+
+	public Vector getNormal()
+	{
+		return this.normal;
 	}
 }

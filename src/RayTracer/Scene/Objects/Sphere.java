@@ -6,25 +6,27 @@ import RayTracer.Hit.Ray;
 import Math.Vector;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
+import RayTracer.Transformation;
 
 import java.awt.*;
 import java.security.InvalidParameterException;
 
 public class Sphere extends Object
 {
+	private Vector center;
 
-	public Sphere(Vector center, double radius) throws InvalidParameterException
+	public Sphere() throws InvalidParameterException
 	{
 		super();
 
-		if(!VectorFactory.isPoint(center))
-		{
-			throw new InvalidParameterException("Center parameter is not a point");
-		}
-		if(radius < 0)
-		{
-			throw new InvalidParameterException("Radius of sphere cannot be negative");
-		}
+		this.center = VectorFactory.createPointVector(0, 0,0);
+	}
+
+	@Override
+	public void setTransformation(Transformation transformation)
+	{
+		super.setTransformation(transformation);
+		this.center = transformation.transform(this.center);
 	}
 
 	@Override
@@ -79,6 +81,6 @@ public class Sphere extends Object
 		}
 
 		Vector hitpoint = r.getPoint(k);
-		return new HitObject(hitpoint, k, Color.RED);
+		return new HitObject(hitpoint, k, Color.RED, Vector.subtract(hitpoint, this.center));
 	}
 }
