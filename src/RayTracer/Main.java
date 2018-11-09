@@ -5,6 +5,7 @@ import Math.Vector;
 import RayTracer.Hit.Hittable;
 import RayTracer.Scene.Objects.*;
 import RayTracer.Scene.Objects.Polygon;
+import RayTracer.Scene.World;
 import RayTracer.Screen.Screen;
 import Util.OBJReader;
 
@@ -39,7 +40,7 @@ public class Main
 		objects.add(mesh);
 
 
-		RayTracer rayTracer = new RayTracer(eye, screen, objects);
+		RayTracer rayTracer = new RayTracer(eye, screen, new World(objects, null));
 
 
 		JFrame frame = new JFrame("RayTracer");

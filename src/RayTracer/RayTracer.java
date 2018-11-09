@@ -5,6 +5,7 @@ import Math.Vector;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import RayTracer.Hit.Hittable;
+import RayTracer.Scene.World;
 import RayTracer.Screen.Pixel;
 import RayTracer.Screen.Screen;
 import Util.PPMWriter;
@@ -21,9 +22,9 @@ public class RayTracer extends JPanel implements Tracer
 {
 	private Vector eye;
 	private Screen screen;
-	private List<Hittable> world;
+	private World world;
 
-	public RayTracer(Vector eye, Screen screen, List<Hittable> world) throws InvalidParameterException
+	public RayTracer(Vector eye, Screen screen, World world) throws InvalidParameterException
 	{
 		if(!VectorFactory.isPoint(eye))
 		{
@@ -99,7 +100,7 @@ public class RayTracer extends JPanel implements Tracer
 	public HitObject trace(Ray r, Hittable excluded)
 	{
 		HitObject closestHit = null;
-		for(Hittable object: this.world)
+		for(Hittable object: this.world.getObjects())
 		{
 			if(object != excluded)
 			{
