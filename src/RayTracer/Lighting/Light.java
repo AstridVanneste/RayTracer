@@ -11,7 +11,9 @@ public class Light
 	private Vector position;
 	private Color  color;
 
-	public Light(Vector position, Color color) throws InvalidParameterException
+	private double ambientStrength;
+
+	public Light(Vector position, Color color, double ambientStrength) throws InvalidParameterException
 	{
 		if(!VectorFactory.isPoint(position))
 		{
@@ -20,6 +22,7 @@ public class Light
 
 		this.position = position;
 		this.color = color;
+		this.ambientStrength = ambientStrength;
 	}
 
 	public Vector getPosition()
@@ -30,5 +33,10 @@ public class Light
 	public Color getColor()
 	{
 		return this.color;
+	}
+
+	public double getAmbient()
+	{
+		return this.ambientStrength;
 	}
 }

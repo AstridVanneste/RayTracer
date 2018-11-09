@@ -12,7 +12,6 @@ public class Shader
 {
 	private Vector normal;
 	private double m;
-	private double ambientStrenth = 1.0;
 
 	public Shader(Vector normal, double m)
 	{
@@ -31,9 +30,9 @@ public class Shader
 
 		int r, g, b;
 
-		r = (int) (lightColor.getRed() * this.ambientStrenth);
-		g = (int) (lightColor.getGreen() * this.ambientStrenth);
-		b = (int) (lightColor.getBlue() * this.ambientStrenth);
+		r = (int) (lightColor.getRed() * light.getAmbient());
+		g = (int) (lightColor.getGreen() * light.getAmbient());
+		b = (int) (lightColor.getBlue() * light.getAmbient());
 
 		return new Color(r, g, b);
 	}
@@ -41,7 +40,7 @@ public class Shader
 
 	public Color getLighterComponent(World world, Ray r, Vector hitpoint)
 	{
-		Color component = null;
+		Color component = Color.BLACK;
 		for(Light light: world.getLights())
 		{
 			component = this.getLighterComponent(light, r, hitpoint);
