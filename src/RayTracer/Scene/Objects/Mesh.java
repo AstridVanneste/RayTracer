@@ -111,7 +111,7 @@ public class Mesh extends Object
 	}
 
 	@Override
-	protected HitObject internalHit(Ray r, Tracer tracer, World world)
+	public HitObject internalHit(Ray r, Tracer tracer, World world)
 	{
 		HitObject hit = null;
 
@@ -122,7 +122,7 @@ public class Mesh extends Object
 		double distance = 0;
 		for(Hittable element: this.elements)
 		{
-			HitObject tempHit = element.hit(r, tracer, world);
+			HitObject tempHit = element.internalHit(r, tracer, world);
 
 			if(tempHit != null)
 			{

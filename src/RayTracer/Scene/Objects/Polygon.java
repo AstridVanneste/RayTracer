@@ -43,7 +43,7 @@ public class Polygon extends Plane
 	}
 
 	@Override
-	protected HitObject internalHit(Ray r, Tracer tracer, World world)
+	public HitObject internalHit(Ray r, Tracer tracer, World world)
 	{
 		HitObject planeHit = super.internalHit(r, tracer, world);
 		if(planeHit != null)

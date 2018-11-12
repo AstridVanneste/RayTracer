@@ -30,7 +30,7 @@ public class Sphere extends Object
 	}
 
 	@Override
-	protected HitObject internalHit(Ray r, Tracer tracer, World world)
+	public HitObject internalHit(Ray r, Tracer tracer, World world)
 	{
 		double A = Vector.dotProduct(r.getDir(), r.getDir());
 		double B = Vector.dotProduct(r.getDir(), r.getEye());

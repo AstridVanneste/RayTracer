@@ -26,9 +26,9 @@ public class Main
 	public static void main(String args[])
 	{
 
-		Vector eye = VectorFactory.createPointVector(2, 2, 3);
+		Vector eye = VectorFactory.createPointVector(2, 2, 5);
 
-		Vector screenOffset = VectorFactory.createPointVector(-2, -2, 1.5);
+		Vector screenOffset = VectorFactory.createPointVector(-2, -2, 3);
 		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.005);
 		List<Hittable> objects = new ArrayList<>();
 
@@ -42,7 +42,7 @@ public class Main
 
 
 		List<Light> lights = new ArrayList<>();
-		lights.add(new Light(VectorFactory.createPointVector(5, 5, 5), Color.WHITE, 0.15));
+		lights.add(new Light(VectorFactory.createPointVector(3, 3, 3), Color.WHITE, 0.05));
 
 		RayTracer rayTracer = new RayTracer(eye, screen, new World(objects, lights));
 

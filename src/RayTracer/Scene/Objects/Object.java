@@ -73,5 +73,5 @@ public abstract class Object implements Hittable
 		return hit;
 	}
 
-	abstract protected HitObject internalHit(Ray r, Tracer tracer, World world);
+	abstract public HitObject internalHit(Ray r, Tracer tracer, World world);
 }

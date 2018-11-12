@@ -55,7 +55,7 @@ public class Plane extends Object
 	}
 
 	@Override
-	protected HitObject internalHit(Ray r, Tracer tracer, World world)
+	public HitObject internalHit(Ray r, Tracer tracer, World world)
 	{
 		double numerator = this.dot - Vector.dotProduct(this.normal, r.getEye());
 		double denominator = Vector.dotProduct(this.normal, r.getDir());

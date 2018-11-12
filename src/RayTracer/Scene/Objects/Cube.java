@@ -27,7 +27,7 @@ public class Cube extends Object
 	}
 
 	@Override
-	protected HitObject internalHit(Ray r, Tracer tracer, World world)
+	public HitObject internalHit(Ray r, Tracer tracer, World world)
 	{
 		HitObject hit = null;
 		for(int i = 0; i < NUMBER_SIDES; i++)

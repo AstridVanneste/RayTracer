@@ -4,8 +4,11 @@ import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
+import RayTracer.Transformation;
 
 public interface Hittable
 {
 	public HitObject hit(Ray r, Tracer tracer, World world);
+
+	public HitObject internalHit(Ray r, Tracer tracer, World world);
 }
