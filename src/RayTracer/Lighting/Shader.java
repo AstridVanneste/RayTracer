@@ -5,6 +5,7 @@ import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
+import RayTracer.Tracer;
 import Util.Color;
 
 import java.security.InvalidParameterException;
@@ -23,6 +24,22 @@ public class Shader
 
 		this.normal = normal;
 		this.m = m;	//TODO check boundaries
+	}
+
+	public Color getLight(World world, Ray r, Tracer tracer, HitObject hit)
+	{
+		Color component = Color.BLACK;
+		for(Light light: world.getLights())
+		{
+			component = this.getLighterComponent(light, r, hit);
+		}
+
+		return component;
+	}
+
+	private boolean masked(Light light, Tracer tracer, HitObject hit)
+	{
+		return false;
 	}
 
 	private Color getAmbientComponent(Light light)
@@ -47,17 +64,6 @@ public class Shader
 		return lightColor;
 	}
 
-
-	public Color getLight(World world, Ray r, HitObject hit)
-	{
-		Color component = Color.BLACK;
-		for(Light light: world.getLights())
-		{
-			component = this.getLighterComponent(light, r, hit);
-		}
-
-		return component;
-	}
 
 	private Color getLighterComponent(Light light, Ray r, HitObject hit)
 	{

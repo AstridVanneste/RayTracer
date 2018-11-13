@@ -70,6 +70,12 @@ public abstract class Object implements Hittable
 			hit.setColor(this.lighting.illuminate(tracer, world, r, hit, hit.getColor()));
 		}
 
+		// TRANSFORM HITPOINT
+		if(this.transform)
+		{
+			hit.setHitpoint(this.transformation.transform(hit.getHitpoint()));
+		}
+
 		return hit;
 	}
 

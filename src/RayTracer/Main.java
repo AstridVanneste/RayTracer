@@ -25,11 +25,16 @@ public class Main
 
 	public static void main(String args[])
 	{
-
+		// CAMERA
 		Vector eye = VectorFactory.createPointVector(2, 2, 5);
-
 		Vector screenOffset = VectorFactory.createPointVector(-2, -2, 3);
 		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.005);
+
+		// LIGHTING
+		List<Light> lights = new ArrayList<>();
+		lights.add(new Light(VectorFactory.createPointVector(3, 3, 3), Color.WHITE, 0.05));
+
+		// OBJECTS
 		List<Hittable> objects = new ArrayList<>();
 
 		//objects.addAll(populateWorld());
@@ -37,16 +42,14 @@ public class Main
 		System.out.println("Tracing file: " + OBJ_FILE);
 		Mesh mesh = OBJReader.read(OBJ_FILE);
 
-
 		objects.add(mesh);
 
 
-		List<Light> lights = new ArrayList<>();
-		lights.add(new Light(VectorFactory.createPointVector(3, 3, 3), Color.WHITE, 0.05));
-
+		// RAYTRACER
 		RayTracer rayTracer = new RayTracer(eye, screen, new World(objects, lights));
 
 
+		// VISUALIZATION
 		JFrame frame = new JFrame("RayTracer");
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.add(rayTracer);

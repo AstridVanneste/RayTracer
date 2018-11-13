@@ -1,8 +1,11 @@
 package RayTracer.Hit;
 
 import Math.Vector;
+import RayTracer.Factories.VectorFactory;
 import RayTracer.RayTracer;
 import Util.Color;
+
+import java.security.InvalidParameterException;
 
 public class HitObject
 {
@@ -22,6 +25,15 @@ public class HitObject
 	public Vector getHitpoint()
 	{
 		return this.hitpoint;
+	}
+
+	public void setHitpoint(Vector hitpoint) throws InvalidParameterException
+	{
+		if(!VectorFactory.isPoint(hitpoint))
+		{
+			throw new InvalidParameterException("Hitpoint parameter is not a point");
+		}
+		this.hitpoint = hitpoint;
 	}
 
 	public double getDistance()

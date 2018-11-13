@@ -24,7 +24,7 @@ public class LightManager
 	public Color illuminate(Tracer tracer, World world, Ray ray, HitObject hit, Color color)
 	{
 		color = new Color(color);
-		Color shade = this.shader.getLight(world, ray, hit);
+		Color shade = this.shader.getLight(world, ray, tracer, hit);
 		color.scale(shade);
 		//System.out.println(color);
 		return color;
