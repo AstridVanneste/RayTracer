@@ -197,17 +197,6 @@ public class Vector
 		}
 	}
 
-	public static double angle(Vector vec1, Vector vec2)
-	{
-		double dot = Vector.dotProduct(vec1, vec2);
-		double mag1 = vec1.length();
-		double mag2 = vec2.length();
-
-		double cosAngle = dot / (mag1 * mag2);
-
-		return Math.acos(cosAngle);
-	}
-
 	@Override
 	public boolean equals(Object o)
 	{

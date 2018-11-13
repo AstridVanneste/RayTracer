@@ -39,6 +39,7 @@ public class Shader
 
 	private boolean masked(Light light, Tracer tracer, HitObject hit)
 	{
+		double distance = 0.0;
 		return false;
 	}
 

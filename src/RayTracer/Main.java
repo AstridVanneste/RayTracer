@@ -20,7 +20,6 @@ public class Main
 	private static int WIDTH = 1000;
 	private static int HEIGHT = 1000;
 
-
 	private static String OBJ_FILE  = "res/OBJ/cube.obj";
 
 	public static void main(String args[])
