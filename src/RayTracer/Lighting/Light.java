@@ -12,8 +12,9 @@ public class Light
 	private Color  color;
 
 	private double ambientStrength;
+	private double specularStrength;
 
-	public Light(Vector position, Color color, double ambientStrength) throws InvalidParameterException
+	public Light(Vector position, Color color, double ambientStrength, double specularStrength) throws InvalidParameterException
 	{
 		if(!VectorFactory.isPoint(position))
 		{
@@ -23,6 +24,7 @@ public class Light
 		this.position = position;
 		this.color = color;
 		this.ambientStrength = ambientStrength;
+		this.specularStrength  = specularStrength;
 	}
 
 	public Vector getPosition()
@@ -35,8 +37,13 @@ public class Light
 		return this.color;
 	}
 
-	public double getAmbient()
+	public double getAmbientStrength()
 	{
 		return this.ambientStrength;
+	}
+
+	public double getSpecularStrength()
+	{
+		return this.specularStrength;
 	}
 }

@@ -4,22 +4,22 @@ import Math.Vector;
 import Math.Geometry;
 import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
-import RayTracer.Hit.Hittable;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
+import RayTracer.Scene.Objects.Object;
 import Util.Color;
 
 import java.security.InvalidParameterException;
 
 public class Shader
 {
-	private Hittable object;
+	private Object object;
 
 	private Vector normal;
 	private double m;
 
-	public Shader(Vector normal, double m, Hittable object)
+	public Shader(Vector normal, double m, Object object)
 	{
 		if(!VectorFactory.isVector(normal))
 		{
@@ -33,19 +33,18 @@ public class Shader
 
 	public Color getLight(World world, Ray r, Tracer tracer, HitObject hit)
 	{
-		Color component = Color.BLACK;
+		Color component = new Color(Color.BLACK);
 		for(Light light: world.getLights())
 		{
 			if(!this.masked(light, tracer, hit))
 			{
-				component = this.getLighterComponent(light, r, hit);
+				component.add(this.getLighterComponent(light, r, hit));
 			}
 			else
 			{
-				component = this.getAmbientComponent(light);
+				component.add(this.getAmbientComponent(light));
 			}
 		}
-
 		return component;
 	}
 
@@ -74,7 +73,7 @@ public class Shader
 	{
 		Color lightColor = new Color(light.getColor());
 
-		lightColor.scale(light.getAmbient());
+		lightColor.scale(light.getAmbientStrength());
 
 		return lightColor;
 	}
@@ -92,17 +91,32 @@ public class Shader
 		return lightColor;
 	}
 
-	private Color getSpecularComponent()
+	private Color getSpecularComponent(Light light, Ray r, HitObject hit)
 	{
-		return Color.BLACK;
+		Vector lightDir = Vector.subtract(light.getPosition(), hit.getHitpoint());
+
+		Vector viewDir = r.getDir();
+		Vector reflectDir = Geometry.reflect(lightDir, hit.getNormal());
+
+		double spec = Math.pow(Math.max(Vector.dotProduct(viewDir, reflectDir), 0.0), 256);
+
+		Color color = new Color(light.getColor());
+
+		color.scale(light.getSpecularStrength());
+		color.scale(spec);
+
+		//System.out.println(spec);
+
+		return color;
 	}
 
 
 	private Color getLighterComponent(Light light, Ray r, HitObject hit)
 	{
-		Color color = this.getAmbientComponent(light);
+		Color color = new Color(Color.BLACK);
+		color.add(this.getAmbientComponent(light));
 		color.add(this.getDiffuseComponent(light, hit));
-		color.add(this.getSpecularComponent());
+		color.add(this.getSpecularComponent(light, r, hit));
 		return color;
 	}
 

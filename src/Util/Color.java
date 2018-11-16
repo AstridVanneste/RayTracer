@@ -2,16 +2,16 @@ package Util;
 
 public class Color
 {
-	public static Color RED = new Color(255, 0, 0);
-	public static Color GREEN = new Color(0, 255, 0);
-	public static Color BLUE = new Color(0, 0, 255);
-	public static Color PINK = new Color(255, 0, 255);
-	public static Color YELLOW = new Color(255, 255, 0);
-	public static Color CYAN = new Color(0, 255, 255);
-	public static Color BLACK = new Color(0, 0, 0);
-	public static Color WHITE = new Color(255, 255, 255);
-	public static Color DARK_GRAY = new Color(32, 32, 32);
-	public static Color LIGHT_GRAY = new Color(128, 128, 128);
+	public static final Color RED = new Color(255, 0, 0);
+	public static final Color GREEN = new Color(0, 255, 0);
+	public static final Color BLUE = new Color(0, 0, 255);
+	public static final Color PINK = new Color(255, 0, 255);
+	public static final Color YELLOW = new Color(255, 255, 0);
+	public static final Color CYAN = new Color(0, 255, 255);
+	public static final Color BLACK = new Color(0, 0, 0);
+	public static final Color WHITE = new Color(255, 255, 255);
+	public static final Color DARK_GRAY = new Color(32, 32, 32);
+	public static final Color LIGHT_GRAY = new Color(128, 128, 128);
 
 
 	private int r;
@@ -74,6 +74,7 @@ public class Color
 		this.r += c.r;
 		this.g += c.g;
 		this.b += c.b;
+		this.clip();
 	}
 
 	private void clip()

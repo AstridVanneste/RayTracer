@@ -64,6 +64,7 @@ public abstract class Object implements Hittable
 	{
 		if(this.transform)
 		{
+			r = new Ray(r);
 			r.inverseTransform(this.transformation);
 		}
 		HitObject hit = this.internalHit(r,tracer, world);

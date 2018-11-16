@@ -36,4 +36,12 @@ public class Geometry
 
 		return Math.sqrt(Math.pow(x, 2) + Math.pow(y, 2) + Math.pow(z, 2));
 	}
+
+	public static Vector reflect(Vector vec, Vector n)
+	{
+		double scaling = Vector.dotProduct(Vector.multiply(vec, 2), n)/Math.pow(n.length(),2);
+		Vector reflection = Vector.subtract(vec, Vector.multiply(n, scaling));
+
+		return reflection;
+	}
 }

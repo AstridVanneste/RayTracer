@@ -33,6 +33,12 @@ public class Ray
 		}
 	}
 
+	public Ray(Ray r)
+	{
+		this.eye = r.eye;
+		this.dir = r.dir;
+	}
+
 	public Vector getEye()
 	{
 		return this.eye;

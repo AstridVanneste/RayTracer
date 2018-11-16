@@ -197,6 +197,18 @@ public class Vector
 		}
 	}
 
+	public static Vector invert(Vector vec)
+	{
+		Vector inverted = new Vector(vec.size);
+
+		for(int i = 0; i < vec.size; i++)
+		{
+			inverted.elements[i] = -vec.elements[i];
+		}
+
+		return inverted;
+	}
+
 	@Override
 	public boolean equals(Object o)
 	{
