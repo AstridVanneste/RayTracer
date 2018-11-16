@@ -33,15 +33,16 @@ public class Sphere extends Object
 	@Override
 	public HitObject internalHit(Ray r, Tracer tracer, World world)
 	{
+		//System.out.println("Eye "+ r.getEye());
 		double A = Vector.dotProduct(r.getDir(), r.getDir());
 		double B = Vector.dotProduct(r.getDir(), r.getEye());
-		double C = Vector.dotProduct(r.getEye(), r.getEye()) - 1;
+		double C = Vector.dotProduct(r.getEye(), r.getEye()) - 1.0;
 
 		double discriminant =  Math.pow(B, 2.0) - (A * C);
 		/*System.out.println("A = " + A);
 		System.out.println("B = " + B);
 		System.out.println("C = " + C);
-		System.out.println("discriminant = " + discriminant);/*/
+		System.out.println("discriminant = " + discriminant);*/
 
 		double k = 0.0;
 		if(Compare.compare(discriminant, 0.0) < 0)					// NO HITPOINT
@@ -49,7 +50,7 @@ public class Sphere extends Object
 			//System.out.println("NO HITPOINT");
 			return null;
 		}
-		else if(Compare.compare(discriminant, 0.0) == 0)				// 1 HITPOINT
+		else if(Compare.compare(discriminant, 0.0) == 0)			// 1 HITPOINT
 		{
 			System.out.println("1 HITPOINT");
 			k = -B/A;

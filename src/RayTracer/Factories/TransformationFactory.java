@@ -8,6 +8,13 @@ import javafx.util.Pair;
 
 public class TransformationFactory
 {
+	/*
+		Proper Transformation Order:
+
+		SCALING -> ROTATING -> TRANSLATING
+	*/
+
+
 	public static Transformation translationTransformation(double x, double y, double z)
 	{
 		return new Transformation(translation(x, y, z), inverseTranslation(x, y, z));

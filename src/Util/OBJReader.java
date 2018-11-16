@@ -55,7 +55,7 @@ public class OBJReader
 			}
 		}
 
-		System.out.println("#Verteces: " + points.size());
+		System.out.println("#Vertices: " + points.size());
 		System.out.println("#Faces: " + faces.size());
 
 		return new Mesh(faces);
