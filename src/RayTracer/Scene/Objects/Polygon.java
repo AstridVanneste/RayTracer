@@ -4,6 +4,7 @@ import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 
 import Math.Vector;
+import Math.Compare;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import Util.Color;
@@ -74,7 +75,7 @@ public class Polygon extends Plane
 			Vector diff = Vector.subtract(testPoint, this.limits[i]);
 			double dot = Vector.dotProduct(diff, this.segmentNormals[i]);
 
-			if(Double.compare(dot, 0.0) < 0)
+			if(Compare.compare(dot, 0.0) < 0)
 			{
 				return false;
 			}

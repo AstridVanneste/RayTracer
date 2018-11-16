@@ -92,11 +92,17 @@ public class Shader
 		return lightColor;
 	}
 
+	private Color getSpecularComponent()
+	{
+		return Color.BLACK;
+	}
+
 
 	private Color getLighterComponent(Light light, Ray r, HitObject hit)
 	{
 		Color color = this.getAmbientComponent(light);
 		color.add(this.getDiffuseComponent(light, hit));
+		color.add(this.getSpecularComponent());
 		return color;
 	}
 

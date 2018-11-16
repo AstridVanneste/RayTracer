@@ -32,7 +32,7 @@ public class Main
 
 		// LIGHTING
 		List<Light> lights = new ArrayList<>();
-		lights.add(new Light(VectorFactory.createPointVector(3, 3, 3), Color.WHITE, 0.3));
+		lights.add(new Light(VectorFactory.createPointVector(3, 5, 3), Color.WHITE, 0.3));
 
 		// OBJECTS
 		List<Hittable> objects = new ArrayList<>();

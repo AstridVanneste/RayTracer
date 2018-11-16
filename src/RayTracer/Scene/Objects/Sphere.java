@@ -4,6 +4,7 @@ import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import Math.Vector;
+import Math.Compare;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import RayTracer.Transformation;
@@ -43,17 +44,17 @@ public class Sphere extends Object
 		System.out.println("discriminant = " + discriminant);/*/
 
 		double k = 0.0;
-		if(Double.compare(discriminant, 0.0) < 0)					// NO HITPOINT
+		if(Compare.compare(discriminant, 0.0) < 0)					// NO HITPOINT
 		{
 			//System.out.println("NO HITPOINT");
 			return null;
 		}
-		else if(Double.compare(discriminant, 0.0) == 0)				// 1 HITPOINT
+		else if(Compare.compare(discriminant, 0.0) == 0)				// 1 HITPOINT
 		{
 			System.out.println("1 HITPOINT");
 			k = -B/A;
 		}
-		else if(Double.compare(discriminant, 0.0) > 0)				// 2 HITPOINTS
+		else if(Compare.compare(discriminant, 0.0) > 0)				// 2 HITPOINTS
 		{
 			System.out.println("2 HITPOINTS");
 			double k1 = (-B + Math.sqrt(discriminant))/(A);

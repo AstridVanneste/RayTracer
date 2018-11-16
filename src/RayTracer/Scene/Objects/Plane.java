@@ -3,10 +3,11 @@ package RayTracer.Scene.Objects;
 import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
-import Math.Vector;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import Util.Color;
+import Math.Vector;
+import Math.Compare;
 
 import java.security.InvalidParameterException;
 
@@ -60,14 +61,14 @@ public class Plane extends Object
 		double numerator = this.dot - Vector.dotProduct(this.normal, r.getEye());
 		double denominator = Vector.dotProduct(this.normal, r.getDir());
 
-		if(Double.compare(denominator, 0.0) == 0)
+		if(Compare.compare(denominator, 0.0) == 0)
 		{
 			return null;			// if dot product of plane normal and ray direction is 0 then you are looking straight at a flat plane
 		}
 
 		double k = numerator/denominator;
 
-		if(Double.compare(k, 0.0) > 0)
+		if(Compare.compare(k, 0.0) > 0)
 		{
 			Vector hitpoint = r.getPoint(k);
 
@@ -85,7 +86,7 @@ public class Plane extends Object
 		{
 			double product = Vector.dotProduct(Vector.subtract(p, this.point), this.normal);
 
-			if(Double.compare(product, 0.0) == 0)
+			if(Compare.compare(product, 0.0) == 0)
 			{
 				return true;
 			}

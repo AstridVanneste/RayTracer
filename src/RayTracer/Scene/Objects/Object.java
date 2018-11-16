@@ -68,7 +68,6 @@ public abstract class Object implements Hittable
 		}
 		HitObject hit = this.internalHit(r,tracer, world);
 
-
 		if(hit != null)
 		{
 			// TRANSFORM HITPOINT
