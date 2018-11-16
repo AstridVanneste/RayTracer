@@ -52,17 +52,21 @@ public class Shader
 	private boolean masked(Light light, Tracer tracer, HitObject hit)
 	{
 		double distance = Geometry.distance(light.getPosition(), hit.getHitpoint());
+
 		Ray lightRay = new Ray(light.getPosition(), Vector.subtract(hit.getHitpoint(), light.getPosition()));
 
-		HitObject lightHit = tracer.trace(lightRay, this.object);
+		HitObject lightHit = tracer.trace(lightRay, this.object, false);
 
 		if(lightHit != null)
 		{
-			if(lightHit.getDistance() < distance)
+			double lightHitDistance = Geometry.distance(light.getPosition(), lightHit.getHitpoint());
+
+			if(lightHitDistance < distance)
 			{
 				return true;
 			}
 		}
+
 		return false;
 	}
 

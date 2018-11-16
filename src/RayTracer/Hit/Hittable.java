@@ -8,7 +8,7 @@ import RayTracer.Transformation;
 
 public interface Hittable
 {
-	public HitObject hit(Ray r, Tracer tracer, World world);
+	public HitObject hit(Ray r, Tracer tracer, World world, boolean color);
 
 	public HitObject internalHit(Ray r, Tracer tracer, World world);
 }

@@ -26,13 +26,13 @@ public class Main
 	public static void main(String args[])
 	{
 		// CAMERA
-		Vector eye = VectorFactory.createPointVector(2, 2, 5);
+		Vector eye = VectorFactory.createPointVector(2, 3, 5);
 		Vector screenOffset = VectorFactory.createPointVector(-2, -2, 3);
 		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.005);
 
 		// LIGHTING
 		List<Light> lights = new ArrayList<>();
-		lights.add(new Light(VectorFactory.createPointVector(3, 1, 3), Color.WHITE, 0.05));
+		lights.add(new Light(VectorFactory.createPointVector(3, 3, 3), Color.WHITE, 0.3));
 
 		// OBJECTS
 		List<Hittable> objects = new ArrayList<>();
@@ -41,8 +41,10 @@ public class Main
 
 		System.out.println("Tracing file: " + OBJ_FILE);
 		Mesh mesh = OBJReader.read(OBJ_FILE);
-		Mesh surrounding = new Mesh(mesh);
+		Transformation meshTransformation = TransformationFactory.translationTransformation(0.1, 0.1, 0.5);
+		//mesh.setTransformation(meshTransformation);
 
+		Mesh surrounding = new Mesh(mesh);
 		Transformation transformation = TransformationFactory.translationTransformation(-3, 0, 0);
 		surrounding.setTransformation(transformation);
 		surrounding.setColor(Color.WHITE);

@@ -59,7 +59,8 @@ public abstract class Object implements Hittable
 	}
 
 
-	public HitObject hit(Ray r, Tracer tracer, World world)
+	@Override
+	public HitObject hit(Ray r, Tracer tracer, World world, boolean color)
 	{
 		if(this.transform)
 		{
@@ -67,15 +68,19 @@ public abstract class Object implements Hittable
 		}
 		HitObject hit = this.internalHit(r,tracer, world);
 
-		// LIGHTING
+
 		if(hit != null)
 		{
-			hit.setColor(this.lighting.illuminate(tracer, world, r, hit, hit.getColor()));
-
 			// TRANSFORM HITPOINT
 			if(this.transform)
 			{
 				hit.setHitpoint(this.transformation.transform(hit.getHitpoint()));
+			}
+
+			// LIGHTING
+			if(color)
+			{
+				hit.setColor(this.lighting.illuminate(tracer, world, r, hit, hit.getColor()));
 			}
 		}
 		return hit;
