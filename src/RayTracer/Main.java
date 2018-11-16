@@ -1,5 +1,6 @@
 package RayTracer;
 
+import RayTracer.Factories.TransformationFactory;
 import RayTracer.Factories.VectorFactory;
 import Math.Vector;
 import RayTracer.Hit.Hittable;
@@ -31,7 +32,7 @@ public class Main
 
 		// LIGHTING
 		List<Light> lights = new ArrayList<>();
-		lights.add(new Light(VectorFactory.createPointVector(3, 3, 3), Color.WHITE, 0.05));
+		lights.add(new Light(VectorFactory.createPointVector(3, 1, 3), Color.WHITE, 0.05));
 
 		// OBJECTS
 		List<Hittable> objects = new ArrayList<>();
@@ -40,8 +41,15 @@ public class Main
 
 		System.out.println("Tracing file: " + OBJ_FILE);
 		Mesh mesh = OBJReader.read(OBJ_FILE);
+		Mesh surrounding = new Mesh(mesh);
+
+		Transformation transformation = TransformationFactory.translationTransformation(-3, 0, 0);
+		surrounding.setTransformation(transformation);
+		surrounding.setColor(Color.WHITE);
 
 		objects.add(mesh);
+		objects.add(surrounding);
+
 
 
 		// RAYTRACER

@@ -37,6 +37,11 @@ public class Polygon extends Plane
 		this.setColor(color);
 	}
 
+	public Polygon(Polygon polygon)
+	{
+		this(polygon.limits);
+	}
+
 	public Vector[] getLimits()
 	{
 		return this.limits;

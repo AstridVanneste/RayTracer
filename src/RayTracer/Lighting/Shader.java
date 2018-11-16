@@ -1,8 +1,10 @@
 package RayTracer.Lighting;
 
 import Math.Vector;
+import Math.Geometry;
 import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
+import RayTracer.Hit.Hittable;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
@@ -12,16 +14,19 @@ import java.security.InvalidParameterException;
 
 public class Shader
 {
+	private Hittable object;
+
 	private Vector normal;
 	private double m;
 
-	public Shader(Vector normal, double m)
+	public Shader(Vector normal, double m, Hittable object)
 	{
 		if(!VectorFactory.isVector(normal))
 		{
 			throw new InvalidParameterException("Normal parameter is not a vector");
 		}
 
+		this.object = object;
 		this.normal = normal;
 		this.m = m;	//TODO check boundaries
 	}
@@ -31,7 +36,14 @@ public class Shader
 		Color component = Color.BLACK;
 		for(Light light: world.getLights())
 		{
-			component = this.getLighterComponent(light, r, hit);
+			if(!this.masked(light, tracer, hit))
+			{
+				component = this.getLighterComponent(light, r, hit);
+			}
+			else
+			{
+				component = this.getAmbientComponent(light);
+			}
 		}
 
 		return component;
@@ -39,7 +51,18 @@ public class Shader
 
 	private boolean masked(Light light, Tracer tracer, HitObject hit)
 	{
-		double distance = 0.0;
+		double distance = Geometry.distance(light.getPosition(), hit.getHitpoint());
+		Ray lightRay = new Ray(light.getPosition(), Vector.subtract(hit.getHitpoint(), light.getPosition()));
+
+		HitObject lightHit = tracer.trace(lightRay, this.object);
+
+		if(lightHit != null)
+		{
+			if(lightHit.getDistance() < distance)
+			{
+				return true;
+			}
+		}
 		return false;
 	}
 

@@ -7,7 +7,9 @@ import RayTracer.Hit.Ray;
 import Math.Vector;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
+import Util.Color;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Mesh extends Object
@@ -19,6 +21,16 @@ public class Mesh extends Object
 	{
 		this.elements = elements;
 		this.boundingBox = this.calculateBoundingBox();
+	}
+
+	public Mesh(Mesh m)
+	{
+		this.elements = new ArrayList<>();
+		for(Polygon polygon: m.elements)
+		{
+			this.elements.add(new Polygon(polygon));
+		}
+		this.boundingBox = m.boundingBox;
 	}
 
 	private Cube calculateBoundingBox()
@@ -135,5 +147,15 @@ public class Mesh extends Object
 		}
 		//}
 		return hit;
+	}
+
+	@Override
+	public void setColor(Color color)
+	{
+		super.setColor(color);
+		for(Object object: this.elements)
+		{
+			object.setColor(color);
+		}
 	}
 }

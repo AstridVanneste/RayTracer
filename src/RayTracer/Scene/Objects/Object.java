@@ -22,7 +22,7 @@ public abstract class Object implements Hittable
 		this.color = Color.LIGHT_GRAY;
 		this.transform = false;
 		this.transformation = new Transformation(Matrix.identityMatrix(4), Matrix.identityMatrix(4));
-		this.lighting = new LightManager(this.color, new Vector(4));		//TODO assign normal
+		this.lighting = new LightManager(this.color, new Vector(4), this);		//TODO assign normal
 	}
 
 	public Object(Color color)
@@ -30,6 +30,8 @@ public abstract class Object implements Hittable
 		this.color = color;
 		this.transform = false;
 		this.transformation = new Transformation(Matrix.identityMatrix(4), Matrix.identityMatrix(4));
+		this.lighting = new LightManager(this.color, new Vector(4), this);		//TODO assign normal
+
 	}
 
 	public Object(Color color, Transformation transformation)
@@ -37,6 +39,7 @@ public abstract class Object implements Hittable
 		this.color = color;
 		this.transform = true;
 		this.transformation = transformation;
+		this.lighting = new LightManager(this.color, new Vector(4), this);		//TODO assign normal
 	}
 
 	protected Color getColor()
@@ -44,7 +47,7 @@ public abstract class Object implements Hittable
 		return this.color;
 	}
 
-	protected void  setColor(Color color)
+	public void  setColor(Color color)
 	{
 		this.color = color;
 	}
@@ -68,14 +71,13 @@ public abstract class Object implements Hittable
 		if(hit != null)
 		{
 			hit.setColor(this.lighting.illuminate(tracer, world, r, hit, hit.getColor()));
-		}
 
-		// TRANSFORM HITPOINT
-		if(this.transform)
-		{
-			hit.setHitpoint(this.transformation.transform(hit.getHitpoint()));
+			// TRANSFORM HITPOINT
+			if(this.transform)
+			{
+				hit.setHitpoint(this.transformation.transform(hit.getHitpoint()));
+			}
 		}
-
 		return hit;
 	}
 

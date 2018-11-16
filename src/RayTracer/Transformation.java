@@ -50,6 +50,12 @@ public class Transformation
 		return this;
 	}
 
+	public Transformation add(Transformation transformation)
+	{
+		this.add(transformation.forward, transformation.inverse);
+		return this;
+	}
+
 	public Transformation add(Pair<Matrix, Matrix> transformation)
 	{
 		return this.add(transformation.getKey(), transformation.getValue());
