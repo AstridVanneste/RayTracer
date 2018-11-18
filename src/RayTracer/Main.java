@@ -32,13 +32,13 @@ public class Main
 
 		// LIGHTING
 		List<Light> lights = new ArrayList<>();
-		lights.add(new Light(VectorFactory.createPointVector(0, 5, -3), Color.WHITE, 0.2, 0.5));
+		lights.add(new Light(VectorFactory.createPointVector(0.5, 0.5, -5), Color.WHITE, 0.15, 0.5));
 		//lights.add(new Light(VectorFactory.createPointVector(0, 5, 5), Color.WHITE, 0.1, 0.5));
 
 		// OBJECTS
 		List<Hittable> objects = new ArrayList<>();
 
-		objects.addAll(populateWorld());
+		//objects.addAll(populateWorld());
 
 		System.out.println("Tracing file: " + OBJ_FILE);
 		Mesh mesh = OBJReader.read(OBJ_FILE);
@@ -50,8 +50,8 @@ public class Main
 		surrounding.setTransformation(transformation);
 		surrounding.setColor(Color.WHITE);
 
-		//objects.add(mesh);
-		//objects.add(surrounding);
+		objects.add(mesh);
+		objects.add(surrounding);
 
 
 

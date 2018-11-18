@@ -54,7 +54,7 @@ public class Shader
 
 		Ray lightRay = new Ray(light.getPosition(), Vector.subtract(hit.getHitpoint(), light.getPosition()));
 
-		HitObject lightHit = tracer.trace(lightRay, this.object, false);
+		HitObject lightHit = tracer.trace(lightRay, this.object, 0);
 
 		if(lightHit != null)
 		{

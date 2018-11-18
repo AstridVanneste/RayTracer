@@ -60,7 +60,7 @@ public abstract class Object implements Hittable
 
 
 	@Override
-	public HitObject hit(Ray r, Tracer tracer, World world, boolean color)
+	public HitObject hit(Ray r, Tracer tracer, World world, int traceLevel)
 	{
 		if(this.transform)
 		{
@@ -78,7 +78,7 @@ public abstract class Object implements Hittable
 			}
 
 			// LIGHTING
-			if(color)
+			if(traceLevel != 0)
 			{
 				hit.setColor(this.lighting.illuminate(tracer, world, r, hit, hit.getColor()));
 			}

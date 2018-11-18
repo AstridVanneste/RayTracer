@@ -8,5 +8,5 @@ public interface Tracer
 {
 	public HitObject trace(Ray r);
 
-	public HitObject trace(Ray r, Hittable excluded, boolean color);
+	public HitObject trace(Ray r, Hittable excluded, int traceLevel);
 }

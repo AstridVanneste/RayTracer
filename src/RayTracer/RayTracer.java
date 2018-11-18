@@ -93,18 +93,18 @@ public class RayTracer extends JPanel implements Tracer
 	@Override
 	public HitObject trace(Ray r)
 	{
-		return this.trace(r, null, true);
+		return this.trace(r, null, 2);
 	}
 
 	@Override
-	public HitObject trace(Ray r, Hittable excluded, boolean color)
+	public HitObject trace(Ray r, Hittable excluded, int traceLevel)
 	{
 		HitObject closestHit = null;
 		for(Hittable object: this.world.getObjects())
 		{
 			if(object != excluded)
 			{
-				HitObject hit = object.hit(r, this, this.world, color);
+				HitObject hit = object.hit(r, this, this.world, traceLevel);
 
 				if (hit != null)
 				{
