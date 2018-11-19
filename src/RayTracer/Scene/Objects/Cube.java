@@ -6,7 +6,7 @@ import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import Util.Color;
 
-public class Cube extends Object
+public class Cube extends Entity
 {
 	private static final int NUMBER_SIDES = 6;
 

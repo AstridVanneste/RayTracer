@@ -12,7 +12,7 @@ import Util.Color;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Mesh extends Object
+public class Mesh extends Entity
 {
 	private Cube boundingBox;
 	private List<Polygon> elements;
@@ -153,9 +153,9 @@ public class Mesh extends Object
 	public void setColor(Color color)
 	{
 		super.setColor(color);
-		for(Object object: this.elements)
+		for(Entity entity : this.elements)
 		{
-			object.setColor(color);
+			entity.setColor(color);
 		}
 	}
 }

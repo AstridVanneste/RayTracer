@@ -5,16 +5,16 @@ import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
-import RayTracer.Scene.Objects.Object;
+import RayTracer.Scene.Objects.Entity;
 import Util.Color;
 
 public class LightManager
 {
 	private Shader shader;
 
-	public LightManager(Color color, Vector normal, Object object)
+	public LightManager(Color color, Vector normal, Entity entity)
 	{
-		this.shader = new Shader(normal, 0.1, object); 		// TODO valid m value
+		this.shader = new PhongShader(entity);
 	}
 
 	/**

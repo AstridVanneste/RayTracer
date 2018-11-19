@@ -12,7 +12,7 @@ import Util.Color;
 
 import java.security.InvalidParameterException;
 
-public class Sphere extends Object
+public class Sphere extends Entity
 {
 	private Vector center;
 

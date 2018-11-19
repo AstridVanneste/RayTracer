@@ -11,7 +11,7 @@ import Math.Compare;
 
 import java.security.InvalidParameterException;
 
-public class Plane extends Object
+public class Plane extends Entity
 {
 	protected Vector normal;
 	protected Vector point;

@@ -10,14 +10,14 @@ import RayTracer.Transformation;
 import Math.*;
 import Util.Color;
 
-public abstract class Object implements Hittable
+public abstract class Entity implements Hittable
 {
 	private LightManager lighting;
 	private Color color;
 	protected boolean transform;
 	protected Transformation transformation;
 
-	public Object()
+	public Entity()
 	{
 		this.color = Color.LIGHT_GRAY;
 		this.transform = false;
@@ -25,7 +25,7 @@ public abstract class Object implements Hittable
 		this.lighting = new LightManager(this.color, new Vector(4), this);		//TODO assign normal
 	}
 
-	public Object(Color color)
+	public Entity(Color color)
 	{
 		this.color = color;
 		this.transform = false;
@@ -34,7 +34,7 @@ public abstract class Object implements Hittable
 
 	}
 
-	public Object(Color color, Transformation transformation)
+	public Entity(Color color, Transformation transformation)
 	{
 		this.color = color;
 		this.transform = true;
