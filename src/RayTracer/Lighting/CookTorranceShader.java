@@ -12,9 +12,10 @@ public class CookTorranceShader extends Shader
 {
 	private double m;
 
-	public CookTorranceShader(Entity entity)
+	public CookTorranceShader(Entity entity, double m)
 	{
 		super(entity);
+		this.m = m;			// TODO boundaries for m
 	}
 
 	@Override

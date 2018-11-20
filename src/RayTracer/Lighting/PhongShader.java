@@ -2,15 +2,12 @@ package RayTracer.Lighting;
 
 import Math.Vector;
 import Math.Geometry;
-import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import RayTracer.Scene.Objects.Entity;
 import Util.Color;
-
-import java.security.InvalidParameterException;
 
 public class PhongShader extends Shader
 {
@@ -93,8 +90,6 @@ public class PhongShader extends Shader
 
 		color.scale(light.getSpecularStrength());
 		color.scale(spec);
-
-		//System.out.println(spec);
 
 		return color;
 	}
