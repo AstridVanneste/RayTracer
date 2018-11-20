@@ -5,6 +5,7 @@ import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import Util.Color;
+import org.json.JSONObject;
 
 public class Cube extends Entity
 {
@@ -24,6 +25,12 @@ public class Cube extends Entity
 	{
 		this(sides);
 		this.setColor(color);
+	}
+
+	public Cube(JSONObject jsonObject)
+	{
+		super(jsonObject);
+		// TODO complete
 	}
 
 	@Override

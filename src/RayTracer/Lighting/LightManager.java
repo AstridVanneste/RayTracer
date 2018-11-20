@@ -12,7 +12,7 @@ public class LightManager
 {
 	private Shader shader;
 
-	public LightManager(Color color, Vector normal, Entity entity)
+	public LightManager(Entity entity)
 	{
 		this.shader = new PhongShader(entity);
 	}

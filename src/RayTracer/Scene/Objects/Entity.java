@@ -9,6 +9,7 @@ import RayTracer.Tracer;
 import RayTracer.Transformation;
 import Math.*;
 import Util.Color;
+import org.json.JSONObject;
 
 public abstract class Entity implements Hittable
 {
@@ -22,7 +23,7 @@ public abstract class Entity implements Hittable
 		this.color = Color.LIGHT_GRAY;
 		this.transform = false;
 		this.transformation = new Transformation(Matrix.identityMatrix(4), Matrix.identityMatrix(4));
-		this.lighting = new LightManager(this.color, new Vector(4), this);		//TODO assign normal
+		this.lighting = new LightManager(this);		//TODO assign normal
 	}
 
 	public Entity(Color color)
@@ -30,7 +31,7 @@ public abstract class Entity implements Hittable
 		this.color = color;
 		this.transform = false;
 		this.transformation = new Transformation(Matrix.identityMatrix(4), Matrix.identityMatrix(4));
-		this.lighting = new LightManager(this.color, new Vector(4), this);		//TODO assign normal
+		this.lighting = new LightManager(this);		//TODO assign normal
 
 	}
 
@@ -39,7 +40,12 @@ public abstract class Entity implements Hittable
 		this.color = color;
 		this.transform = true;
 		this.transformation = transformation;
-		this.lighting = new LightManager(this.color, new Vector(4), this);		//TODO assign normal
+		this.lighting = new LightManager(this);		//TODO assign normal
+	}
+
+	public Entity(JSONObject jsonObject)
+	{
+		// TODO complete
 	}
 
 	protected Color getColor()
