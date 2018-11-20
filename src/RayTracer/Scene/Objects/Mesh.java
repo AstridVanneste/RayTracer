@@ -8,6 +8,7 @@ import Math.Vector;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import Util.Color;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -31,6 +32,12 @@ public class Mesh extends Entity
 			this.elements.add(new Polygon(polygon));
 		}
 		this.boundingBox = m.boundingBox;
+	}
+
+	public Mesh(JSONObject jsonObject)
+	{
+		super(jsonObject);
+		// TODO complete
 	}
 
 	private Cube calculateBoundingBox()

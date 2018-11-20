@@ -9,6 +9,7 @@ import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import RayTracer.Transformation;
 import Util.Color;
+import org.json.JSONObject;
 
 import java.security.InvalidParameterException;
 
@@ -21,6 +22,12 @@ public class Sphere extends Entity
 		super();
 
 		this.center = VectorFactory.createPointVector(0, 0,0);
+	}
+
+	public Sphere(JSONObject jsonObject)
+	{
+		super(jsonObject);
+		// TODO complete
 	}
 
 	@Override

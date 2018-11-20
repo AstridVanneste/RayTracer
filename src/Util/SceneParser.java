@@ -3,6 +3,8 @@ package Util;
 import RayTracer.Hit.Hittable;
 import RayTracer.Lighting.Light;
 import RayTracer.Scene.Objects.Cube;
+import RayTracer.Scene.Objects.Mesh;
+import RayTracer.Scene.Objects.Sphere;
 import RayTracer.Scene.World;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -51,8 +53,23 @@ public class SceneParser
 
 		for(int i = 0; i < jsonArray.length(); i++)
 		{
-			JSONObject jsonObject = jsonArray.getJSONObject(i);
-			entities.add(new Cube(jsonObject));
+			entities.add(new Cube(jsonArray.getJSONObject(i)));
+		}
+
+		// SPERES
+		jsonArray = json.getJSONArray(Keys.SPHERE);
+
+		for(int i = 0; i < jsonArray.length(); i++)
+		{
+			entities.add(new Sphere(jsonArray.getJSONObject(i)));
+		}
+
+		// MESHES
+		jsonArray = json.getJSONArray(Keys.MESH);
+
+		for(int i = 0; i < jsonArray.length(); i++)
+		{
+			entities.add(new Mesh(jsonArray	.getJSONObject(i)));
 		}
 
 		return entities;
