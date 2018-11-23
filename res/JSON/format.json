@@ -1,0 +1,85 @@
+{
+  "general":
+  {
+    "lighting-model": "cook-torrance"
+  },
+
+  "camera":
+  {
+    "img_size": [1920, 1080],
+    "screen_size": [1.6, 0.9],
+    "position": [15.0, 5.0, 5.0],
+    "direction": [-0.15, -0.15, -0.15]
+  },
+
+  "global_lights": [
+    {
+      "color": [255, 255, 255],
+      "intensity": 0.2
+    }
+  ],
+
+  "point_lights": [
+    {
+      "color": [255, 255, 255],
+      "intensity": 1.0,
+      "position": [-45.0, 0.0, -30.0]
+    },
+    {
+      "color": [255, 255, 255],
+      "intensity": 1.0,
+      "position": [8.0, 0.0, 3.0]
+    }
+  ],
+
+
+  "objects": [
+    {
+      "type": "sphere",
+      "center": [0.5, 0.0, 0.0],
+      "radius": 2.0
+    },
+
+    {
+      "type": "sphere",
+      "center": [0.0, 0.0, 0.15],
+      "radius": 2.0
+    },
+
+    {
+      "type": "sphere",
+      "center": [0.0, 0.0, 0.0],
+      "radius": 50.0
+    },
+
+    {
+      "type": "mesh",
+      "filename": "Spacshuttle.dae",
+
+      "transforms":
+      {
+        "translation":
+        {
+          "val": [1, 7, 9]
+        },
+
+        "scale":
+        {
+          "val": [2, 3, 7]
+        },
+
+        "rotate":
+        {
+          "angle": 30.0,
+          "axis": [1, 5, 7]
+        }
+      }
+    },
+
+    {
+      "type": "cube",
+      "center": [0.0, 0.0, 0.0],
+      "sides": [1, 2, 3]
+    }
+  ]
+}

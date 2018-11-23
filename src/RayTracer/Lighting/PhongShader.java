@@ -16,46 +16,7 @@ public class PhongShader extends Shader
 		super(entity);
 	}
 
-	@Override
-	public Color getLight(World world, Ray r, Tracer tracer, HitObject hit)
-	{
-		Color component = new Color(Color.BLACK);
-		for(Light light: world.getLights())
-		{
-			if(!this.masked(light, tracer, hit))
-			{
-				component.add(this.getLighterComponent(light, r, hit));
-			}
-			else
-			{
-				component.add(this.getAmbientComponent(light));
-			}
-		}
-		return component;
-	}
-
-	private boolean masked(Light light, Tracer tracer, HitObject hit)
-	{
-		double distance = Geometry.distance(light.getPosition(), hit.getHitpoint());
-
-		Ray lightRay = new Ray(light.getPosition(), Vector.subtract(hit.getHitpoint(), light.getPosition()));
-
-		HitObject lightHit = tracer.trace(lightRay, this.entity, 0);
-
-		if(lightHit != null)
-		{
-			double lightHitDistance = Geometry.distance(light.getPosition(), lightHit.getHitpoint());
-
-			if(lightHitDistance < distance)
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	private Color getAmbientComponent(Light light)
+	protected Color getAmbientComponent(Light light)
 	{
 		Color lightColor = new Color(light.getColor());
 
@@ -95,7 +56,7 @@ public class PhongShader extends Shader
 	}
 
 
-	private Color getLighterComponent(Light light, Ray r, HitObject hit)
+	protected Color getLighterComponent(Light light, Ray r, HitObject hit)
 	{
 		Color color = new Color(Color.BLACK);
 		color.add(this.getAmbientComponent(light));

@@ -69,6 +69,17 @@ public class Color
 		this.clip();
 	}
 
+	public void scale(double[] s) throws IllegalArgumentException
+	{
+		if(s.length != 3)
+		{
+			throw new IllegalArgumentException("can only scale color with 3 scalars, got " + s.length);
+		}
+		this.r *= s[0];
+		this.g *= s[1];
+		this.b *= s[2];
+	}
+
 	public void add(Color c)
 	{
 		this.r += c.r;
