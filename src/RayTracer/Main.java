@@ -38,7 +38,7 @@ public class Main
 		// OBJECTS
 		List<Hittable> objects = new ArrayList<>();
 
-		//objects.addAll(populateWorld());
+		objects.addAll(populateWorld());
 
 		System.out.println("Tracing file: " + OBJ_FILE);
 		Mesh mesh = OBJReader.read(OBJ_FILE);
@@ -50,8 +50,8 @@ public class Main
 		surrounding.setTransformation(transformation);
 		surrounding.setColor(Color.WHITE);
 
-		objects.add(mesh);
-		objects.add(surrounding);
+		//objects.add(mesh);
+		//objects.add(surrounding);
 
 
 

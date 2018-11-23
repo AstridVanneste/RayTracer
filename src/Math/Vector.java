@@ -157,7 +157,7 @@ public class Vector
 		double result = 0;
 		if(vec1.size() == vec2.size())
 		{
-			for(int i = 0; i < vec1.size(); i++)
+			for(int i = 0; i < vec1.size() - 1; i++)
 			{
 				result += vec1.get(i) * vec2.get(i);
 			}

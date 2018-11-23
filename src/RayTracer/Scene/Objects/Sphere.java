@@ -41,6 +41,7 @@ public class Sphere extends Entity
 	public HitObject internalHit(Ray r, Tracer tracer, World world)
 	{
 		//System.out.println("Eye "+ r.getEye());
+		//System.out.println("Dir " + r.getDir());
 		double A = Vector.dotProduct(r.getDir(), r.getDir());
 		double B = Vector.dotProduct(r.getDir(), r.getEye());
 		double C = Vector.dotProduct(r.getEye(), r.getEye()) - 1.0;
@@ -59,18 +60,19 @@ public class Sphere extends Entity
 		}
 		else if(Compare.compare(discriminant, 0.0) == 0)			// 1 HITPOINT
 		{
-			System.out.println("1 HITPOINT");
+			//System.out.println("1 HITPOINT");
 			k = -B/A;
 		}
 		else if(Compare.compare(discriminant, 0.0) > 0)				// 2 HITPOINTS
 		{
-			System.out.println("2 HITPOINTS");
+			//System.out.println("2 HITPOINTS");
 			double k1 = (-B + Math.sqrt(discriminant))/(A);
 			double k2 = (-B - Math.sqrt(discriminant))/(A);
 
 			// hits behind eye
 			boolean compareK1 = Double.compare(k1, 0.0) < 0;
 			boolean compareK2 = Double.compare(k2, 0.0) < 0;
+
 			if(compareK1 && compareK2)
 			{
 				return null;
