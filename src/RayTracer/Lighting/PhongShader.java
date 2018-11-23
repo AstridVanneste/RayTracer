@@ -84,7 +84,7 @@ public class PhongShader extends Shader
 		Vector viewDir = r.getDir();
 		Vector reflectDir = Geometry.reflect(lightDir, hit.getNormal());
 
-		double spec = Math.pow(Math.max(Vector.dotProduct(viewDir, reflectDir), 0.0), 256);
+		double spec = Math.pow(Math.max(Vector.dotProduct(viewDir, reflectDir), 0.0), 32);
 
 		Color color = new Color(light.getColor());
 
