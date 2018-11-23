@@ -58,18 +58,15 @@ public class CookTorranceShader extends Shader
 		return hitColor;
 	}
 
-	private double calcSpec(double eta, double phi, double delta, Vector surfaceNormal, Vector facetNormal, Vector viewDir, Vector lightDir)
-	{
-		double spec = this.calcFresnelCoefficient(phi, eta) * this.calcDistribution(delta) * this.calcGeometryFactor(surfaceNormal, facetNormal, viewDir, lightDir);
-		spec /= Vector.dotProduct(surfaceNormal, viewDir);
 
-		return spec;
+	private Vector calcFacetNormal(Ray ray, Ray light)
+	{
+		return Vector.add(light.getDir(), ray.getDir());
 	}
 
-	private double calcLambert(Vector surfaceNormal, Vector lightDir)
+	private double calcDelta(double phi, double theta)
 	{
-		double lambert = Vector.dotProduct(lightDir, surfaceNormal)/(surfaceNormal.length() * lightDir.length());
-		return Math.max(0.0, lambert);
+		return (theta - phi)/2;
 	}
 
 	private double calcFresnelCoefficient(double phi, double eta)
@@ -92,6 +89,58 @@ public class CookTorranceShader extends Shader
 		}
 
 		return fresnel;
+	}
+
+	@Override
+	protected Color getAmbientComponent(Light light)
+	{
+		Color ambient = new Color(light.getColor());
+
+		double[] fresnel = this.calcFresnelCoefficient(0.0);
+		ambient.scale(fresnel);
+		ambient.scale(light.getAmbientStrength());
+
+		return ambient;
+	}
+
+	private Color getDiffuseComponent(Light light, Vector surfaceNormal, Vector lightDir)
+	{
+		Color diffuse = new Color(light.getColor());
+		diffuse.scale(this.kd);
+		diffuse.scale(this.calcFresnelCoefficient(0.0));
+		diffuse.scale(this.calcLambert(surfaceNormal, lightDir));
+
+		return diffuse;
+	}
+
+	private double calcLambert(Vector surfaceNormal, Vector lightDir)
+	{
+		double lambert = Vector.dotProduct(lightDir, surfaceNormal)/(surfaceNormal.length() * lightDir.length());
+		return Math.max(0.0, lambert);
+	}
+
+	private Color getSpecularComponent(Light light, double phi, double delta, Vector surfaceNormal, Vector facetNormal, Vector viewDir, Vector lightDir)
+	{
+		double[] spec = new double[3];
+
+		for(int i = 0; i < spec.length; i++)
+		{
+			spec[i] = this.calcSpec(this.eta[i], phi, delta, surfaceNormal, facetNormal, viewDir, lightDir);
+		}
+
+		Color specular = new Color(light.getColor());
+		specular.scale(spec);
+		specular.scale(this.ks);
+
+		return specular;
+	}
+
+	private double calcSpec(double eta, double phi, double delta, Vector surfaceNormal, Vector facetNormal, Vector viewDir, Vector lightDir)
+	{
+		double spec = this.calcFresnelCoefficient(phi, eta) * this.calcDistribution(delta) * this.calcGeometryFactor(surfaceNormal, facetNormal, viewDir, lightDir);
+		spec /= Vector.dotProduct(surfaceNormal, viewDir);
+
+		return spec;
 	}
 
 	private double calcGeometryFactor(Vector surfaceNormal, Vector facetNormal, Vector viewDir, Vector lightDir)
@@ -118,59 +167,11 @@ public class CookTorranceShader extends Shader
 		return numerator/denominator;
 	}
 
-	private Vector calcFacetNormal(Ray ray, Ray light)
-	{
-		return Vector.add(light.getDir(), ray.getDir());
-	}
-
-	private double calcDelta(double phi, double theta)
-	{
-		return (theta - phi)/2;
-	}
-
 	private double calcDistribution(double delta)
 	{
 		double exponent = - Math.pow(Math.tan(delta)/this.m, 2);
 		double denominator = 4 * Math.pow(this.m, 2) * Math.pow(Math.cos(delta), 4);
 
 		return Math.exp(exponent)/denominator;
-	}
-
-	@Override
-	protected Color getAmbientComponent(Light light)
-	{
-		Color ambient = new Color(light.getColor());
-
-		double[] fresnel = this.calcFresnelCoefficient(0.0);
-		ambient.scale(fresnel);
-		ambient.scale(light.getAmbientStrength());
-
-		return ambient;
-	}
-
-	private Color getDiffuseComponent(Light light, Vector surfaceNormal, Vector lightDir)
-	{
-		Color diffuse = new Color(light.getColor());
-		diffuse.scale(this.kd);
-		diffuse.scale(this.calcFresnelCoefficient(0.0));
-		diffuse.scale(this.calcLambert(surfaceNormal, lightDir));
-
-		return diffuse;
-	}
-
-	private Color getSpecularComponent(Light light, double phi, double delta, Vector surfaceNormal, Vector facetNormal, Vector viewDir, Vector lightDir)
-	{
-		double[] spec = new double[3];
-
-		for(int i = 0; i < spec.length; i++)
-		{
-			spec[i] = this.calcSpec(this.eta[i], phi, delta, surfaceNormal, facetNormal, viewDir, lightDir);
-		}
-
-		Color specular = new Color(light.getColor());
-		specular.scale(spec);
-		specular.scale(this.ks);
-
-		return specular;
 	}
 }
