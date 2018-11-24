@@ -16,6 +16,11 @@ import java.security.InvalidParameterException;
 
 public class Sphere extends Entity
 {
+	private class JSON
+	{
+		public static final String CENTER = "center";
+		public static final String RADIUS = "radius";
+	}
 
 	public Sphere() throws InvalidParameterException
 	{
@@ -24,21 +29,23 @@ public class Sphere extends Entity
 
 	public Sphere(Vector center, double radius)
 	{
-		Transformation transformation = TransformationFactory.scalingTransformation(radius, radius, radius);
-		transformation.add(TransformationFactory.translationTransformation(center));
-		this.setTransformation(transformation);
+		this.setPosition(center, radius);
 	}
 
 	public Sphere(JSONObject jsonObject)
 	{
 		super(jsonObject);
-		// TODO complete
+		Vector center = new Vector(jsonObject.getJSONArray(JSON.CENTER));
+		double radius = jsonObject.getDouble(JSON.RADIUS);
+
+		this.setPosition(center, radius);
 	}
 
-	@Override
-	public void setTransformation(Transformation transformation)
+	public void setPosition(Vector center, double radius)
 	{
-		super.setTransformation(transformation);
+		Transformation transformation = TransformationFactory.scalingTransformation(radius, radius, radius);
+		transformation.add(TransformationFactory.translationTransformation(center));
+		this.setTransformation(transformation);
 	}
 
 	@Override

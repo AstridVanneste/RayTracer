@@ -51,11 +51,9 @@ public abstract class Entity implements Hittable
 
 	public Entity(JSONObject jsonObject)
 	{
-		// TODO complete
 		this();
 
 		JSONArray c = jsonObject.getJSONArray(JSON.COLOR);
-
 		this.color = new Color(c);
 
 	}
