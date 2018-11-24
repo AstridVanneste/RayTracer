@@ -9,10 +9,16 @@ import RayTracer.Tracer;
 import RayTracer.Transformation;
 import Math.*;
 import Util.Color;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public abstract class Entity implements Hittable
 {
+	private class JSON
+	{
+		public static final String COLOR = "colour";
+	}
+
 	private LightManager lighting;
 	private Color color;
 	protected boolean transform;
@@ -46,6 +52,12 @@ public abstract class Entity implements Hittable
 	public Entity(JSONObject jsonObject)
 	{
 		// TODO complete
+		this();
+
+		JSONArray c = jsonObject.getJSONArray(JSON.COLOR);
+
+		this.color = new Color(c);
+
 	}
 
 	protected Color getColor()

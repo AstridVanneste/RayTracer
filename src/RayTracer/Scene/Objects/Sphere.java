@@ -1,5 +1,6 @@
 package RayTracer.Scene.Objects;
 
+import RayTracer.Factories.TransformationFactory;
 import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
@@ -15,13 +16,17 @@ import java.security.InvalidParameterException;
 
 public class Sphere extends Entity
 {
-	private Vector center;
 
 	public Sphere() throws InvalidParameterException
 	{
 		super();
+	}
 
-		this.center = VectorFactory.createPointVector(0, 0,0);
+	public Sphere(Vector center, double radius)
+	{
+		Transformation transformation = TransformationFactory.scalingTransformation(radius, radius, radius);
+		transformation.add(TransformationFactory.translationTransformation(center));
+		this.setTransformation(transformation);
 	}
 
 	public Sphere(JSONObject jsonObject)
@@ -34,7 +39,6 @@ public class Sphere extends Entity
 	public void setTransformation(Transformation transformation)
 	{
 		super.setTransformation(transformation);
-		this.center = transformation.transform(this.center);
 	}
 
 	@Override
@@ -92,6 +96,6 @@ public class Sphere extends Entity
 		}
 
 		Vector hitpoint = r.getPoint(k);
-		return new HitObject(hitpoint, k, Color.RED, Vector.subtract(hitpoint, this.center));
+		return new HitObject(hitpoint, k, Color.RED, hitpoint);
 	}
 }

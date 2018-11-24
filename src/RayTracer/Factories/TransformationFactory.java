@@ -20,6 +20,11 @@ public class TransformationFactory
 		return new Transformation(translation(x, y, z), inverseTranslation(x, y, z));
 	}
 
+	public static Transformation translationTransformation(Vector v)
+	{
+		return TransformationFactory.translationTransformation(v.get(0), v.get(1), v.get(2));
+	}
+
 	public static Pair<Matrix, Matrix> translationPair(double x, double y, double z)
 	{
 		return new Pair<>(translation(x, y, z), inverseTranslation(x, y, z));

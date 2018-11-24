@@ -37,19 +37,22 @@
     {
       "type": "sphere",
       "center": [0.5, 0.0, 0.0],
-      "radius": 2.0
+      "radius": 2.0,
+      "colour": [255, 0, 0]
     },
 
     {
       "type": "sphere",
       "center": [0.0, 0.0, 0.15],
-      "radius": 2.0
+      "radius": 2.0,
+      "colour": [255, 0, 0]
     },
 
     {
       "type": "sphere",
       "center": [0.0, 0.0, 0.0],
-      "radius": 50.0
+      "radius": 50.0,
+      "colour": [255, 0, 0]
     },
 
     {
@@ -73,13 +76,15 @@
           "angle": 30.0,
           "axis": [1, 5, 7]
         }
-      }
+      },
+      "colour": [255, 0, 0]
     },
 
     {
       "type": "cube",
       "center": [0.0, 0.0, 0.0],
-      "sides": [1, 2, 3]
+      "sides": [1, 2, 3],
+      "colour": [255, 0, 0]
     }
   ]
 }

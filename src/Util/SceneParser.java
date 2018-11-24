@@ -21,9 +21,13 @@ public class SceneParser
 		public static final String CAMERA = "camera";
 		public static final String AMBIENT_LIGHT = "global_light";
 		public static final String POINT_LIGHT = "point_light";
+		public static final String OBJECT = "objects";
+		public static final String OBJECT_TYPE = "type";
 		public static final String SPHERE = "sphere";
 		public static final String CUBE = "cube";
 		public static final String MESH = "mesh";
+
+
 	}
 
 	private String path;
@@ -48,28 +52,25 @@ public class SceneParser
 	{
 		List<Hittable> entities = new ArrayList<>();
 
-		// CUBES
-		JSONArray jsonArray = json.getJSONArray(Keys.CUBE);
+		JSONArray jsonEntities = json.getJSONArray(Keys.OBJECT);
 
-		for(int i = 0; i < jsonArray.length(); i++)
+		for (int i = 0; i < jsonEntities.length(); i++)
 		{
-			entities.add(new Cube(jsonArray.getJSONObject(i)));
-		}
+			JSONObject jsonEntity = jsonEntities.getJSONObject(i);
+			String type = jsonEntity.getString(Keys.OBJECT_TYPE);
 
-		// SPERES
-		jsonArray = json.getJSONArray(Keys.SPHERE);
-
-		for(int i = 0; i < jsonArray.length(); i++)
-		{
-			entities.add(new Sphere(jsonArray.getJSONObject(i)));
-		}
-
-		// MESHES
-		jsonArray = json.getJSONArray(Keys.MESH);
-
-		for(int i = 0; i < jsonArray.length(); i++)
-		{
-			entities.add(new Mesh(jsonArray	.getJSONObject(i)));
+			switch (type)
+			{
+				case Keys.CUBE:
+					entities.add(new Cube(jsonEntity));
+					break;
+				case Keys.SPHERE:
+					entities.add(new Sphere(jsonEntity));
+					break;
+				case Keys.MESH:
+					entities.add(new Mesh(jsonEntity));
+					break;
+			}
 		}
 
 		return entities;

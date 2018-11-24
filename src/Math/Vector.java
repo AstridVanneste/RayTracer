@@ -1,6 +1,7 @@
 package Math;
 
 import RayTracer.Factories.VectorFactory;
+import org.json.JSONArray;
 
 import java.security.InvalidParameterException;
 
@@ -19,6 +20,17 @@ public class Vector
 	{
 		this.elements = elements;
 		this.size = elements.length;
+	}
+
+	public Vector(JSONArray v)
+	{
+		this.size = v.length();
+		this.elements = new double[v.length()];
+
+		for(int i = 0; i < this.size; i++)
+		{
+			this.elements[i] = v.getDouble(i);
+		}
 	}
 
 	public void set(int index, double element) throws IndexOutOfBoundsException

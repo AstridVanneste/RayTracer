@@ -1,5 +1,7 @@
 package Util;
 
+import org.json.JSONArray;
+
 public class Color
 {
 	public static final Color RED = new Color(255, 0, 0);
@@ -30,6 +32,13 @@ public class Color
 		this.r = c.r;
 		this.g = c.g;
 		this.b = c.b;
+	}
+
+	public Color(JSONArray c)
+	{
+		this.r = c.getInt(0);
+		this.g = c.getInt(1);
+		this.b = c.getInt(2);
 	}
 
 	public java.awt.Color get()
