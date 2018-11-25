@@ -21,7 +21,7 @@ public class Main
 	private static int WIDTH = 1000;
 	private static int HEIGHT = 1000;
 
-	private static String OBJ_FILE  = "res/OBJ/cube.obj";
+	private static String OBJ_FILE  = "res/OBJ/shuttle.obj";
 
 	public static void main(String args[])
 	{
@@ -50,6 +50,7 @@ public class Main
 		surrounding.setTransformation(transformation);
 		surrounding.setColor(Color.WHITE);
 
+		mesh.setColor(Color.BLUE);
 		//objects.add(mesh);
 		//objects.add(surrounding);
 
@@ -141,6 +142,15 @@ public class Main
 		Sphere sphere = new Sphere();
 
 		objects.add(sphere);
+
+		Vector[] limits7 = new Vector[4];
+		limits7[0] = VectorFactory.createPointVector(5 , -1, 5);
+		limits7[1] = VectorFactory.createPointVector( 5, -1, -5);
+		limits7[2] = VectorFactory.createPointVector( -5, -1, -5);
+		limits7[3] = VectorFactory.createPointVector( -5, -1, 5);
+		Polygon square7 = new Polygon(limits7, Color.WHITE);
+
+		objects.add(square7);
 
 		return objects;
 	}

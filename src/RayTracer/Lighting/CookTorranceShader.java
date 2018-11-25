@@ -48,8 +48,8 @@ public class CookTorranceShader extends Shader
 		Color specular = this.getSpecularComponent(light, phi, delta, surfaceNormal, facetNormal, viewDir, lightDir);
 
 		Color lightColor = new Color(Color.BLACK);
-		//lightColor.add(ambient);
-		//lightColor.add(diffuse);
+		lightColor.add(ambient);
+		lightColor.add(diffuse);
 		lightColor.add(specular);
 
 		Color hitColor = new Color(hit.getColor());

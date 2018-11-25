@@ -38,7 +38,26 @@
       "type": "sphere",
       "center": [0.5, 0.0, 0.0],
       "radius": 2.0,
-      "colour": [255, 0, 0]
+      "colour": [255, 0, 0],
+
+      "transforms":
+      [
+        {
+          "type": "trans",
+          "val": [1, 7, 9]
+        },
+
+        {
+          "type": "scale",
+          "val": [2, 3, 7]
+        },
+
+        {
+          "type": "rot",
+          "angle": 30.0,
+          "axis": [1, 5, 7]
+        }
+      ]
     },
 
     {
