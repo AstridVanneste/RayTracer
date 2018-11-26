@@ -31,6 +31,7 @@ public class HitObject
 	{
 		if(!VectorFactory.isPoint(hitpoint))
 		{
+			System.out.println(hitpoint);
 			throw new InvalidParameterException("Hitpoint parameter is not a point");
 		}
 		this.hitpoint = hitpoint;

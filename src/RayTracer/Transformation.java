@@ -65,7 +65,7 @@ public class Transformation
 	{
 		Matrix matrix = new Matrix(vector);
 
-		matrix = Matrix.multiply(matrix, this.forward);
+		matrix = Matrix.multiply(this.forward, matrix);
 
 		return matrix.toVector(0);
 	}
@@ -74,8 +74,21 @@ public class Transformation
 	{
 		Matrix matrix = new Matrix(vector);
 
-		matrix = Matrix.multiply(matrix, this.inverse);
+		matrix = Matrix.multiply(this.inverse, matrix);
 
 		return matrix.toVector(0);
+	}
+
+	@Override
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+
+		builder.append("FORWARD\n");
+		builder.append(this.forward);
+		builder.append("INVERSE\n");
+		builder.append(this.inverse);
+
+		return builder.toString();
 	}
 }

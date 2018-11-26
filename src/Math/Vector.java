@@ -177,7 +177,7 @@ public class Vector
 		}
 		else
 		{
-			throw new InvalidParameterException("Cannot perform dot product on two Vectors with different sizes!");
+			throw new InvalidParameterException("Cannot perform dot product on two Vectors with different sizes!" + vec1.size + " and " + vec2.size);
 		}
 	}
 

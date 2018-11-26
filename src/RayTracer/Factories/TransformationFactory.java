@@ -34,9 +34,9 @@ public class TransformationFactory
 	{
 		Matrix matrix = Matrix.identityMatrix(4);
 
-		matrix.set(3, 0, x);
-		matrix.set(3, 1, y);
-		matrix.set(3, 2, z);
+		matrix.set(0, 3, x);
+		matrix.set(1, 3, y);
+		matrix.set(2, 3, z);
 
 		return matrix;
 	}
@@ -93,7 +93,7 @@ public class TransformationFactory
 		double sin = Math.sin(theta);
 
 		matrix.set(0, 0, cos + Math.pow(x, 2) * (1 - cos));
-		matrix.set(0, 1, x * y * (1 - cos) - x * sin);
+		matrix.set(0, 1, x * y * (1 - cos) - z * sin);
 		matrix.set(0, 2, x * z * (1 - cos) + y * sin);
 
 		matrix.set(1, 0, x * y * (1 - cos) + z * sin);
