@@ -144,18 +144,17 @@ public class Main
 		objects.add(sphere);
 
 		Vector[] limits7 = new Vector[4];
-		limits7[0] = VectorFactory.createPointVector(1, -1, 1);
-		limits7[1] = VectorFactory.createPointVector( 1, -1, -	1);
-		limits7[2] = VectorFactory.createPointVector( -1, -1, -1);
-		limits7[3] = VectorFactory.createPointVector( -1, -1, 1);
+		limits7[0] = VectorFactory.createPointVector(1, 0, 1);
+		limits7[1] = VectorFactory.createPointVector( 1, 0, -	1);
+		limits7[2] = VectorFactory.createPointVector( -1, 0, -1);
+		limits7[3] = VectorFactory.createPointVector( -1, 0, 1);
 		Polygon square7 = new Polygon(limits7, Color.WHITE);
 
 		//Transformation transformation = TransformationFactory.translationTransformation(0, 1, 0);
-		Transformation transformation = TransformationFactory.rotationTransformation(VectorFactory.createVector(1, 0, 0), 3.14);
-		//Transformation transformation = TransformationFactory.scalingTransformation(2, 2, 2);
+		//Transformation transformation = TransformationFactory.rotationTransformation(VectorFactory.createVector(1, 0, 0), 3.14/2);
+		Transformation transformation = TransformationFactory.scalingTransformation(10, 5, 5);
+		transformation.add(TransformationFactory.translationTransformation(0, -1, 0));
 		square7.setTransformation(transformation);
-
-		System.out.println(transformation);
 
 		objects.add(square7);
 
