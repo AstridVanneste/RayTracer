@@ -4,6 +4,8 @@ import Math.Matrix;
 import Math.Vector;
 import RayTracer.Transformation;
 import javafx.util.Pair;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 
 public class TransformationFactory
@@ -14,6 +16,40 @@ public class TransformationFactory
 		SCALING -> ROTATING -> TRANSLATING
 	*/
 
+	private class JSON
+	{
+		public static final String TRANSLATION = "translation";
+		public static final String ROTATION = "rotation";
+		public static final String SCALING = "scaling";
+		public static final String TYPE = "type";
+	}
+
+	public static Transformation transformation(JSONArray json)
+	{
+		for(int i = 0; i < json.length(); i++)
+		{
+			JSONObject transformation = json.getJSONObject(i);
+
+			// TODO finish
+		}
+
+		return new Transformation();
+	}
+
+	public static Transformation transformation(JSONObject json)
+	{
+		String type = json.getString(JSON.TYPE);
+
+		switch(type)
+		{
+			case JSON.TRANSLATION:
+
+		}
+
+		// TODO finish
+
+		return new Transformation();
+	}
 
 	public static Transformation translationTransformation(double x, double y, double z)
 	{

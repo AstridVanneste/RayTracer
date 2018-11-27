@@ -39,8 +39,8 @@ public class SceneParser
 
 	public World parseWorld() throws IOException
 	{
-		BufferedReader reader = new BufferedReader(new FileReader(this.path));
-		JSONObject json = new JSONObject(reader.read());
+		String file = IO.readAllLines(this.path);
+		JSONObject json = new JSONObject(file);
 
 		List<Hittable> entities = this.parseEntities(json);
 		List<Light> lights = new ArrayList<>();

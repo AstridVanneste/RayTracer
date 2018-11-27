@@ -2,6 +2,7 @@ package RayTracer;
 
 import Math.*;
 import javafx.util.Pair;
+import org.json.JSONArray;
 
 import java.security.InvalidParameterException;
 

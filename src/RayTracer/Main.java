@@ -11,8 +11,10 @@ import RayTracer.Scene.World;
 import RayTracer.Screen.Screen;
 import Util.OBJReader;
 import Util.Color;
+import Util.SceneParser;
 
 import javax.swing.*;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -23,7 +25,7 @@ public class Main
 
 	private static String OBJ_FILE  = "res/OBJ/shuttle.obj";
 
-	public static void main(String args[])
+	public static void main(String args[]) throws IOException
 	{
 		// CAMERA
 		Vector eye = VectorFactory.createPointVector(2, 3, 5);
@@ -53,6 +55,11 @@ public class Main
 		mesh.setColor(Color.BLUE);
 		//objects.add(mesh);
 		//objects.add(surrounding);
+
+		// READING SCENE
+
+		SceneParser sceneParser = new SceneParser("res/JSON/spheres.json");
+		World world = sceneParser.parseWorld();
 
 
 

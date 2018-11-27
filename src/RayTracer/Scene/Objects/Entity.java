@@ -16,7 +16,7 @@ public abstract class Entity implements Hittable
 {
 	private class JSON
 	{
-		public static final String COLOR = "colour";
+		public static final String COLOR = "color";
 	}
 
 	private LightManager lighting;
