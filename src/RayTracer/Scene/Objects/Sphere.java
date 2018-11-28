@@ -39,6 +39,9 @@ public class Sphere extends Entity
 		double radius = jsonObject.getDouble(JSON.RADIUS);
 
 		this.setPosition(center, radius);
+
+		System.out.println("CENTER: " + center);
+		System.out.println("RADIUS: " + radius);
 	}
 
 	public void setPosition(Vector center, double radius)
