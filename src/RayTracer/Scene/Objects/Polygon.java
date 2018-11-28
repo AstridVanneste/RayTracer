@@ -1,5 +1,6 @@
 package RayTracer.Scene.Objects;
 
+import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 
@@ -14,22 +15,18 @@ public class Polygon extends Plane
 	private Vector[] limits;
 	private Vector[] segmentNormals;
 
+	protected Polygon()
+	{
+		super(VectorFactory.createVector(0, 1, 0), VectorFactory.createPointVector(0, 0, 0));
+	}
+
 	public Polygon(Vector[] limits)
 	{
 		super(Vector.crossProduct(Vector.subtract(limits[0], limits[1]), Vector.subtract(limits[0], limits[2])), limits[0]);
 		this.limits = limits;
 		this.setColor(new Color((int) (this.normal.get(0) * 255), (int) (this.normal.get(1) * 255),(int) (this.normal.get(2) * 255)));
 
-		this.segmentNormals = new Vector[limits.length];
-
-		for(int i = 0; i < limits.length; i++)
-		{
-			int nextIndex = (i + 1) % this.limits.length;
-
-			Vector segment = Vector.subtract(this.limits[nextIndex], this.limits[i]);
-			this.segmentNormals[i] = Vector.crossProduct(this.normal, segment);
-			this.segmentNormals[i].normalize(false);
-		}
+		this.calcSegmentNormals();
 	}
 
 	public Polygon(Vector[] limits, Color color)
@@ -46,6 +43,26 @@ public class Polygon extends Plane
 	public Vector[] getLimits()
 	{
 		return this.limits;
+	}
+
+	protected void setLimits(Vector[] limits)
+	{
+		this.limits = limits;
+		this.calcSegmentNormals();
+	}
+
+	private void calcSegmentNormals()
+	{
+		this.segmentNormals = new Vector[this.limits.length];
+
+		for(int i = 0; i < limits.length; i++)
+		{
+			int nextIndex = (i + 1) % this.limits.length;
+
+			Vector segment = Vector.subtract(this.limits[nextIndex], this.limits[i]);
+			this.segmentNormals[i] = Vector.crossProduct(this.normal, segment);
+			this.segmentNormals[i].normalize(false);
+		}
 	}
 
 	@Override
