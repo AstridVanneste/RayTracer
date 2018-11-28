@@ -34,24 +34,24 @@ public class Cube extends Entity
 		bottom.setTransformation(TransformationFactory.translationTransformation(0, -1, 0));
 
 		Quad left = new Quad();
-		Transformation transformation = TransformationFactory.rotationTransformation(VectorFactory.createVector(0, 0, 1), 3.14/2);
-		transformation.add(TransformationFactory.translationTransformation(-1, 0, 0));
-		left.setTransformation(transformation);
+		Transformation transformation1 = TransformationFactory.rotationTransformation(VectorFactory.createVector(0, 0, 1), 3.14/2);
+		transformation1.add(TransformationFactory.translationTransformation(-1, 0, 0));
+		left.setTransformation(transformation1);
 
 		Quad right = new Quad();
-		transformation = TransformationFactory.rotationTransformation(VectorFactory.createVector(0, 0, 1), 3.14/2);
-		transformation.add(TransformationFactory.translationTransformation(1, 0, 0));
-		right.setTransformation(transformation);
+		Transformation transformation2 = TransformationFactory.rotationTransformation(VectorFactory.createVector(0, 0, 1), 3.14/2);
+		transformation2.add(TransformationFactory.translationTransformation(1, 0, 0));
+		right.setTransformation(transformation2);
 
 		Quad front = new Quad();
-		transformation = TransformationFactory.rotationTransformation(VectorFactory.createVector(1, 0, 0), 3.14/2);
-		transformation.add(TransformationFactory.translationTransformation(0, 0, 1));
-		front.setTransformation(transformation);
+		Transformation transformation3 = TransformationFactory.rotationTransformation(VectorFactory.createVector(1, 0, 0), 3.14/2);
+		transformation3.add(TransformationFactory.translationTransformation(0, 0, 1));
+		front.setTransformation(transformation3);
 
 		Quad back = new Quad();
-		transformation = TransformationFactory.rotationTransformation(VectorFactory.createVector(1, 0, 0), 3.14/2);
-		transformation.add(TransformationFactory.translationTransformation(0, 0, -1));
-		back.setTransformation(transformation);
+		Transformation transformation4 = TransformationFactory.rotationTransformation(VectorFactory.createVector(1, 0, 0), 3.14/2);
+		transformation4.add(TransformationFactory.translationTransformation(0, 0, -1));
+		back.setTransformation(transformation4);
 
 		this.sides = new Polygon[NUMBER_SIDES];
 		this.sides[0] = bottom;
@@ -72,6 +72,17 @@ public class Cube extends Entity
 	{
 		super(jsonObject);
 		// TODO complete
+	}
+
+	@Override
+	public void setColor(Color color)
+	{
+		super.setColor(color);
+
+		for(int i = 0; i < NUMBER_SIDES; i++)
+		{
+			this.sides[i].setColor(color);
+		}
 	}
 
 	@Override

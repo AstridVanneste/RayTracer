@@ -167,7 +167,11 @@ public class Main
 
 		Quad quad = new Quad();
 		quad.setColor(Color.BLUE);
-		objects.add(quad);
+		//objects.add(quad);
+
+		Cube cube = new Cube();
+		cube.setColor(Color.BLUE);
+		objects.add(cube);
 
 		return objects;
 	}
