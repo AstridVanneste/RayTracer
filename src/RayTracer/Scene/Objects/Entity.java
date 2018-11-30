@@ -78,11 +78,14 @@ public abstract class Entity implements Hittable
 	@Override
 	public HitObject hit(Ray r, Tracer tracer, World world, int traceLevel)
 	{
+		// RAY TRANSFORMATION
 		if(this.transform)
 		{
 			r = new Ray(r);
 			r.inverseTransform(this.transformation);
 		}
+
+		// CALCULATE HIT
 		HitObject hit = this.internalHit(r,tracer, world);
 
 		if(hit != null)
@@ -98,7 +101,7 @@ public abstract class Entity implements Hittable
 			// LIGHTING
 			if(traceLevel != 0)
 			{
-				hit.setColor(this.lighting.illuminate(tracer, world, r, hit, hit.getColor()));
+				hit.setColor(this.lighting.getColor(tracer, world, r, hit, hit.getColor()));
 			}
 		}
 		return hit;

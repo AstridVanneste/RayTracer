@@ -4,7 +4,6 @@ import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import Math.Vector;
 import Math.Geometry;
-import Math.Compare;
 import RayTracer.Scene.Objects.Entity;
 import Util.Color;
 
@@ -24,7 +23,7 @@ public class CookTorranceShader extends Shader
 			throw new IllegalArgumentException("not the right amount of eta values: " + eta.length);
 		}
 
-		this.m = m;			// TODO boundaries for m
+		this.m = m;
 		this.eta = eta;
 		this.kd = kd;
 		this.ks = 1 - kd;
@@ -32,24 +31,35 @@ public class CookTorranceShader extends Shader
 
 	protected Color getLighterComponent(Light light, Ray ray, HitObject hit)
 	{
-		Vector lightDir = Vector.subtract(light.getPosition(), hit.getHitpoint());
-		Ray lightRay = new Ray(light.getPosition(), lightDir);
-
-		Vector facetNormal = this.calcFacetNormal(ray, lightRay);
-		Vector surfaceNormal = hit.getNormal();
 		Vector viewDir = ray.getDir();
+		viewDir = Vector.invert(viewDir);
+		viewDir.normalize(false);
 
-		double phi = Geometry.angle(lightDir, surfaceNormal);
-		double theta = Geometry.angle(viewDir, surfaceNormal);
+		Vector lightDir = Vector.subtract(light.getPosition(), hit.getHitpoint());
+		lightDir.normalize(false);
+
+		Vector halfway = this.calcHalfway(viewDir, lightDir);
+		lightDir.normalize(false);
+
+		Vector surfaceNormal = hit.getNormal();
+		surfaceNormal.normalize(false);
+
+		double phi = Geometry.angle(surfaceNormal, lightDir);
+		double theta = Geometry.angle(surfaceNormal, viewDir);
 		double delta = this.calcDelta(phi, theta);
+
+		/*System.out.println("ANGLES");
+		System.out.println("phi = " + phi);
+		System.out.println("theta = " + theta);
+		System.out.println("delta = " + delta);*/
 
 		Color ambient = this.getAmbientComponent(light);
 		Color diffuse = this.getDiffuseComponent(light, surfaceNormal, lightDir);
-		Color specular = this.getSpecularComponent(light, phi, delta, surfaceNormal, facetNormal, viewDir, lightDir);
+		Color specular = this.getSpecularComponent(light, phi, delta, surfaceNormal, halfway, viewDir, lightDir);
 
 		Color lightColor = new Color(Color.BLACK);
 		lightColor.add(ambient);
-		lightColor.add(diffuse);
+		//lightColor.add(diffuse);
 		lightColor.add(specular);
 
 		Color hitColor = new Color(hit.getColor());
@@ -59,9 +69,9 @@ public class CookTorranceShader extends Shader
 	}
 
 
-	private Vector calcFacetNormal(Ray ray, Ray light)
+	private Vector calcHalfway(Vector viewDir, Vector lightDir)
 	{
-		return Vector.add(light.getDir(), ray.getDir());
+		return Vector.add(lightDir, viewDir);
 	}
 
 	private double calcDelta(double phi, double theta)
@@ -119,59 +129,63 @@ public class CookTorranceShader extends Shader
 		return Math.max(0.0, lambert);
 	}
 
-	private Color getSpecularComponent(Light light, double phi, double delta, Vector surfaceNormal, Vector facetNormal, Vector viewDir, Vector lightDir)
+	private Color getSpecularComponent(Light light, double phi, double delta, Vector surfaceNormal, Vector halfway, Vector viewDir, Vector lightDir)
 	{
 		double[] spec = new double[3];
 
 		for(int i = 0; i < spec.length; i++)
 		{
-			spec[i] = this.calcSpec(this.eta[i], phi, delta, surfaceNormal, facetNormal, viewDir, lightDir);
+			spec[i] = this.calcSpec(this.eta[i], phi, delta, surfaceNormal, halfway, viewDir, lightDir);
 		}
 
 		Color specular = new Color(light.getColor());
-		specular.scale(spec);
 		specular.scale(this.ks);
+		specular.scale(spec);
 
 		return specular;
 	}
 
-	private double calcSpec(double eta, double phi, double delta, Vector surfaceNormal, Vector facetNormal, Vector viewDir, Vector lightDir)
+	private double calcSpec(double eta, double phi, double delta, Vector surfaceNormal, Vector halfway, Vector viewDir, Vector lightDir)
 	{
-		double spec = this.calcFresnelCoefficient(phi, eta) * this.calcDistribution(delta) * this.calcGeometryFactor(surfaceNormal, facetNormal, viewDir, lightDir);
-		spec /= Vector.dotProduct(surfaceNormal, viewDir);
+		double numerator = this.calcFresnelCoefficient(phi, eta) * this.calcDistribution(delta) * this.calcGeometryFactor(surfaceNormal, halfway, viewDir, lightDir);
+		double denominator =  Vector.dotProduct(surfaceNormal, viewDir);
 
-		return spec;
+		return numerator/denominator;
 	}
 
-	private double calcGeometryFactor(Vector surfaceNormal, Vector facetNormal, Vector viewDir, Vector lightDir)
+	private double calcGeometryFactor(Vector surfaceNormal, Vector halfway, Vector viewDir, Vector lightDir)
 	{
-		double Gm = this.calcMaskGeometryFactor(surfaceNormal, facetNormal, lightDir);
-		double Gs = this.calcShadeGeometryFactor(surfaceNormal, facetNormal, viewDir, lightDir);
+		double Gm = this.calcMaskGeometryFactor(surfaceNormal, halfway, lightDir);
+		double Gs = this.calcShadeGeometryFactor(surfaceNormal, halfway, viewDir, lightDir);
 
 		return Math.min(Math.min(1.0, Gm), Gs);
 	}
 
 	// TODO can be more efficient by combining with calc of mask geometry factor
-	private double calcShadeGeometryFactor(Vector surfaceNormal, Vector facetNormal, Vector viewDir, Vector lightDir)
+	private double calcShadeGeometryFactor(Vector surfaceNormal, Vector halfway, Vector viewDir, Vector lightDir)
 	{
-		double numerator = 2 * Vector.dotProduct(surfaceNormal, facetNormal) * Vector.dotProduct(surfaceNormal, viewDir);
-		double denominator = Vector.dotProduct(facetNormal, lightDir);
+		double numerator = 2 * Vector.dotProduct(surfaceNormal, halfway) * Vector.dotProduct(surfaceNormal, viewDir);
+		double denominator = Vector.dotProduct(halfway, lightDir);
 		return numerator/denominator;
 	}
 
-	private double calcMaskGeometryFactor(Vector surfaceNormal, Vector facetNormal, Vector lightDir)
+	private double calcMaskGeometryFactor(Vector surfaceNormal, Vector halfway, Vector lightDir)
 	{
-		double numerator = 2 * Vector.dotProduct(surfaceNormal, facetNormal) * Vector.dotProduct(surfaceNormal, lightDir);
-		double denominator = Vector.dotProduct(facetNormal, lightDir);
+		double numerator = 2 * Vector.dotProduct(surfaceNormal, halfway) * Vector.dotProduct(surfaceNormal, lightDir);
+		double denominator = Vector.dotProduct(halfway, lightDir);
 
 		return numerator/denominator;
 	}
 
 	private double calcDistribution(double delta)
 	{
-		double exponent = - Math.pow(Math.tan(delta)/this.m, 2);
-		double denominator = 4 * Math.pow(this.m, 2) * Math.pow(Math.cos(delta), 4);
+		double fraction = 1.0/(4.0 * Math.pow(this.m, 2.0) * Math.pow(Math.cos(delta), 4.0));
+		double exponent = - (Math.pow(Math.tan(delta)/this.m, 2.0));
+		double exp = Math.exp(exponent);
 
-		return Math.exp(exponent)/denominator;
+		double D = fraction * exp;
+		//System.out.println(D);
+
+		return D;
 	}
 }

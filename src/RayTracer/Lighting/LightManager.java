@@ -16,13 +16,14 @@ public class LightManager
 	{
 		double[] eta = {16, 16, 16};
 		this.shader = new CookTorranceShader(entity, 0.5, eta, 0.5);
+		//this.shader = new PhongShader(entity);
 	}
 
 	/**
 	 * Will determine the color that will be seen through a certain ray, taking into account refraction, reflection and lighting.
 	 * @return
 	 */
-	public Color illuminate(Tracer tracer, World world, Ray ray, HitObject hit, Color color)
+	public Color getColor(Tracer tracer, World world, Ray ray, HitObject hit, Color color)
 	{
 		color = new Color(color);
 		Color shade = this.shader.getLight(world, ray, tracer, hit);
