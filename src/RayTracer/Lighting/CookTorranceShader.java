@@ -41,12 +41,18 @@ public class CookTorranceShader extends Shader
 		Vector halfway = this.calcHalfway(viewDir, lightDir);
 		lightDir.normalize(false);
 
+		System.out.println(halfway);
+
 		Vector surfaceNormal = hit.getNormal();
 		surfaceNormal.normalize(false);
 
 		double phi = Geometry.angle(surfaceNormal, lightDir);
 		double theta = Geometry.angle(surfaceNormal, viewDir);
-		double delta = this.calcDelta(phi, theta);
+		//double delta = this.calcDelta(phi, theta);
+		double delta = Geometry.angle(lightDir, halfway);
+
+		//System.out.println("delta = " + delta);
+		//System.out.println("diff  = " + (theta - phi));
 
 		/*System.out.println("ANGLES");
 		System.out.println("phi = " + phi);

@@ -34,7 +34,7 @@ public class Main
 
 		// LIGHTING
 		List<Light> lights = new ArrayList<>();
-		lights.add(new Light(VectorFactory.createPointVector(0, 3, -3), Color.WHITE, 0.2, 0.3));
+		lights.add(new Light(VectorFactory.createPointVector(3, 3, 3), Color.WHITE, 0.2, 0.3));
 		//lights.add(new Light(VectorFactory.createPointVector(0, 5, 5), Color.WHITE, 0.1, 0.5));
 
 		// OBJECTS
@@ -147,6 +147,7 @@ public class Main
 		//objects.add(plane);
 
 		Sphere sphere = new Sphere();
+		//sphere.setColor(Color.RED);
 
 		objects.add(sphere);
 
@@ -156,6 +157,7 @@ public class Main
 		limits7[2] = VectorFactory.createPointVector( -1, 0, -1);
 		limits7[3] = VectorFactory.createPointVector( -1, 0, 1);
 		Polygon square7 = new Polygon(limits7, Color.WHITE);
+
 
 		//Transformation transformation = TransformationFactory.translationTransformation(0, 1, 0);
 		//Transformation transformation = TransformationFactory.rotationTransformation(VectorFactory.createVector(1, 0, 0), 3.14/2);
