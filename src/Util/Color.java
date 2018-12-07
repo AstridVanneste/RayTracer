@@ -43,6 +43,8 @@ public class Color
 		this.r = c.getInt(0);
 		this.g = c.getInt(1);
 		this.b = c.getInt(2);
+
+		clip();
 	}
 
 	public java.awt.Color get()

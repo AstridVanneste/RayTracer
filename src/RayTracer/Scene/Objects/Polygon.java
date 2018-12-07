@@ -9,10 +9,16 @@ import Math.Compare;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import Util.Color;
+import org.json.JSONArray;
 import org.json.JSONObject;
 
 public class Polygon extends Plane
 {
+	private class JSON
+	{
+		public static final String VERTICES = "vertices";
+	}
+
 	private Vector[] limits;
 	private Vector[] segmentNormals;
 
@@ -44,7 +50,25 @@ public class Polygon extends Plane
 	public Polygon(JSONObject jsonObject)
 	{
 		super(jsonObject);
-		// TODO complete
+
+		// LIMITS
+		JSONArray vertices = jsonObject.getJSONArray(JSON.VERTICES);
+		this.limits = new Vector[vertices.length()];
+		for(int i = 0; i < vertices.length(); i++)
+		{
+			JSONArray vertex = vertices.getJSONArray(i);
+			this.limits[i] = VectorFactory.createPointVector(vertex);
+			System.out.println(this.limits[i]);
+		}
+
+		// INITIALIZING PLANE
+		this.normal = Vector.crossProduct(Vector.subtract(limits[0], limits[1]), Vector.subtract(limits[0], limits[2]));
+		this.normal.normalize();
+		this.point = this.limits[0];
+		this.calcDot();
+
+		// SEGMENT NORMALS
+		this.calcSegmentNormals();
 	}
 
 	public Vector[] getLimits()

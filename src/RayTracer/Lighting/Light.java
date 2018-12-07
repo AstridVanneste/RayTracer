@@ -54,7 +54,7 @@ public class Light
 
 		if(type.equals(SceneParser.Keys.AMBIENT_LIGHT))
 		{
-			this.ambientStrength = jsonObject.getInt(JSON_KEYS.INTENSITY);
+			this.ambientStrength = jsonObject.getDouble(JSON_KEYS.INTENSITY);
 			this.enableAmbient = true;
 			this.enableDiffuse = false;
 			this.enableSpecular = false;

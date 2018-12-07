@@ -66,6 +66,7 @@ public class SceneParser
 			{
 				case Keys.QUAD:
 					entities.add(new Quad(jsonEntity));
+					break;
 				case Keys.CUBE:
 					entities.add(new Cube(jsonEntity));
 					break;

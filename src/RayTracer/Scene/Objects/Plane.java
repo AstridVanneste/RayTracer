@@ -45,9 +45,12 @@ public class Plane extends Entity
 			throw new InvalidParameterException("Point parameter is not point");
 		}
 
+		this.calcDot();
+	}
+
+	public void calcDot()
+	{
 		this.dot = Vector.dotProduct(normal, point);
-
-
 	}
 
 	public Plane(Vector normal, Vector point, Color color)
