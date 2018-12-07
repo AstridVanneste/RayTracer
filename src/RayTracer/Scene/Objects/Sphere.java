@@ -52,7 +52,7 @@ public class Sphere extends Entity
 	}
 
 	@Override
-	public HitObject internalHit(Ray r, Tracer tracer, World world)
+	public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel)
 	{
 		//System.out.println("Eye "+ r.getEye());
 		//System.out.println("Dir " + r.getDir());
@@ -106,6 +106,6 @@ public class Sphere extends Entity
 		}
 
 		Vector hitpoint = r.getPoint(k);
-		return new HitObject(hitpoint, k, Color.RED, hitpoint);
+		return new HitObject(hitpoint, k, Color.RED, hitpoint, traceLevel);
 	}
 }

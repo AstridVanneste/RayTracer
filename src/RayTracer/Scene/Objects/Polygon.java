@@ -66,9 +66,9 @@ public class Polygon extends Plane
 	}
 
 	@Override
-	public HitObject internalHit(Ray r, Tracer tracer, World world)
+	public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel)
 	{
-		HitObject planeHit = super.internalHit(r, tracer, world);
+		HitObject planeHit = super.internalHit(r, tracer, world, traceLevel);
 		if(planeHit != null)
 		{
 			if (this.isInside(planeHit.getHitpoint()))

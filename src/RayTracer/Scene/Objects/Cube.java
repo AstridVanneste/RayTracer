@@ -86,12 +86,12 @@ public class Cube extends Entity
 	}
 
 	@Override
-	public HitObject internalHit(Ray r, Tracer tracer, World world)
+	public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel)
 	{
 		HitObject hit = null;
 		for(int i = 0; i < NUMBER_SIDES; i++)
 		{
-			HitObject currentHit = this.sides[i].internalHit(r, tracer, world);
+			HitObject currentHit = this.sides[i].internalHit(r, tracer, world, traceLevel);
 			if(currentHit != null)
 			{
 				if (hit == null)

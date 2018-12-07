@@ -56,7 +56,7 @@ public class Plane extends Entity
 	}
 
 	@Override
-	public HitObject internalHit(Ray r, Tracer tracer, World world)
+	public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel)
 	{
 		double numerator = this.dot - Vector.dotProduct(this.normal, r.getEye());
 		double denominator = Vector.dotProduct(this.normal, r.getDir());
@@ -72,7 +72,7 @@ public class Plane extends Entity
 		{
 			Vector hitpoint = r.getPoint(k);
 
-			return new HitObject(hitpoint, k, this.getColor(), this.normal);
+			return new HitObject(hitpoint, k, this.getColor(), this.normal, traceLevel);
 		}
 		else
 		{

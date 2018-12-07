@@ -19,6 +19,13 @@ public class Reflector
 
 		Ray reflection = new Ray(hit.getHitpoint(), reflectionDir);
 
-		return tracer.trace(r).getColor();
+		HitObject reflectionHit = tracer.trace(reflection, hit.getTraceLevel() - 1);
+
+		if (reflectionHit != null)
+		{
+			return reflectionHit.getColor();
+		}
+
+		return new Color(Color.BLACK);
 	}
 }

@@ -20,6 +20,8 @@ import java.util.List;
 
 public class Main
 {
+	private static int TRACE_LEVEL = 3;
+
 	private static int WIDTH = 1000;
 	private static int HEIGHT = 1000;
 
@@ -64,7 +66,7 @@ public class Main
 
 
 		// RAYTRACER
-		RayTracer rayTracer = new RayTracer(eye, screen, new World(objects, lights));
+		RayTracer rayTracer = new RayTracer(eye, screen, new World(objects, lights), TRACE_LEVEL);
 
 
 		// VISUALIZATION

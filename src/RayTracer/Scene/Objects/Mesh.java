@@ -130,7 +130,7 @@ public class Mesh extends Entity
 	}
 
 	@Override
-	public HitObject internalHit(Ray r, Tracer tracer, World world)
+	public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel)
 	{
 		HitObject hit = null;
 
@@ -141,7 +141,7 @@ public class Mesh extends Entity
 		double distance = 0;
 		for(Hittable element: this.elements)
 		{
-			HitObject tempHit = element.internalHit(r, tracer, world);
+			HitObject tempHit = element.internalHit(r, tracer, world, traceLevel);
 
 			if(tempHit != null)
 			{

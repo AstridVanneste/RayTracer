@@ -86,7 +86,7 @@ public abstract class Entity implements Hittable
 		}
 
 		// CALCULATE HIT
-		HitObject hit = this.internalHit(r,tracer, world);
+		HitObject hit = this.internalHit(r,tracer, world, traceLevel);
 
 		if(hit != null)
 		{
@@ -109,5 +109,6 @@ public abstract class Entity implements Hittable
 		return hit;
 	}
 
-	abstract public HitObject internalHit(Ray r, Tracer tracer, World world);
+	@Override
+	abstract public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel);
 }

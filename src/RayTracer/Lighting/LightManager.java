@@ -30,11 +30,17 @@ public class LightManager
 	{
 		color = new Color(color);
 
-		Color shade = this.shader.getLight(world, ray, tracer, hit);
-		color.scale(shade);
+		Color scale = new Color(Color.BLACK);
 
-		//Color reflection = this.reflector.calculateReflection(world, ray, tracer, hit);
-		//color.scale(reflection);
+
+		Color shade = new Color(this.shader.getLight(world, ray, tracer, hit));
+		scale.add(shade);
+
+		Color reflection = new Color(this.reflector.calculateReflection(world, ray, tracer, hit));
+		reflection.scale(0.4);
+		scale.add(reflection);
+
+		color.scale(scale);
 
 		return color;
 	}

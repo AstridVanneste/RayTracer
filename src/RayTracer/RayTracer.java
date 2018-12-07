@@ -24,8 +24,9 @@ public class RayTracer extends JPanel implements Tracer
 	private Vector eye;
 	private Screen screen;
 	private World world;
+	private int traceLevel;
 
-	public RayTracer(Vector eye, Screen screen, World world) throws InvalidParameterException
+	public RayTracer(Vector eye, Screen screen, World world, int traceLevel) throws InvalidParameterException
 	{
 		if(!VectorFactory.isPoint(eye))
 		{
@@ -35,6 +36,7 @@ public class RayTracer extends JPanel implements Tracer
 		this.eye = eye;
 		this.world = world;
 		this.screen = screen;
+		this.traceLevel = traceLevel;
 	}
 
 	@Override
@@ -47,7 +49,7 @@ public class RayTracer extends JPanel implements Tracer
 		System.out.println("TRACING...");
 		long start = System.nanoTime();
 		List<Pixel> pixels = this.screen.getPixels(Screen.PixelOrder.ROW_TDLR);
-		pixels = this.trace(pixels);
+		pixels = this.trace(pixels, this.traceLevel);
 		long end = System.nanoTime();
 		System.out.println("FINISHED!");
 		System.out.println("TRACE TIME: " + ((float)(end - start))/1000000000);
@@ -73,7 +75,7 @@ public class RayTracer extends JPanel implements Tracer
 		System.out.println("FINISHED!");
 	}
 
-	private List<Pixel> trace(List<Pixel> pixels)
+	private List<Pixel> trace(List<Pixel> pixels, int traceLevel)
 	{
 		for(Pixel pixel: pixels)
 		{
@@ -82,7 +84,7 @@ public class RayTracer extends JPanel implements Tracer
 
 			Ray ray = new Ray(this.eye, rayDirection);
 
-			HitObject hit = this.trace(ray);
+			HitObject hit = this.trace(ray, traceLevel);
 
 			if(hit != null)
 			{
@@ -93,9 +95,9 @@ public class RayTracer extends JPanel implements Tracer
 	}
 
 	@Override
-	public HitObject trace(Ray r)
+	public HitObject trace(Ray r, int traceLevel)
 	{
-		return this.trace(r, null, 2);
+		return this.trace(r, null, traceLevel);
 	}
 
 	@Override

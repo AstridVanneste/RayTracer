@@ -10,5 +10,5 @@ public interface Hittable
 {
 	public HitObject hit(Ray r, Tracer tracer, World world, int traceLevel);
 
-	public HitObject internalHit(Ray r, Tracer tracer, World world);
+	public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel);
 }
