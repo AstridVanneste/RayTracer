@@ -123,6 +123,15 @@ public class RayTracer extends JPanel implements Tracer
 			}
 		}
 
+		if(closestHit != null)
+		{
+			// LIGHTING
+			if (traceLevel != 0)
+			{
+				closestHit.setColor(closestHit.getObject().calculateColor(this, world, r, closestHit));
+			}
+		}
+
 		return closestHit;
 	}
 

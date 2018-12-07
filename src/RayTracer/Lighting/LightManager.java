@@ -26,7 +26,7 @@ public class LightManager
 	 * Will determine the color that will be seen through a certain ray, taking into account refraction, reflection and lighting.
 	 * @return
 	 */
-	public Color getColor(Tracer tracer, World world, Ray ray, HitObject hit, Color color)
+	public Color calculateColor(Tracer tracer, World world, Ray ray, HitObject hit, Color color)
 	{
 		color = new Color(color);
 
@@ -37,7 +37,7 @@ public class LightManager
 		scale.add(shade);
 
 		Color reflection = new Color(this.reflector.calculateReflection(world, ray, tracer, hit));
-		reflection.scale(0.4);
+		reflection.scale(0.5);
 		scale.add(reflection);
 
 		color.scale(scale);

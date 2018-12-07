@@ -46,7 +46,7 @@ public class Main
 
 		System.out.println("Tracing file: " + OBJ_FILE);
 		Mesh mesh = OBJReader.read(OBJ_FILE);
-		Transformation meshTransformation = TransformationFactory.translationTransformation(0.1, 0.1, 0.5);
+		//Transformation meshTransformation = TransformationFactory.translationTransformation(0.1, 0.1, 0.5);
 		//mesh.setTransformation(meshTransformation);
 
 		Mesh surrounding = new Mesh(mesh);
@@ -149,7 +149,7 @@ public class Main
 		//objects.add(plane);
 
 		Sphere sphere = new Sphere();
-		//sphere.setColor(Color.RED);
+		sphere.setColor(Color.RED);
 
 		objects.add(sphere);
 

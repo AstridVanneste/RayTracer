@@ -20,7 +20,7 @@ public abstract class Entity implements Hittable
 	}
 
 	private LightManager lighting;
-	private Color color;
+	protected Color color;
 	protected boolean transform;
 	protected Transformation transformation;
 
@@ -99,16 +99,15 @@ public abstract class Entity implements Hittable
 				hitpoint.makePoint();
 				hit.setHitpoint(hitpoint);
 			}
-
-			// LIGHTING
-			if(traceLevel != 0)
-			{
-				hit.setColor(this.lighting.getColor(tracer, world, r, hit, hit.getColor()));
-			}
 		}
 		return hit;
 	}
 
 	@Override
 	abstract public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel);
+
+	public Color calculateColor(Tracer tracer, World world, Ray ray, HitObject hit)
+	{
+		return this.lighting.calculateColor(tracer, world, ray, hit, this.color);
+	}
 }
