@@ -20,16 +20,16 @@ public class Ray
 		}
 		else
 		{
-			throw new InvalidParameterException("Eye should be a point");
+			throw new InvalidParameterException("Eye should be a point but is " + eye);
 		}
 		if(VectorFactory.isVector(dir))
 		{
 			this.dir = dir;
-			this.dir.normalize(false);
+			this.dir.normalize();
 		}
 		else
 		{
-			throw new InvalidParameterException("Direction should be a vector");
+			throw new InvalidParameterException("Direction should be a vector but is " + dir);
 		}
 	}
 

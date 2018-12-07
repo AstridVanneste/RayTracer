@@ -29,7 +29,7 @@ public class Plane extends Entity
 		if(VectorFactory.isVector(normal))
 		{
 			this.normal = normal;
-			this.normal.normalize(false);
+			this.normal.normalize();
 		}
 		else
 		{

@@ -39,7 +39,12 @@ public class Geometry
 
 	public static Vector reflect(Vector vec, Vector n)
 	{
-		double scaling = Vector.dotProduct(Vector.multiply(vec, 2), n)/Math.pow(n.length(),2);
+		/*double scaling = Vector.dotProduct(Vector.multiply(vec, 2), n)/Math.pow(n.length(),2);
+		Vector reflection = Vector.subtract(vec, Vector.multiply(n, scaling));
+
+		return reflection;*/
+
+		double scaling  = 2 * Vector.dotProduct(vec, n);
 		Vector reflection = Vector.subtract(vec, Vector.multiply(n, scaling));
 
 		return reflection;

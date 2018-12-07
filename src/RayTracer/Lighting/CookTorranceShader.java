@@ -33,18 +33,16 @@ public class CookTorranceShader extends Shader
 	{
 		Vector viewDir = ray.getDir();
 		viewDir = Vector.invert(viewDir);
-		viewDir.normalize(false);
+		viewDir.normalize();
 
 		Vector lightDir = Vector.subtract(light.getPosition(), hit.getHitpoint());
-		lightDir.normalize(false);
+		lightDir.normalize();
 
 		Vector halfway = this.calcHalfway(viewDir, lightDir);
-		lightDir.normalize(false);
-
-		//System.out.println(halfway);
+		lightDir.normalize();
 
 		Vector surfaceNormal = hit.getNormal();
-		surfaceNormal.normalize(false);
+		surfaceNormal.normalize();
 
 		double phi = Geometry.angle(surfaceNormal, lightDir);
 		double theta = Geometry.angle(surfaceNormal, viewDir);

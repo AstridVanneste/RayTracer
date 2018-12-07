@@ -11,12 +11,15 @@ import Util.Color;
 public class LightManager
 {
 	private Shader shader;
+	private Reflector reflector;
 
 	public LightManager(Entity entity)
 	{
 		double[] eta = {16, 16, 16};
 		this.shader = new CookTorranceShader(entity, 0.5, eta, 0.7);
 		//this.shader = new PhongShader(entity);
+
+		this.reflector = new Reflector();
 	}
 
 	/**
@@ -26,8 +29,13 @@ public class LightManager
 	public Color getColor(Tracer tracer, World world, Ray ray, HitObject hit, Color color)
 	{
 		color = new Color(color);
+
 		Color shade = this.shader.getLight(world, ray, tracer, hit);
 		color.scale(shade);
+
+		//Color reflection = this.reflector.calculateReflection(world, ray, tracer, hit);
+		//color.scale(reflection);
+
 		return color;
 	}
 }

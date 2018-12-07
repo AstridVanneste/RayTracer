@@ -14,12 +14,21 @@ public class HitObject
 	private Color color;
 	private Vector normal;
 
-	public HitObject(Vector hitpoint, double distance, Color color, Vector normal)
+	public HitObject(Vector hitpoint, double distance, Color color, Vector normal) throws InvalidParameterException
 	{
-		this.hitpoint = hitpoint;
+		if(!VectorFactory.isPoint(hitpoint))
+		{
+			throw new InvalidParameterException("Hitpoint parameter is not a point");
+		}
+		this.hitpoint = new Vector(hitpoint);
 		this.distance = distance;
 		this.color = color;
-		this.normal = normal;
+		this.normal = new Vector(normal);
+	}
+
+	public HitObject(HitObject hit)
+	{
+		this(hit.hitpoint, hit.distance, hit.color, hit.normal);
 	}
 
 	public Vector getHitpoint()
@@ -31,7 +40,6 @@ public class HitObject
 	{
 		if(!VectorFactory.isPoint(hitpoint))
 		{
-			System.out.println(hitpoint);
 			throw new InvalidParameterException("Hitpoint parameter is not a point");
 		}
 		this.hitpoint = hitpoint;

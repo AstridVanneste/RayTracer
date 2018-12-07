@@ -61,7 +61,7 @@ public class Polygon extends Plane
 
 			Vector segment = Vector.subtract(this.limits[nextIndex], this.limits[i]);
 			this.segmentNormals[i] = Vector.crossProduct(this.normal, segment);
-			this.segmentNormals[i].normalize(false);
+			this.segmentNormals[i].normalize();
 		}
 	}
 

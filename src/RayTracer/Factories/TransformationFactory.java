@@ -111,13 +111,13 @@ public class TransformationFactory
 
 	public static Transformation rotationTransformation(Vector axis, double theta)
 	{
-		axis.normalize(false);
+		axis.normalize();
 		return new Transformation(rotation(axis.get(0), axis.get(1), axis.get(2), theta), inverseRotation(axis.get(0), axis.get(1), axis.get(2), theta));
 	}
 
 	public static Pair<Matrix, Matrix> rotationPair(Vector axis, double theta)
 	{
-		axis.normalize(false);
+		axis.normalize();
 		return new Pair<Matrix, Matrix>(rotation(axis.get(0), axis.get(1), axis.get(2), theta), inverseRotation(axis.get(0), axis.get(1), axis.get(2), theta));
 	}
 

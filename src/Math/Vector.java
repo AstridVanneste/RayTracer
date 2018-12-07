@@ -22,6 +22,12 @@ public class Vector
 		this.size = elements.length;
 	}
 
+	public Vector(Vector v)
+	{
+		this.size = v.size;
+		this.elements = v.elements;
+	}
+
 	public Vector(JSONArray v)
 	{
 		this.size = v.length();
@@ -68,17 +74,24 @@ public class Vector
 		return this.elements;
 	}
 
-	public void normalize(boolean point)
+	public void normalize()
 	{
-		if(point)
+		/*if(point)
 		{
 			this.elements[this.elements.length - 1] = 1;
 		}
-		else
-		{
+		else*/
+		//{
 			this.elements = Vector.divide(this, this.length()).elements;
 			this.elements[this.elements.length - 1] = 0;
-		}
+
+		//System.out.println("normalize() = " + this);
+		//}
+	}
+
+	public void makePoint()
+	{
+		this.elements[this.elements.length - 1] = 1;
 	}
 
 	public double length()
@@ -111,7 +124,7 @@ public class Vector
 			{
 				result.set(i, vec1.get(i) + vec2.get(i));
 			}
-			result.normalize(VectorFactory.isPoint(vec1) || VectorFactory.isPoint(vec2));
+			//result.normalize(VectorFactory.isPoint(vec1) || VectorFactory.isPoint(vec2));
 			return result;
 		}
 		else
@@ -138,7 +151,7 @@ public class Vector
 			{
 				result.set(i, vec1.get(i) - vec2.get(i));
 			}
-			result.normalize(Utils.XOR(VectorFactory.isPoint(vec1), VectorFactory.isPoint(vec2)));
+			//result.normalize(Utils.XOR(VectorFactory.isPoint(vec1), VectorFactory.isPoint(vec2)));
 
 			return result;
 		}
@@ -195,7 +208,7 @@ public class Vector
 					double element = (vec1.get((i + 1)%3) * vec2.get((i + 2) % 3)) - (vec1.get((i + 2) % 3) * vec2.get((i + 1) % 3));
 					result.set(i, element);
 				}
-				result.normalize(Utils.XOR(VectorFactory.isPoint(vec1), VectorFactory.isPoint(vec2)));
+				//result.normalize(Utils.XOR(VectorFactory.isPoint(vec1), VectorFactory.isPoint(vec2)));
 				return result;
 			}
 			else

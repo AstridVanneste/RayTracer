@@ -94,7 +94,9 @@ public abstract class Entity implements Hittable
 			if(this.transform)
 			{
 				Vector hitpoint = this.transformation.transform(hit.getHitpoint());
-				hitpoint.normalize(true);
+
+				//hitpoint.normalize(true);
+				hitpoint.makePoint();
 				hit.setHitpoint(hitpoint);
 			}
 
