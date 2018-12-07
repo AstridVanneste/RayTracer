@@ -41,7 +41,7 @@ public class CookTorranceShader extends Shader
 		Vector halfway = this.calcHalfway(viewDir, lightDir);
 		lightDir.normalize(false);
 
-		System.out.println(halfway);
+		//System.out.println(halfway);
 
 		Vector surfaceNormal = hit.getNormal();
 		surfaceNormal.normalize(false);
@@ -49,7 +49,7 @@ public class CookTorranceShader extends Shader
 		double phi = Geometry.angle(surfaceNormal, lightDir);
 		double theta = Geometry.angle(surfaceNormal, viewDir);
 		//double delta = this.calcDelta(phi, theta);
-		double delta = Geometry.angle(lightDir, halfway);
+		double delta = Geometry.angle(surfaceNormal, halfway);
 
 		//System.out.println("delta = " + delta);
 		//System.out.println("diff  = " + (theta - phi));
@@ -63,9 +63,12 @@ public class CookTorranceShader extends Shader
 		Color diffuse = this.getDiffuseComponent(light, surfaceNormal, lightDir);
 		Color specular = this.getSpecularComponent(light, phi, delta, surfaceNormal, halfway, viewDir, lightDir);
 
+
+		//System.out.println(specular);
+
 		Color lightColor = new Color(Color.BLACK);
 		lightColor.add(ambient);
-		//lightColor.add(diffuse);
+		lightColor.add(diffuse);
 		lightColor.add(specular);
 
 		Color hitColor = new Color(hit.getColor());

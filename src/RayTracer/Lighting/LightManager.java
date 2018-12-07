@@ -15,7 +15,7 @@ public class LightManager
 	public LightManager(Entity entity)
 	{
 		double[] eta = {16, 16, 16};
-		this.shader = new CookTorranceShader(entity, 0.5, eta, 0.5);
+		this.shader = new CookTorranceShader(entity, 0.5, eta, 0.7);
 		//this.shader = new PhongShader(entity);
 	}
 

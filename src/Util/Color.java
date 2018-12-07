@@ -25,6 +25,8 @@ public class Color
 		this.r = r;
 		this.g = g;
 		this.b = b;
+
+		this.clip();
 	}
 
 	public Color(Color c)
@@ -32,6 +34,8 @@ public class Color
 		this.r = c.r;
 		this.g = c.g;
 		this.b = c.b;
+
+		this.clip();
 	}
 
 	public Color(JSONArray c)
@@ -87,6 +91,8 @@ public class Color
 		this.r *= s[0];
 		this.g *= s[1];
 		this.b *= s[2];
+
+		this.clip();
 	}
 
 	public void add(Color c)
