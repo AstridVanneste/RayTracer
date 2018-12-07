@@ -66,7 +66,7 @@ public class Main
 
 
 		// RAYTRACER
-		RayTracer rayTracer = new RayTracer(eye, screen, new World(objects, lights), TRACE_LEVEL);
+		RayTracer rayTracer = new RayTracer(eye, screen, world, TRACE_LEVEL);
 
 
 		// VISUALIZATION

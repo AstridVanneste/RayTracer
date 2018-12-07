@@ -23,12 +23,14 @@
     {
       "color": [255, 255, 255],
       "intensity": 1.0,
-      "position": [-45.0, 0.0, -30.0]
+      "position": [-45.0, 0.0, -30.0],
+      "specular_strength": 0.5
     },
     {
       "color": [255, 255, 255],
       "intensity": 1.0,
-      "position": [8.0, 0.0, 3.0]
+      "position": [8.0, 0.0, 3.0],
+      "specular_strength": 0.5
     }
   ],
 

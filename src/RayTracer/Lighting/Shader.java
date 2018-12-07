@@ -23,9 +23,16 @@ abstract public class Shader
 		Color component = new Color(Color.BLACK);
 		for(Light light: world.getLights())
 		{
-			if(!this.masked(light, tracer, hit))
+			if(light.isEnableDiffuse() ||  light.isEnableSpecular())
 			{
-				component.add(this.getLighterComponent(light, r, hit));
+				if (!this.masked(light, tracer, hit))
+				{
+					component.add(this.getLighterComponent(light, r, hit));
+				}
+				else
+				{
+					component.add(this.getAmbientComponent(light));
+				}
 			}
 			else
 			{

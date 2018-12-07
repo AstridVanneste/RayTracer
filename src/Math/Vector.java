@@ -28,17 +28,6 @@ public class Vector
 		this.elements = v.elements;
 	}
 
-	public Vector(JSONArray v)
-	{
-		this.size = v.length();
-		this.elements = new double[v.length()];
-
-		for(int i = 0; i < this.size; i++)
-		{
-			this.elements[i] = v.getDouble(i);
-		}
-	}
-
 	public void set(int index, double element) throws IndexOutOfBoundsException
 	{
 		if(index < this.size())

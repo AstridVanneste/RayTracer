@@ -2,6 +2,7 @@ package RayTracer.Scene.Objects;
 
 import RayTracer.Factories.VectorFactory;
 import Math.Vector;
+import org.json.JSONObject;
 
 public class Quad extends Polygon
 {
@@ -20,5 +21,10 @@ public class Quad extends Polygon
 		limits[3] = LF;
 
 		this.setLimits(limits);
+	}
+
+	public Quad(JSONObject jsonObject)
+	{
+		super(jsonObject);
 	}
 }

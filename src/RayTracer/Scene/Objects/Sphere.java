@@ -35,7 +35,7 @@ public class Sphere extends Entity
 	public Sphere(JSONObject jsonObject)
 	{
 		super(jsonObject);
-		Vector center = new Vector(jsonObject.getJSONArray(JSON.CENTER));
+		Vector center = VectorFactory.createPointVector(jsonObject.getJSONArray(JSON.CENTER));
 		double radius = jsonObject.getDouble(JSON.RADIUS);
 
 		this.setPosition(center, radius);

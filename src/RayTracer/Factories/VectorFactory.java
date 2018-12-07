@@ -1,6 +1,8 @@
 package RayTracer.Factories;
 
 import Math.Vector;
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class VectorFactory
 {
@@ -15,6 +17,11 @@ public class VectorFactory
 		return point;
 	}
 
+	public static Vector createPointVector(JSONArray json)
+	{
+		return createPointVector(json.getDouble(0), json.getDouble(1), json.getDouble(2));
+	}
+
 	public static Vector createVector(double x, double y, double z)
 	{
 		Vector vector = new Vector(4);
@@ -24,6 +31,11 @@ public class VectorFactory
 		vector.set(3, 0);
 
 		return vector;
+	}
+
+	public static Vector createVector(JSONArray json)
+	{
+		return createVector(json.getDouble(0), json.getDouble(1), json.getDouble(2));
 	}
 
 	public static boolean isPoint(Vector v)

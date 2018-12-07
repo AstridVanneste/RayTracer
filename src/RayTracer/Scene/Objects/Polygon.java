@@ -9,6 +9,7 @@ import Math.Compare;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import Util.Color;
+import org.json.JSONObject;
 
 public class Polygon extends Plane
 {
@@ -38,6 +39,12 @@ public class Polygon extends Plane
 	public Polygon(Polygon polygon)
 	{
 		this(polygon.limits);
+	}
+
+	public Polygon(JSONObject jsonObject)
+	{
+		super(jsonObject);
+		// TODO complete
 	}
 
 	public Vector[] getLimits()

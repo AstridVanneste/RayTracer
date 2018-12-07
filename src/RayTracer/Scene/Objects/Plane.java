@@ -8,6 +8,7 @@ import RayTracer.Tracer;
 import Util.Color;
 import Math.Vector;
 import Math.Compare;
+import org.json.JSONObject;
 
 import java.security.InvalidParameterException;
 
@@ -53,6 +54,12 @@ public class Plane extends Entity
 	{
 		this(normal, point);
 		this.setColor(color);
+	}
+
+	public Plane(JSONObject jsonObject)
+	{
+		super(jsonObject);
+		// TODO complete
 	}
 
 	@Override

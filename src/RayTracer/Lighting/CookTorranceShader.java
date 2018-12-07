@@ -65,9 +65,19 @@ public class CookTorranceShader extends Shader
 		//System.out.println(specular);
 
 		Color lightColor = new Color(Color.BLACK);
-		lightColor.add(ambient);
-		lightColor.add(diffuse);
-		lightColor.add(specular);
+
+		if(light.isEnableAmbient())
+		{
+			lightColor.add(ambient);
+		}
+		if(light.isEnableDiffuse())
+		{
+			lightColor.add(diffuse);
+		}
+		if(light.isEnableSpecular())
+		{
+			lightColor.add(specular);
+		}
 
 		Color hitColor = new Color(hit.getColor());
 		hitColor.scale(lightColor);
