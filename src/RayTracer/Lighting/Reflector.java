@@ -1,19 +1,22 @@
 package RayTracer.Lighting;
 
-import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
-import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import Util.Color;
 import Math.Vector;
 import Math.Geometry;
 
-import java.util.List;
-
 public class Reflector
 {
-	public Color calculateReflection(World world, Ray r, Tracer tracer, HitObject hit)
+	private double intenstity;
+
+	public Reflector(double intenstity)
+	{
+		this.intenstity = intenstity;
+	}
+
+	public Color calculateReflection(Ray r, Tracer tracer, HitObject hit)
 	{
 		Vector reflectionDir = Geometry.reflect(r.getDir(), hit.getNormal());
 
@@ -23,7 +26,9 @@ public class Reflector
 
 		if (reflectionHit != null)
 		{
-			return reflectionHit.getColor();
+			Color color = new Color(reflectionHit.getColor());
+			color.scale(this.intenstity);
+			return color;
 		}
 
 		return new Color(Color.BLACK);

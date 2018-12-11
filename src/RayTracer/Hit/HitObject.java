@@ -28,6 +28,7 @@ public class HitObject
 		this.distance = distance;
 		this.color = color;
 		this.normal = new Vector(normal);
+		this.normal.normalize();
 		this.traceLevel = traceLevel;
 	}
 

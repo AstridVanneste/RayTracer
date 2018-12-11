@@ -19,7 +19,7 @@ public class LightManager
 		this.shader = new CookTorranceShader(entity, 0.5, eta, 0.7);
 		//this.shader = new PhongShader(entity);
 
-		this.reflector = new Reflector();
+		this.reflector = new Reflector(0.1);
 	}
 
 	/**
@@ -36,9 +36,8 @@ public class LightManager
 		Color shade = new Color(this.shader.getLight(world, ray, tracer, hit));
 		scale.add(shade);
 
-		//Color reflection = new Color(this.reflector.calculateReflection(world, ray, tracer, hit));
-		//reflection.scale(0.5);
-		//scale.add(reflection);
+		Color reflection = new Color(this.reflector.calculateReflection(ray, tracer, hit));
+		scale.add(reflection);
 
 		color.scale(scale);
 
