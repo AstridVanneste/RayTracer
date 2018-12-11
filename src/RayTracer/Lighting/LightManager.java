@@ -58,7 +58,7 @@ public class LightManager
 
 		Color reflection = new Color(this.reflector.calculateReflection(ray, tracer, hit));
 		//System.out.println(reflection);
-		scale.add(reflection);
+		//scale.add(reflection);
 
 		color.scale(scale);
 
