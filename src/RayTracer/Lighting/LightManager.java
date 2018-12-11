@@ -1,12 +1,16 @@
 package RayTracer.Lighting;
 
-import Math.Vector;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
+import RayTracer.Scene.Material;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import RayTracer.Scene.Objects.Entity;
 import Util.Color;
+import Util.IO;
+import org.json.JSONObject;
+
+import java.io.IOException;
 
 public class LightManager
 {
@@ -15,11 +19,27 @@ public class LightManager
 
 	public LightManager(Entity entity)
 	{
-		double[] eta = {16, 16, 16};
-		this.shader = new CookTorranceShader(entity, 0.5, eta, 0.7);
+		double[] eta = {1000, 11.7077, 3.3385};
+		this.shader = new CookTorranceShader(entity, 0.5, eta, 0.9);
 		//this.shader = new PhongShader(entity);
 
-		this.reflector = new Reflector(0.1);
+		this.reflector = new Reflector(0.9);
+	}
+
+	public LightManager(Entity entity, String materialName)
+	{
+		try
+		{
+			String s = IO.readAllLines("res/JSON/materials/" + materialName + ".json");
+			JSONObject json = new JSONObject(s);
+			Material material = new Material(json);
+			this.shader = new CookTorranceShader(entity, material);
+			this.reflector = new Reflector(material);
+		}
+		catch(IOException ioe)
+		{
+			ioe.printStackTrace();
+		}
 	}
 
 	/**
@@ -37,6 +57,7 @@ public class LightManager
 		scale.add(shade);
 
 		Color reflection = new Color(this.reflector.calculateReflection(ray, tracer, hit));
+		//System.out.println(reflection);
 		scale.add(reflection);
 
 		color.scale(scale);

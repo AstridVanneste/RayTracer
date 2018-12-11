@@ -17,6 +17,7 @@ public abstract class Entity implements Hittable
 	private class JSON
 	{
 		public static final String COLOR = "color";
+		public static final String MATERIAL = "material";
 	}
 
 	private LightManager lighting;
@@ -55,6 +56,7 @@ public abstract class Entity implements Hittable
 
 		JSONArray c = jsonObject.getJSONArray(JSON.COLOR);
 		this.color = new Color(c);
+		this.lighting = new LightManager(this, jsonObject.getString(JSON.MATERIAL));
 
 	}
 

@@ -2,6 +2,7 @@ package RayTracer.Lighting;
 
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
+import RayTracer.Scene.Material;
 import RayTracer.Tracer;
 import Util.Color;
 import Math.Vector;
@@ -14,6 +15,11 @@ public class Reflector
 	public Reflector(double intenstity)
 	{
 		this.intenstity = intenstity;
+	}
+
+	public Reflector(Material material)
+	{
+		this.intenstity = material.getReflectivity();
 	}
 
 	public Color calculateReflection(Ray r, Tracer tracer, HitObject hit)

@@ -4,6 +4,7 @@ import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import Math.Vector;
 import Math.Geometry;
+import RayTracer.Scene.Material;
 import RayTracer.Scene.Objects.Entity;
 import Util.Color;
 
@@ -27,6 +28,16 @@ public class CookTorranceShader extends Shader
 		this.eta = eta;
 		this.kd = kd;
 		this.ks = 1 - kd;
+	}
+
+	public CookTorranceShader(Entity entity, Material material)
+	{
+		super(entity);
+
+		this.m = material.getRoughness();
+		this.eta = material.getRefractionIndex();
+		this.kd = material.getKd();
+		this.ks = 1.0 - this.kd;
 	}
 
 	protected Color getLighterComponent(Light light, Ray ray, HitObject hit)

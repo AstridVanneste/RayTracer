@@ -1,0 +1,7 @@
+{
+  "name": "Highly reflective plastic",
+  "roughness": 0.5,
+  "refractionIndex": [1.5760, 1.5760, 1.5760],
+  "kSpecular": 0.5,
+  "reflectivity": 0.3
+}

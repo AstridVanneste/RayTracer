@@ -1,0 +1,7 @@
+{
+  "name": "Copper",
+  "roughness": 0.5,
+  "refractionIndex": [0.24343, 0.74792, 1.2438],
+  "kSpecular": 0.2,
+  "reflectivity": 0.3
+}
