@@ -22,7 +22,7 @@ public class Main
 {
 	private static int TRACE_LEVEL = 3;
 
-	private static int WIDTH = 1000;
+	private static int WIDTH = 1280;
 	private static int HEIGHT = 1000;
 
 	private static String OBJ_FILE  = "res/OBJ/shuttle.obj";
@@ -30,8 +30,8 @@ public class Main
 	public static void main(String args[]) throws IOException
 	{
 		// CAMERA
-		Vector eye = VectorFactory.createPointVector(2, 3, 5);
-		Vector screenOffset = VectorFactory.createPointVector(-2, -2, 3);
+		Vector eye = VectorFactory.createPointVector(1, 3, 5);
+		Vector screenOffset = VectorFactory.createPointVector(-3, -2, 3);
 		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.005);
 
 		// LIGHTING

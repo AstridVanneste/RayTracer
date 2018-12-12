@@ -35,20 +35,20 @@
       "center": [1.2, 0.0, 0.0],
       "radius": 0.4,
       "color": [255, 255, 255],
-      "material": "water"
+      "material": "gold"
     },
     {
       "type": "sphere",
       "center": [0.0, 0.0, 0.0],
       "radius": 0.8,
       "color": [255, 255, 255],
-      "material": "water"
+      "material": "gold"
     },
     {
       "type": "quad",
       "vertices": [[-3.0, -1.0, -3.0], [-3.0, -1.0, 3.0], [3.0, -1.0, 3.0], [3.0, -1.0, -3.0]],
       "color": [255, 255, 255],
-      "material": "custom"
+      "material": "gold"
     }
   ]
 }
