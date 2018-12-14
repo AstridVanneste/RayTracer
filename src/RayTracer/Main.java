@@ -1,22 +1,13 @@
 package RayTracer;
 
-import RayTracer.Factories.TransformationFactory;
 import RayTracer.Factories.VectorFactory;
 import Math.Vector;
-import RayTracer.Hit.Hittable;
-import RayTracer.Lighting.Light;
-import RayTracer.Scene.Objects.*;
-import RayTracer.Scene.Objects.Polygon;
 import RayTracer.Scene.World;
 import RayTracer.Screen.Screen;
-import Util.OBJReader;
-import Util.Color;
 import Util.SceneParser;
 
 import javax.swing.*;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 public class Main
 {
@@ -28,8 +19,8 @@ public class Main
 	public static void main(String args[]) throws IOException
 	{
 		// CAMERA
-		Vector eye = VectorFactory.createPointVector(1, 4, 5);
-		Vector screenOffset = VectorFactory.createPointVector(-3.25, -1, 3);
+		Vector eye = VectorFactory.createPointVector(2, 4, 4);
+		Vector screenOffset = VectorFactory.createPointVector(-3.25, -1, 2);
 		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.005);
 
 		// READING SCENE

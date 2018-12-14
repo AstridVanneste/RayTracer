@@ -80,6 +80,7 @@ public class HitObject
 	{
 		this.hitpoint = transformation.transform(this.hitpoint);
 		this.normal = transformation.transform(this.normal);
+		this.normal.normalize();
 	}
 
 	public double getK()
