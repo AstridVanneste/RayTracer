@@ -104,12 +104,10 @@ public abstract class Entity implements Hittable
 
 		if(hit != null)
 		{
-			// TRANSFORM HITPOINT
+			// TRANSFORM HIT INFORMATION
 			if(this.transform)
 			{
-				Vector hitpoint = this.transformation.transform(hit.getHitpoint());
-				hitpoint.makePoint();
-				hit.setHitpoint(hitpoint);
+				hit.transform(this.transformation);
 			}
 		}
 		return hit;

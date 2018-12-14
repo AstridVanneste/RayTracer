@@ -2,7 +2,7 @@ package RayTracer.Hit;
 
 import Math.Vector;
 import RayTracer.Factories.VectorFactory;
-import RayTracer.RayTracer;
+import RayTracer.Transformation;
 import RayTracer.Scene.Objects.Entity;
 import Util.Color;
 
@@ -12,12 +12,11 @@ public class HitObject
 {
 	private Entity object;
 	private Vector hitpoint;
-	private double distance;
 	private Color color;
 	private Vector normal;
 	private int traceLevel;
 
-	public HitObject(Entity object, Vector hitpoint, double distance, Color color, Vector normal, int traceLevel) throws InvalidParameterException
+	public HitObject(Entity object, Vector hitpoint, Color color, Vector normal, int traceLevel) throws InvalidParameterException
 	{
 		if(!VectorFactory.isPoint(hitpoint))
 		{
@@ -25,7 +24,6 @@ public class HitObject
 		}
 		this.object = object;
 		this.hitpoint = new Vector(hitpoint);
-		this.distance = distance;
 		this.color = color;
 		this.normal = new Vector(normal);
 		this.normal.normalize();
@@ -34,7 +32,7 @@ public class HitObject
 
 	public HitObject(HitObject hit)
 	{
-		this(hit.object, hit.hitpoint, hit.distance, hit.color, hit.normal, hit.traceLevel);
+		this(hit.object, hit.hitpoint, hit.color, hit.normal, hit.traceLevel);
 	}
 
 	public Vector getHitpoint()
@@ -49,11 +47,6 @@ public class HitObject
 			throw new InvalidParameterException("Hitpoint parameter is not a point");
 		}
 		this.hitpoint = hitpoint;
-	}
-
-	public double getDistance()
-	{
-		return this.distance;
 	}
 
 	public Color getColor()
@@ -79,5 +72,11 @@ public class HitObject
 	public Entity getObject()
 	{
 		return this.object;
+	}
+
+	public void transform(Transformation transformation)
+	{
+		this.hitpoint = transformation.transform(this.hitpoint);
+		this.normal = transformation.transform(this.normal);
 	}
 }

@@ -9,7 +9,7 @@ import RayTracer.Tracer;
 import RayTracer.Transformation;
 import Util.Color;
 import org.json.JSONObject;
-import Math.Vector;
+import Math.Geometry;
 
 public class Cube extends Entity
 {
@@ -97,7 +97,7 @@ public class Cube extends Entity
 				if (hit == null)
 				{
 					hit = currentHit;
-				} else if (hit.getDistance() > currentHit.getDistance())
+				} else if (Geometry.distance(r.getEye(), hit.getHitpoint()) > Geometry.distance(r.getEye(), currentHit.getHitpoint()))
 				{
 					hit = currentHit;
 				}

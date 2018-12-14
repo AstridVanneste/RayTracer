@@ -8,6 +8,7 @@ import Math.Vector;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import Util.Color;
+import Math.Geometry;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -145,10 +146,10 @@ public class Mesh extends Entity
 
 			if(tempHit != null)
 			{
-				if(tempHit.getDistance() < distance || distance == 0)
+				if(Geometry.distance(r.getEye(), tempHit.getHitpoint()) < distance || distance == 0)
 				{
 					hit = tempHit;
-					distance = hit.getDistance();
+					distance = Geometry.distance(r.getEye(), tempHit.getHitpoint());
 				}
 			}
 		}

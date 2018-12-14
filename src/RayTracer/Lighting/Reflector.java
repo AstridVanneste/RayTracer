@@ -11,33 +11,41 @@ import Math.Geometry;
 
 public class Reflector
 {
-	private Entity entity;
-	private double intenstity;
+	private double intensity;
 
-	public Reflector(Entity entity, double intenstity)
+	private Entity entity;
+
+	public Reflector(double intensity, Entity entity)
 	{
+		this.intensity = intensity;
 		this.entity = entity;
-		this.intenstity = intenstity;
 	}
 
-	public Reflector(Entity entity, Material material)
+	public Reflector(Material material, Entity entity)
 	{
-		this(entity, material.getReflectivity());
+		this(material.getReflectivity(), entity);
 	}
 
 	public Color calculateReflection(Ray r, Tracer tracer, HitObject hit)
 	{
-		Vector reflectionDir = Geometry.reflect(r.getDir(), hit.getNormal());
-
-		Ray reflection = new Ray(hit.getHitpoint(), reflectionDir);
-
-		HitObject reflectionHit = tracer.trace(reflection,this.entity,  hit.getTraceLevel() - 1);
-
-		if (reflectionHit != null)
+		if(this.intensity > 0.1)
 		{
-			Color color = new Color(reflectionHit.getColor());
-			color.scale(this.intenstity);
-			return color;
+			Vector reflectionDir = Geometry.reflect(r.getDir(), hit.getNormal());
+
+			Ray reflection = new Ray(hit.getHitpoint(), reflectionDir);
+
+			HitObject reflectionHit = tracer.trace(reflection,this.entity, hit.getTraceLevel() - 1);
+
+			if (reflectionHit != null)
+			{
+				double distance = Geometry.distance(hit.getHitpoint(), reflectionHit.getHitpoint());
+				if (distance > 1e-13)
+				{
+					Color color = new Color(reflectionHit.getColor());
+					color.scale(this.intensity);
+					return color;
+				}
+			}
 		}
 
 		return new Color(Color.BLACK);

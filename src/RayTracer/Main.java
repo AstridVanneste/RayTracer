@@ -20,18 +20,16 @@ import java.util.List;
 
 public class Main
 {
-	private static int TRACE_LEVEL = 3;
+	private static final int TRACE_LEVEL = 2;
 
-	private static int WIDTH = 1280;
-	private static int HEIGHT = 1000;
-
-	private static String OBJ_FILE  = "res/OBJ/shuttle.obj";
+	private static final int WIDTH = 1280;
+	private static final int HEIGHT = 1000;
 
 	public static void main(String args[]) throws IOException
 	{
 		// CAMERA
-		Vector eye = VectorFactory.createPointVector(1, 3, 5);
-		Vector screenOffset = VectorFactory.createPointVector(-3, -2, 3);
+		Vector eye = VectorFactory.createPointVector(1, 4, 5);
+		Vector screenOffset = VectorFactory.createPointVector(-3.25, -1, 3);
 		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.005);
 
 		// READING SCENE

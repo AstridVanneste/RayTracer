@@ -23,7 +23,7 @@ public class LightManager
 		this.shader = new CookTorranceShader(entity, 0.5, eta, 0.9);
 		//this.shader = new PhongShader(entity);
 
-		this.reflector = new Reflector(entity,0.9);
+		this.reflector = new Reflector(0.9, entity);
 	}
 
 	public LightManager(Entity entity, String materialName)
@@ -34,7 +34,7 @@ public class LightManager
 			JSONObject json = new JSONObject(s);
 			Material material = new Material(json);
 			this.shader = new CookTorranceShader(entity, material);
-			this.reflector = new Reflector(entity, material);
+			this.reflector = new Reflector(material, entity);
 		}
 		catch(IOException ioe)
 		{

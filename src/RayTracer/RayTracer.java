@@ -9,13 +9,13 @@ import RayTracer.Scene.World;
 import RayTracer.Screen.Pixel;
 import RayTracer.Screen.Screen;
 import Util.PPMWriter;
+import Math.Geometry;
 
 import javax.swing.*;
 import java.awt.*;
 import java.security.InvalidParameterException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
 import java.util.List;
 
 
@@ -25,6 +25,8 @@ public class RayTracer extends JPanel implements Tracer
 	private Screen screen;
 	private World world;
 	private int traceLevel;
+
+	private List<Pixel> image;
 
 	public RayTracer(Vector eye, Screen screen, World world, int traceLevel) throws InvalidParameterException
 	{
@@ -37,6 +39,10 @@ public class RayTracer extends JPanel implements Tracer
 		this.world = world;
 		this.screen = screen;
 		this.traceLevel = traceLevel;
+
+		this.image = this.trace();
+
+		this.save();
 	}
 
 	@Override
@@ -46,6 +52,18 @@ public class RayTracer extends JPanel implements Tracer
 
 		Graphics2D g2d = (Graphics2D) g;
 
+		System.out.println("DRAWING...");
+		for(Pixel pixel: this.image)
+		{
+			// TODO anti-aliasing by averaging with the surrounding pixels
+			g2d.setColor(pixel.getColor().get());
+			g2d.drawLine(pixel.x(), this.screen.height() - pixel.y(), pixel.x(), this.screen.height() - pixel.y());
+		}
+		System.out.println("FINISHED!");
+	}
+
+	private List<Pixel> trace()
+	{
 		System.out.println("TRACING...");
 		long start = System.nanoTime();
 		List<Pixel> pixels = this.screen.getPixels(Screen.PixelOrder.ROW_TDLR);
@@ -54,25 +72,7 @@ public class RayTracer extends JPanel implements Tracer
 		System.out.println("FINISHED!");
 		System.out.println("TRACE TIME: " + ((float)(end - start))/1000000000);
 
-		System.out.println("DRAWING...");
-		for(Pixel pixel: pixels)
-		{
-			// TODO anti-aliasing by averaging with the surrounding pixels
-			g2d.setColor(pixel.getColor().get());
-			g2d.drawLine(pixel.x(), this.screen.height() - pixel.y(), pixel.x(), this.screen.height() - pixel.y());
-		}
-
-		try
-		{
-			String time = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Timestamp(System.currentTimeMillis()));
-			PPMWriter ppmWriter = new PPMWriter("traces/" + time + ".ppm", PPMWriter.Format.P3, this.screen.width(), this.screen.height());
-			ppmWriter.write(pixels);
-		}
-		catch (Exception e)
-		{
-			e.printStackTrace();
-		}
-		System.out.println("FINISHED!");
+		return pixels;
 	}
 
 	private List<Pixel> trace(List<Pixel> pixels, int traceLevel)
@@ -122,7 +122,7 @@ public class RayTracer extends JPanel implements Tracer
 					{
 						closestHit = hit;
 					}
-					else if (hit.getDistance() < closestHit.getDistance())
+					else if (Geometry.distance(this.eye, hit.getHitpoint()) < Geometry.distance(this.eye, closestHit.getHitpoint()))
 					{
 						closestHit = hit;
 					}
@@ -151,6 +151,21 @@ public class RayTracer extends JPanel implements Tracer
 		}
 
 		return buffer;
+	}
+
+	private void save()
+	{
+		// SAVING
+		try
+		{
+			String time = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Timestamp(System.currentTimeMillis()));
+			PPMWriter ppmWriter = new PPMWriter("traces/" + time + ".ppm", PPMWriter.Format.P3, this.screen.width(), this.screen.height());
+			ppmWriter.write(this.image);
+		}
+		catch (Exception e)
+		{
+			e.printStackTrace();
+		}
 	}
 
 	/*public List<Pixel> antiAliasing(Pixel[][] pixels)

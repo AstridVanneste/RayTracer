@@ -1,7 +1,7 @@
 {
   "name": "custom material",
   "roughness": 0.5,
-  "refractionIndex": [1.50917, 1.51534, 1.51690],
+  "refractionIndex": [16, 16, 16],
   "kSpecular": 0.2,
   "reflectivity": 0.0
 }

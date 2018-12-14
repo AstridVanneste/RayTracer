@@ -97,6 +97,6 @@ public class Sphere extends Entity
 		}
 
 		Vector hitpoint = r.getPoint(k);
-		return new HitObject(this, hitpoint, k, this.color, hitpoint, traceLevel);
+		return new HitObject(this, hitpoint, this.color, hitpoint, traceLevel);
 	}
 }
