@@ -52,14 +52,12 @@ public class RayTracer extends JPanel implements Tracer
 
 		Graphics2D g2d = (Graphics2D) g;
 
-		System.out.println("DRAWING...");
 		for(Pixel pixel: this.image)
 		{
 			// TODO anti-aliasing by averaging with the surrounding pixels
 			g2d.setColor(pixel.getColor().get());
 			g2d.drawLine(pixel.x(), this.screen.height() - pixel.y(), pixel.x(), this.screen.height() - pixel.y());
 		}
-		System.out.println("FINISHED!");
 	}
 
 	private List<Pixel> trace()

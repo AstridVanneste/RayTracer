@@ -42,7 +42,7 @@ abstract public class Shader
 				component.add(this.getAmbientComponent(light));
 			}
 		}
-		//return new Color(maskCount*128, maskCount*128, maskCount*128);
+		//return new Color(maskCount*64, maskCount*64, maskCount*64);
 		return component;
 	}
 
@@ -53,15 +53,14 @@ abstract public class Shader
 		Vector lightDir = Vector.subtract(hit.getHitpoint(), light.getPosition());
 		Ray lightRay = new Ray(light.getPosition(), lightDir);
 
-		HitObject lightHit = tracer.trace(lightRay, null, 0);
+		HitObject lightHit = tracer.trace(lightRay, 0);
 
 		if(lightHit != null)
 		{
-
 			double hitDistance = Geometry.distance(hit.getHitpoint(), lightHit.getHitpoint());
 			double lightHitDistance = Geometry.distance(lightHit.getHitpoint(), light.getPosition());
 
-			if(hitDistance > 1e-13 && lightHitDistance < distance)
+			if(hitDistance > 1e-12 && lightHitDistance < distance)
 			{
 				return true;
 			}

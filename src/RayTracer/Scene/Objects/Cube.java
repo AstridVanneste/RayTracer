@@ -91,7 +91,7 @@ public class Cube extends Entity
 		HitObject hit = null;
 		for(int i = 0; i < NUMBER_SIDES; i++)
 		{
-			HitObject currentHit = this.sides[i].internalHit(r, tracer, world, traceLevel);
+			HitObject currentHit = this.sides[i].hit(r, tracer, world, traceLevel);
 			if(currentHit != null)
 			{
 				if (hit == null)

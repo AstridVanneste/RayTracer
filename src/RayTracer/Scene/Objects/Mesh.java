@@ -142,7 +142,7 @@ public class Mesh extends Entity
 		double distance = 0;
 		for(Hittable element: this.elements)
 		{
-			HitObject tempHit = element.internalHit(r, tracer, world, traceLevel);
+			HitObject tempHit = element.hit(r, tracer, world, traceLevel);
 
 			if(tempHit != null)
 			{

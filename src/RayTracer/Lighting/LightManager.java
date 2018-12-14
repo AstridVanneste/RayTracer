@@ -56,8 +56,8 @@ public class LightManager
 		Color shade = new Color(this.shader.getLight(world, ray, tracer, hit));
 		scale.add(shade);
 
-		Color reflection = new Color(this.reflector.calculateReflection(ray, tracer, hit));
-		scale.add(reflection);
+		//Color reflection = new Color(this.reflector.calculateReflection(ray, tracer, hit));
+		//scale.add(reflection);
 
 		color.scale(scale);
 

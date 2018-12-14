@@ -81,6 +81,8 @@ public abstract class Entity implements Hittable
 	{
 		this.transform = true;
 		this.transformation = transformation;
+
+		System.out.println(this.transformation);
 	}
 
 	@Override
@@ -113,7 +115,6 @@ public abstract class Entity implements Hittable
 		return hit;
 	}
 
-	@Override
 	abstract public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel);
 
 	public Color calculateColor(Tracer tracer, World world, Ray ray, HitObject hit)

@@ -26,6 +26,12 @@
       "intensity": 0.2,
       "position": [0, 4, -3],
       "specular_strength": 0.5
+    },
+    {
+      "color": [255, 255, 255],
+      "intensity": 0.2,
+      "position": [0, 3, 0],
+      "specular_strength": 0.5
     }
   ],
 
