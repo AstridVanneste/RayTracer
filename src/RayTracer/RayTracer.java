@@ -103,10 +103,16 @@ public class RayTracer extends JPanel implements Tracer
 	@Override
 	public HitObject trace(Ray r, Hittable excluded, int traceLevel)
 	{
+		int excludedID = -1;
+		if(excluded != null)
+		{
+			excludedID = excluded.getID();
+		}
+
 		HitObject closestHit = null;
 		for(Hittable object: this.world.getObjects())
 		{
-			if(object != excluded)
+			if(object.getID() != excludedID)
 			{
 				HitObject hit = object.hit(r, this, this.world, traceLevel);
 
@@ -115,7 +121,8 @@ public class RayTracer extends JPanel implements Tracer
 					if (closestHit == null)
 					{
 						closestHit = hit;
-					} else if (hit.getDistance() < closestHit.getDistance())
+					}
+					else if (hit.getDistance() < closestHit.getDistance())
 					{
 						closestHit = hit;
 					}
@@ -128,7 +135,7 @@ public class RayTracer extends JPanel implements Tracer
 			// LIGHTING
 			if (traceLevel != 0)
 			{
-				closestHit.setColor(closestHit.getObject().calculateColor(this, world, r, closestHit));
+				closestHit.setColor(closestHit.getObject().calculateColor(this, this.world, r, closestHit));
 			}
 		}
 

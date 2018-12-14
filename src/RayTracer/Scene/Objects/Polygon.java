@@ -47,9 +47,9 @@ public class Polygon extends Plane
 		this(polygon.limits);
 	}
 
-	public Polygon(JSONObject jsonObject)
+	public Polygon(JSONObject jsonObject, int ID)
 	{
-		super(jsonObject);
+		super(jsonObject, ID);
 
 		// LIMITS
 		JSONArray vertices = jsonObject.getJSONArray(JSON.VERTICES);
@@ -58,7 +58,7 @@ public class Polygon extends Plane
 		{
 			JSONArray vertex = vertices.getJSONArray(i);
 			this.limits[i] = VectorFactory.createPointVector(vertex);
-			System.out.println(this.limits[i]);
+			//System.out.println(this.limits[i]);
 		}
 
 		// INITIALIZING PLANE

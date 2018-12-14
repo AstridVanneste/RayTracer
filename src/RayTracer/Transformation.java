@@ -45,7 +45,7 @@ public class Transformation
 			throw new InvalidParameterException("Forward transformation matrix dimensions should be 4x4 but are " + inverse.height() + "x" + inverse.width());
 		}
 
-		this.forward = Matrix.multiply(this.forward, forward);
+		this.forward = Matrix.multiply(forward, this.forward);
 		this.inverse = Matrix.multiply(this.inverse, inverse);
 
 		return this;

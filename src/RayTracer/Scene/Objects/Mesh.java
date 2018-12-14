@@ -34,9 +34,9 @@ public class Mesh extends Entity
 		this.boundingBox = m.boundingBox;
 	}
 
-	public Mesh(JSONObject jsonObject)
+	public Mesh(JSONObject jsonObject, int ID)
 	{
-		super(jsonObject);
+		super(jsonObject, ID);
 		// TODO complete
 	}
 

@@ -20,13 +20,17 @@ public abstract class Entity implements Hittable
 		public static final String MATERIAL = "material";
 	}
 
+	private int ID;
 	private LightManager lighting;
 	protected Color color;
-	protected boolean transform;
-	protected Transformation transformation;
+	private boolean transform;
+	private Transformation transformation;
 
+
+	// TODO fix ID's
 	public Entity()
 	{
+		this.ID = 0;
 		this.color = Color.LIGHT_GRAY;
 		this.transform = false;
 		this.transformation = new Transformation(Matrix.identityMatrix(4), Matrix.identityMatrix(4));
@@ -35,6 +39,7 @@ public abstract class Entity implements Hittable
 
 	public Entity(Color color)
 	{
+		this.ID = 0;
 		this.color = color;
 		this.transform = false;
 		this.transformation = new Transformation(Matrix.identityMatrix(4), Matrix.identityMatrix(4));
@@ -44,16 +49,18 @@ public abstract class Entity implements Hittable
 
 	public Entity(Color color, Transformation transformation)
 	{
+		this.ID = 0;
 		this.color = color;
 		this.transform = true;
 		this.transformation = transformation;
 		this.lighting = new LightManager(this);		//TODO assign normal
 	}
 
-	public Entity(JSONObject jsonObject)
+	public Entity(JSONObject jsonObject, int ID)
 	{
 		this();
 
+		this.ID = ID;
 		JSONArray c = jsonObject.getJSONArray(JSON.COLOR);
 		this.color = new Color(c);
 		this.lighting = new LightManager(this, jsonObject.getString(JSON.MATERIAL));
@@ -76,6 +83,11 @@ public abstract class Entity implements Hittable
 		this.transformation = transformation;
 	}
 
+	@Override
+	public int getID()
+	{
+		return ID;
+	}
 
 	@Override
 	public HitObject hit(Ray r, Tracer tracer, World world, int traceLevel)
@@ -88,7 +100,7 @@ public abstract class Entity implements Hittable
 		}
 
 		// CALCULATE HIT
-		HitObject hit = this.internalHit(r,tracer, world, traceLevel);
+		HitObject hit = this.internalHit(r, tracer, world, traceLevel);
 
 		if(hit != null)
 		{
@@ -96,8 +108,6 @@ public abstract class Entity implements Hittable
 			if(this.transform)
 			{
 				Vector hitpoint = this.transformation.transform(hit.getHitpoint());
-
-				//hitpoint.normalize(true);
 				hitpoint.makePoint();
 				hit.setHitpoint(hitpoint);
 			}

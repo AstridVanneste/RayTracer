@@ -1,0 +1,7 @@
+{
+  "name": "silver",
+  "roughness": 0.5,
+  "refractionIndex": [77.99, 55.12, 31.0],
+  "kSpecular": 0.6,
+  "reflectivity": 1
+}

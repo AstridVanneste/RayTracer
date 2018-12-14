@@ -32,9 +32,9 @@ public class Sphere extends Entity
 		this.setPosition(center, radius);
 	}
 
-	public Sphere(JSONObject jsonObject)
+	public Sphere(JSONObject jsonObject, int ID)
 	{
-		super(jsonObject);
+		super(jsonObject, ID);
 		Vector center = VectorFactory.createPointVector(jsonObject.getJSONArray(JSON.CENTER));
 		double radius = jsonObject.getDouble(JSON.RADIUS);
 
@@ -51,17 +51,11 @@ public class Sphere extends Entity
 	@Override
 	public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel)
 	{
-		//System.out.println("Eye "+ r.getEye());
-		//System.out.println("Dir " + r.getDir());
 		double A = Vector.dotProduct(r.getDir(), r.getDir());
 		double B = Vector.dotProduct(r.getDir(), r.getEye());
 		double C = Vector.dotProduct(r.getEye(), r.getEye()) - 1.0;
 
 		double discriminant =  Math.pow(B, 2.0) - (A * C);
-		/*System.out.println("A = " + A);
-		System.out.println("B = " + B);
-		System.out.println("C = " + C);
-		System.out.println("discriminant = " + discriminant);*/
 
 		double k = 0.0;
 		if(Compare.compare(discriminant, 0.0) < 0)					// NO HITPOINT

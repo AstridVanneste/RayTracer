@@ -68,9 +68,9 @@ public class Cube extends Entity
 		this.setColor(color);
 	}
 
-	public Cube(JSONObject jsonObject)
+	public Cube(JSONObject jsonObject, int ID)
 	{
-		super(jsonObject);
+		super(jsonObject, ID);
 		// TODO complete
 	}
 

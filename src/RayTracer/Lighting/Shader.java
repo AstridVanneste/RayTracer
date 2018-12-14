@@ -8,6 +8,7 @@ import RayTracer.Tracer;
 import Util.Color;
 import Math.Vector;
 import Math.Geometry;
+import Math.Compare;
 
 abstract public class Shader
 {
@@ -52,14 +53,15 @@ abstract public class Shader
 		Vector lightDir = Vector.subtract(hit.getHitpoint(), light.getPosition());
 		Ray lightRay = new Ray(light.getPosition(), lightDir);
 
-		HitObject lightHit = tracer.trace(lightRay, this.entity, 0);
+		HitObject lightHit = tracer.trace(lightRay, null, 0);
 
 		if(lightHit != null)
 		{
 
-			double lightHitDistance = Geometry.distance(light.getPosition(), lightHit.getHitpoint());
+			double hitDistance = Geometry.distance(hit.getHitpoint(), lightHit.getHitpoint());
+			double lightHitDistance = Geometry.distance(lightHit.getHitpoint(), light.getPosition());
 
-			if(lightHitDistance < distance)
+			if(hitDistance > 1e-13 && lightHitDistance < distance)
 			{
 				return true;
 			}

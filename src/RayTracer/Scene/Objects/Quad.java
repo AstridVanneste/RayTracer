@@ -23,8 +23,8 @@ public class Quad extends Polygon
 		this.setLimits(limits);
 	}
 
-	public Quad(JSONObject jsonObject)
+	public Quad(JSONObject jsonObject, int ID)
 	{
-		super(jsonObject);
+		super(jsonObject, ID);
 	}
 }

@@ -59,9 +59,9 @@ public class Plane extends Entity
 		this.setColor(color);
 	}
 
-	public Plane(JSONObject jsonObject)
+	public Plane(JSONObject jsonObject, int ID)
 	{
-		super(jsonObject);
+		super(jsonObject, ID);
 		// TODO complete
 	}
 

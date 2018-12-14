@@ -65,16 +65,16 @@ public class SceneParser
 			switch (type)
 			{
 				case Keys.QUAD:
-					entities.add(new Quad(jsonEntity));
+					entities.add(new Quad(jsonEntity, i));
 					break;
 				case Keys.CUBE:
-					entities.add(new Cube(jsonEntity));
+					entities.add(new Cube(jsonEntity, i));
 					break;
 				case Keys.SPHERE:
-					entities.add(new Sphere(jsonEntity));
+					entities.add(new Sphere(jsonEntity, i));
 					break;
 				case Keys.MESH:
-					entities.add(new Mesh(jsonEntity));
+					entities.add(new Mesh(jsonEntity, i));
 					break;
 				default:
 					System.out.println("Unknown Entity type: " + type);
