@@ -20,7 +20,7 @@ import java.util.List;
 
 public class Main
 {
-	private static final int TRACE_LEVEL = 2;
+	private static final int TRACE_LEVEL = 3;
 
 	private static final int WIDTH = 1280;
 	private static final int HEIGHT = 1000;

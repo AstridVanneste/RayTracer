@@ -30,16 +30,19 @@ public class Reflector
 	{
 		if(this.intensity > 0.1)
 		{
+			Vector reflectionOrigin = Vector.add(hit.getHitpoint(), Vector.multiply(hit.getNormal(), 1e-10));
+
 			Vector reflectionDir = Geometry.reflect(r.getDir(), hit.getNormal());
 
-			Ray reflection = new Ray(hit.getHitpoint(), reflectionDir);
+			Ray reflection = new Ray(reflectionOrigin, reflectionDir);
 
-			HitObject reflectionHit = tracer.trace(reflection,this.entity, hit.getTraceLevel() - 1);
+			HitObject reflectionHit = tracer.trace(reflection, hit.getTraceLevel() - 1);
 
 			if (reflectionHit != null)
 			{
 				double distance = Geometry.distance(hit.getHitpoint(), reflectionHit.getHitpoint());
-				if (distance > 1e-13)
+
+				if (distance > 1e-10)
 				{
 					Color color = new Color(reflectionHit.getColor());
 					color.scale(this.intensity);

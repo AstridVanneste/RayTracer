@@ -1,0 +1,55 @@
+{
+  "general":
+  {
+    "lighting-model": "Cook-Torrance",
+    "concurrency": -1
+  },
+
+  "camera":
+  {
+    "img_size": [1600, 900],
+    "screen_size": [1.6, 0.9],
+    "position": [1, 4, 4],
+    "direction": [0, -1, -1]
+  },
+
+  "global_lights": [
+    {
+      "color": [255, 255, 255],
+      "intensity": 0.2
+    }
+  ],
+
+  "point_lights": [
+    {
+      "color": [255, 255, 255],
+      "intensity": 0.2,
+      "position": [0, 4, -3],
+      "specular_strength": 0.5
+    }
+  ],
+
+  "objects": [
+    {
+      "type": "sphere",
+      "center": [1.2, 0.5, 0.0],
+      "radius": 0.4,
+      "color": [255, 255, 255],
+      "material": "custom"
+    },
+    {
+      "type": "sphere",
+      "center": [0.0, 0.5, 0.0],
+      "radius": 0.8,
+      "color": [255, 255, 255],
+      "material": "silver"
+    },
+    {
+      "type": "sphere",
+      "center": [0.0, 0.0, 0.0],
+      "radius": 20,
+      "color": [255, 255, 255],
+      "material": "custom"
+    }
+  ]
+}
