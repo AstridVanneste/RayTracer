@@ -6,12 +6,12 @@ import java.awt.image.ColorModel;
 import java.io.File;
 import java.io.IOException;
 
-public class Texture implements Samplable
+public class Image implements Samplable
 {
 	private BufferedImage image;
 	private ColorModel colorModel;
 
-	public Texture(String path) throws IOException
+	public Image(String path) throws IOException
 	{
 		this.image = ImageIO.read(new File(path));
 		this.colorModel = this.image.getColorModel();
