@@ -28,6 +28,17 @@ public class Vector
 		this.elements = v.elements;
 	}
 
+	public Vector(JSONArray json)
+	{
+		this.size = json.length();
+		this.elements = new double[this.size];
+
+		for(int i =0; i < this.size; i++)
+		{
+			this.elements[i] = json.getDouble(i);
+		}
+	}
+
 	public void set(int index, double element) throws IndexOutOfBoundsException
 	{
 		if(index < this.size())

@@ -32,23 +32,28 @@
   "objects": [
     {
       "type": "sphere",
-      "center": [1.2, 0.0, 0.0],
+      "center": [1.2, 1.0, 0.0],
       "radius": 0.4,
       "color": [255, 255, 255],
-      "material": "silver"
+      "material": "custom"
     },
     {
       "type": "sphere",
-      "center": [0.0, 0.0, 0.0],
+      "center": [0.0, 1.0, 0.0],
       "radius": 0.8,
       "color": [255, 255, 255],
-      "material": "silver"
+      "material": "custom"
     },
     {
       "type": "quad",
       "vertices": [[-3.5, -1.0, -3.0], [-3.5, -1.0, 3.0], [3.5, -1.0, 3.0], [3.5, -1.0, -3.0]],
       "color": [255, 0, 255],
-      "material": "custom"
+      "material": "custom",
+      "texture":
+      {
+        "type": "checkerboard",
+        "size": [0.3, 0.3, 0.3]
+      }
     },
     {
       "type": "quad",
@@ -66,7 +71,7 @@
       "type": "quad",
       "vertices": [[-3.5, 5.0, -3.0], [-3.5, -1.0, -3.0], [3.5, -1.0, -3.0], [3.5, 5.0, -3.0]],
       "color": [255, 255, 255],
-      "material": "custom"
+      "material": "silver"
     },
     {
       "type": "quad",

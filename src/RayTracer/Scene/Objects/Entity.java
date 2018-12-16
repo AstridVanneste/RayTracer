@@ -1,9 +1,11 @@
 package RayTracer.Scene.Objects;
 
+import RayTracer.Factories.TextureFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Hittable;
 import RayTracer.Hit.Ray;
 import RayTracer.Lighting.LightManager;
+import RayTracer.Scene.Textures.Texture;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import RayTracer.Transformation;
@@ -18,6 +20,7 @@ public abstract class Entity implements Hittable
 	{
 		public static final String COLOR = "color";
 		public static final String MATERIAL = "material";
+		public static final String TEXTURE = "texture";
 	}
 
 	private int ID;
@@ -25,6 +28,7 @@ public abstract class Entity implements Hittable
 	protected Color color;
 	private boolean transform;
 	private Transformation transformation;
+	private Texture texture;
 
 
 	// TODO fix ID's
@@ -65,6 +69,10 @@ public abstract class Entity implements Hittable
 		this.color = new Color(c);
 		this.lighting = new LightManager(this, jsonObject.getString(JSON.MATERIAL));
 
+		if(jsonObject.has(JSON.TEXTURE))
+		{
+			this.texture = TextureFactory.get(jsonObject.getJSONObject(JSON.TEXTURE));
+		}
 	}
 
 	protected Color getColor()
@@ -111,6 +119,12 @@ public abstract class Entity implements Hittable
 			{
 				hit.transform(this.transformation);
 			}
+
+			// SAMPLING TEXTURE
+			if(this.texture != null)
+			{
+				hit.setColor(this.texture.sample(hit.getHitpoint()));
+			}
 		}
 		return hit;
 	}
@@ -119,6 +133,6 @@ public abstract class Entity implements Hittable
 
 	public Color calculateColor(Tracer tracer, World world, Ray ray, HitObject hit)
 	{
-		return this.lighting.calculateColor(tracer, world, ray, hit, this.color);
+		return this.lighting.calculateColor(tracer, world, ray, hit);
 	}
 }
