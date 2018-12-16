@@ -5,7 +5,7 @@ import Util.Color;
 import Math.Vector;
 import org.json.JSONObject;
 
-public class CheckerBoard extends Texture
+public class CheckerBoard implements Texture
 {
 	private class JSON
 	{

@@ -3,7 +3,7 @@ package RayTracer.Scene.Textures;
 import Util.Color;
 import Math.Vector;
 
-public abstract class Texture
+public interface Texture
 {
-	public abstract Color sample(Vector position);
+	public Color sample(Vector position);
 }
