@@ -11,10 +11,6 @@ import Util.Color;
 
 public class PhongShader extends Shader
 {
-	public PhongShader(Entity entity)
-	{
-		super(entity);
-	}
 
 	protected Color getAmbientComponent(Light light)
 	{

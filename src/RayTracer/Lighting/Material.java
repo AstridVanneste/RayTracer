@@ -1,4 +1,4 @@
-package RayTracer.Scene;
+package RayTracer.Lighting;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -11,20 +11,23 @@ public class Material
 		public static final String KS = "kSpecular";
 		public static final String REFRACTION_INDEX = "refractionIndex";
 		public static final String REFLECTIVITY = "reflectivity";
+		public static final String REFRACTIVITY = "refractivity";
 	}
 
 	private double roughness;
 	private double kd;
 	private double[] refractionIndex;
 	private double reflectivity;
+	private double refractivity;
 
 
-	public Material(double roughness, double kd, double[] refractionIndex, double reflectivity)
+	public Material(double roughness, double kd, double[] refractionIndex, double reflectivity, double refractivity)
 	{
 		this.roughness = roughness;
 		this.kd = kd;
 		this.refractionIndex = refractionIndex;
 		this.reflectivity = reflectivity;
+		this.refractivity = refractivity;
 	}
 
 	public Material(JSONObject json)
@@ -32,6 +35,7 @@ public class Material
 		this.roughness = json.getDouble(JSON.ROUGHNESS);
 		this.kd = 1 - json.getDouble(JSON.KS);
 		this.reflectivity = json.getDouble(JSON.REFLECTIVITY);
+		this.refractivity = json.getDouble(JSON.REFRACTIVITY);
 		this.refractionIndex = new double[3];
 
 		JSONArray refraction = json.getJSONArray(JSON.REFRACTION_INDEX);
@@ -59,5 +63,10 @@ public class Material
 	public double getReflectivity()
 	{
 		return reflectivity;
+	}
+
+	public double getRefractivity()
+	{
+		return this.refractivity;
 	}
 }

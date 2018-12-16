@@ -4,21 +4,18 @@ import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import Math.Vector;
 import Math.Geometry;
-import RayTracer.Scene.Material;
-import RayTracer.Scene.Objects.Entity;
 import Util.Color;
 
 public class CookTorranceShader extends Shader
 {
+	private double intensity;
 	private double m;
 	private double eta[];
 	private double kd;
 	private double ks;
 
-	public CookTorranceShader(Entity entity, double m, double[] eta, double kd) throws IllegalArgumentException
+	public CookTorranceShader(double intensity, double m, double[] eta, double kd) throws IllegalArgumentException
 	{
-		super(entity);
-
 		if(eta.length != 3)
 		{
 			throw new IllegalArgumentException("not the right amount of eta values: " + eta.length);
@@ -28,16 +25,16 @@ public class CookTorranceShader extends Shader
 		this.eta = eta;
 		this.kd = kd;
 		this.ks = 1 - kd;
+		this.intensity = intensity;
 	}
 
-	public CookTorranceShader(Entity entity, Material material)
+	public CookTorranceShader(Material material)
 	{
-		super(entity);
-
 		this.m = material.getRoughness();
 		this.eta = material.getRefractionIndex();
 		this.kd = material.getKd();
 		this.ks = 1.0 - this.kd;
+		this.intensity = 1 - material.getReflectivity() - material.getRefractivity();
 	}
 
 	protected Color getLighterComponent(Light light, Ray ray, HitObject hit)
@@ -92,6 +89,7 @@ public class CookTorranceShader extends Shader
 
 		Color hitColor = new Color(hit.getColor());
 		hitColor.scale(lightColor);
+		hitColor.scale(this.intensity);
 
 		return hitColor;
 	}

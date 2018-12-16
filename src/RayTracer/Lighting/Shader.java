@@ -12,12 +12,6 @@ import Math.Compare;
 
 abstract public class Shader
 {
-	protected Entity entity;
-
-	public Shader(Entity entity)
-	{
-		this.entity = entity;
-	}
 
 	public Color getLight(World world, Ray r, Tracer tracer, HitObject hit)
 	{
