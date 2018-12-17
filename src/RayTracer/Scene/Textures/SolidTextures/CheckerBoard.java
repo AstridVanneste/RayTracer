@@ -30,21 +30,28 @@ public class CheckerBoard implements Texture
 	{
 		if(this.jump(position))
 		{
-			return new Color(Color.WHITE);
+			return new Color(Color.RED);
 		}
 		else
 		{
-			return new Color(Color.BLACK);
+			return new Color(Color.BLUE);
 		}
 	}
 
 	public boolean jump(Vector position)
 	{
-		int x = (int) (position.get(0)/this.size.get(0));
-		int y = (int) (position.get(1)/this.size.get(1));
-		int z = (int) (position.get(2)/this.size.get(2));
+		double A = 10000;
 
-		int result = (((x + y + z)%2)+1)%2;
+		int x = (int) (A + position.get(0)/this.size.get(0));
+		int y = (int) (A + position.get(1)/this.size.get(1));
+		int z = (int) (A + position.get(2)/this.size.get(2));
+
+		System.out.println("x = " + x);
+		System.out.println("y = " + y);
+		System.out.println("z = " + z);
+		System.out.println((x + y + z));
+
+		int result = ((x + y + z)%2);
 
 		return result == 1;
 	}

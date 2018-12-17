@@ -35,14 +35,14 @@
       "center": [1.2, 1.0, 0.0],
       "radius": 0.4,
       "color": [255, 255, 255],
-      "material": "glass"
+      "material": "custom"
     },
     {
       "type": "sphere",
       "center": [0.0, 1.0, 0.0],
       "radius": 0.8,
       "color": [255, 255, 255],
-      "material": "custom"
+      "material": "silver"
     },
     {
       "type": "quad",
