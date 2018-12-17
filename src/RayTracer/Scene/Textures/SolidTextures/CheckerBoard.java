@@ -46,11 +46,6 @@ public class CheckerBoard implements Texture
 		int y = (int) (A + position.get(1)/this.size.get(1));
 		int z = (int) (A + position.get(2)/this.size.get(2));
 
-		System.out.println("x = " + x);
-		System.out.println("y = " + y);
-		System.out.println("z = " + z);
-		System.out.println((x + y + z));
-
 		int result = ((x + y + z)%2);
 
 		return result == 1;
