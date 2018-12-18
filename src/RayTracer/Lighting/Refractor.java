@@ -26,28 +26,32 @@ public class Refractor
 
 	public Color calculateRefraction(Ray r, Tracer tracer, HitObject hit)
 	{
-		Vector normal = hit.getNormal();
-		normal.normalize();
-		Vector rayDir = r.getDir();
-		rayDir.normalize();
-
-		Vector refractionOrigin = Vector.add(hit.getHitpoint(), Vector.multiply(hit.getNormal(), 1e-10));
-
-		Vector refractionDir = this.getRefractionDirection(normal, rayDir);
-
-		Ray refractRay = new Ray(refractionOrigin, refractionDir);
-
-		HitObject refractHit = tracer.trace(refractRay, hit.getTraceLevel() - 1);
-
-		if (refractHit != null)
+		if(this.refractivity > 0.1)
 		{
-			double distance = Geometry.distance(hit.getHitpoint(), refractHit.getHitpoint());
+			Vector normal = hit.getNormal();
+			normal.normalize();
 
-			if (distance > 1e-10)
+			Vector rayDir = r.getDir();
+			rayDir.normalize();
+
+			Vector refractionOrigin = Vector.add(hit.getHitpoint(), Vector.multiply(hit.getNormal(), 1e-10));
+
+			Vector refractionDir = this.getRefractionDirection(normal, rayDir);
+
+			Ray refractRay = new Ray(refractionOrigin, refractionDir);
+
+			HitObject refractHit = tracer.trace(refractRay, hit.getTraceLevel() - 1);
+
+			if (refractHit != null)
 			{
-				Color color = new Color(refractHit.getColor());
-				color.scale(this.refractivity);
-				return color;
+				double distance = Geometry.distance(hit.getHitpoint(), refractHit.getHitpoint());
+
+				if (distance > 1e-10)
+				{
+					Color color = new Color(refractHit.getColor());
+					color.scale(this.refractivity);
+					return color;
+				}
 			}
 		}
 		return new Color(Color.BLACK);
@@ -68,8 +72,11 @@ public class Refractor
 
 	public double snellsLaw(Vector normal, Vector rayDir)
 	{
-		double cos = Math.sqrt(1 - Math.pow(this.refractionIndex, 2) * Math.pow(Vector.dotProduct(normal, rayDir), 2));
-
+		double dot = Vector.dotProduct(normal, rayDir);
+		double term = Math.pow(this.refractionIndex, 2) * (1 - Math.pow(dot, 2));
+		double a = 1 - term;
+		System.out.println(a);
+		double cos = Math.sqrt(a);
 		return cos;
 	}
 }

@@ -89,8 +89,6 @@ public abstract class Entity implements Hittable
 	{
 		this.transform = true;
 		this.transformation = transformation;
-
-		System.out.println(this.transformation);
 	}
 
 	@Override

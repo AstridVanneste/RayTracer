@@ -3,6 +3,6 @@
   "roughness": 0.5,
   "refractionIndex": [1.3294, 1.3294, 1.3294],
   "kSpecular": 0.5,
-  "reflectivity": 0.3,
-  "refractivity": 0.0
+  "reflectivity": 0.0,
+  "refractivity": 1.0
 }

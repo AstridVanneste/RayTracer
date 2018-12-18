@@ -59,12 +59,12 @@ public class LightManager
 		scale.add(shade);
 
 		// REFLECTION
-		Color reflection = new Color(this.reflector.calculateReflection(ray, tracer, hit));
-		scale.add(reflection);
+		//Color reflection = new Color(this.reflector.calculateReflection(ray, tracer, hit));
+		//scale.add(reflection);
 
 		// REFRACTION
-		//Color refraction = new Color(this.refractor.calculateRefraction(ray, tracer, hit));
-		//scale.add(refraction);
+		Color refraction = new Color(this.refractor.calculateRefraction(ray, tracer, hit));
+		scale.add(refraction);
 
 		color.scale(scale);
 

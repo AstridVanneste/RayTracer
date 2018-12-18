@@ -69,4 +69,36 @@ public class Material
 	{
 		return this.refractivity;
 	}
+
+	@Override
+	public String toString()
+	{
+		StringBuilder builder = new StringBuilder();
+
+		builder.append("MATERIAL:\n");
+
+		builder.append("roughness:\t");
+		builder.append(this.roughness);
+		builder.append("\n");
+
+		builder.append("kd:\t");
+		builder.append(this.kd);
+		builder.append("\n");
+
+		builder.append("refractionIndex:\t");
+		builder.append(this.refractionIndex[0]);
+		builder.append(this.refractionIndex[1]);
+		builder.append(this.refractionIndex[2]);
+		builder.append("\n");
+
+		builder.append("reflectivity:\t");
+		builder.append(this.reflectivity);
+		builder.append("\n");
+
+		builder.append("refractivity:\t");
+		builder.append(this.refractivity);
+		builder.append("\n");
+
+		return builder.toString();
+	}
 }
