@@ -2,6 +2,7 @@ package RayTracer.Screen;
 
 import Math.Vector;
 import RayTracer.Factories.VectorFactory;
+import RayTracer.Settings;
 import Util.Color;
 
 import java.security.InvalidParameterException;
@@ -22,7 +23,7 @@ public class Pixel
 		this.x = x;
 		this.y = y;
 		this.loc = loc;
-		this.color = Color.DARK_GRAY;
+		this.color = new Color(Settings.BACKGROUND_COLOR);
 	}
 
 	public Color getColor()

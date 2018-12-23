@@ -2,6 +2,7 @@ package RayTracer.Lighting;
 
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
+import RayTracer.Settings;
 import RayTracer.Tracer;
 import Util.Color;
 import Math.Vector;
@@ -43,6 +44,12 @@ public class Reflector
 					color.scale(this.intensity);
 					return color;
 				}
+			}
+			else
+			{
+				Color color = new Color(Settings.BACKGROUND_COLOR);
+				color.scale(this.intensity);
+				return color;
 			}
 		}
 
