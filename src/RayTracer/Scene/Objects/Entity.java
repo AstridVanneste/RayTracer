@@ -38,7 +38,7 @@ public abstract class Entity implements Hittable
 		this.color = Color.LIGHT_GRAY;
 		this.transform = false;
 		this.transformation = new Transformation(Matrix.identityMatrix(4), Matrix.identityMatrix(4));
-		this.lighting = new LightManager(this);		//TODO assign normal
+		this.lighting = new LightManager();		//TODO assign normal
 	}
 
 	public Entity(Color color)
@@ -47,7 +47,7 @@ public abstract class Entity implements Hittable
 		this.color = color;
 		this.transform = false;
 		this.transformation = new Transformation(Matrix.identityMatrix(4), Matrix.identityMatrix(4));
-		this.lighting = new LightManager(this);		//TODO assign normal
+		this.lighting = new LightManager();		//TODO assign normal
 
 	}
 
@@ -57,7 +57,7 @@ public abstract class Entity implements Hittable
 		this.color = color;
 		this.transform = true;
 		this.transformation = transformation;
-		this.lighting = new LightManager(this);		//TODO assign normal
+		this.lighting = new LightManager();		//TODO assign normal
 	}
 
 	public Entity(JSONObject jsonObject, int ID)
@@ -67,7 +67,7 @@ public abstract class Entity implements Hittable
 		this.ID = ID;
 		JSONArray c = jsonObject.getJSONArray(JSON.COLOR);
 		this.color = new Color(c);
-		this.lighting = new LightManager(this, jsonObject.getString(JSON.MATERIAL));
+		this.lighting = new LightManager(jsonObject.getString(JSON.MATERIAL));
 
 		if(jsonObject.has(JSON.TEXTURE))
 		{

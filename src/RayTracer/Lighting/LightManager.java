@@ -35,7 +35,7 @@ public class LightManager
 		this.refractor = new Refractor(0.9, 0.5);
 	}
 
-	public LightManager(Entity entity, String materialName)
+	public LightManager(String materialName)
 	{
 		try
 		{
