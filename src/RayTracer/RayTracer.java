@@ -1,14 +1,12 @@
 package RayTracer;
 
-import RayTracer.Factories.VectorFactory;
 import Math.Vector;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import RayTracer.Hit.Hittable;
 import RayTracer.Scene.Camera;
 import RayTracer.Scene.World;
-import RayTracer.Screen.Pixel;
-import RayTracer.Screen.Screen;
+import RayTracer.Scene.Pixel;
 import Util.PPMWriter;
 import Math.Geometry;
 import Util.SceneParser;
@@ -16,7 +14,6 @@ import Util.SceneParser;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
-import java.security.InvalidParameterException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.util.List;

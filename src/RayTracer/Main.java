@@ -1,11 +1,5 @@
 package RayTracer;
 
-import RayTracer.Factories.VectorFactory;
-import Math.Vector;
-import RayTracer.Scene.World;
-import RayTracer.Screen.Screen;
-import Util.SceneParser;
-
 import javax.swing.*;
 import java.io.IOException;
 

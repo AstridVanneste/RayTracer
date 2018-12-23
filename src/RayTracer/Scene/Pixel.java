@@ -1,4 +1,4 @@
-package RayTracer.Screen;
+package RayTracer.Scene;
 
 import Math.Vector;
 import RayTracer.Factories.VectorFactory;

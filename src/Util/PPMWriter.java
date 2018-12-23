@@ -1,6 +1,6 @@
 package Util;
 
-import RayTracer.Screen.Pixel;
+import RayTracer.Scene.Pixel;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;

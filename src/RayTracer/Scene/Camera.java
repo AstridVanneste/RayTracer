@@ -3,7 +3,6 @@ package RayTracer.Scene;
 import Math.Vector;
 import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.Ray;
-import RayTracer.Screen.Pixel;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
