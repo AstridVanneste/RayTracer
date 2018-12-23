@@ -18,18 +18,9 @@ public class Main
 
 	public static void main(String args[]) throws IOException
 	{
-		// CAMERA
-		Vector eye = VectorFactory.createPointVector(1.5, 4, 4);
-		Vector screenOffset = VectorFactory.createPointVector(-3.25, -1, 0);
-		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.005);
-
-		// READING SCENE
-
-		SceneParser sceneParser = new SceneParser("res/JSON/spheres.json");
-		World world = sceneParser.parseWorld();
 
 		// RAYTRACER
-		RayTracer rayTracer = new RayTracer(eye, screen, world, TRACE_LEVEL);
+		RayTracer rayTracer = new RayTracer("res/JSON/spheres.json");
 
 		// VISUALIZATION
 		JFrame frame = new JFrame("RayTracer");

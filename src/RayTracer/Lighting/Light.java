@@ -2,7 +2,6 @@ package RayTracer.Lighting;
 
 import Math.Vector;
 import RayTracer.Factories.VectorFactory;
-import RayTracer.Scene.Objects.Entity;
 import Util.Color;
 import Util.SceneParser;
 import org.json.JSONObject;
@@ -52,14 +51,14 @@ public class Light
 	{
 		this.color = new Color(jsonObject.getJSONArray(JSON_KEYS.COLOR));
 
-		if(type.equals(SceneParser.Keys.AMBIENT_LIGHT))
+		if(type.equals(SceneParser.JSON.AMBIENT_LIGHT))
 		{
 			this.ambientStrength = jsonObject.getDouble(JSON_KEYS.INTENSITY);
 			this.enableAmbient = true;
 			this.enableDiffuse = false;
 			this.enableSpecular = false;
 		}
-		else if(type.equals(SceneParser.Keys.POINT_LIGHT))
+		else if(type.equals(SceneParser.JSON.POINT_LIGHT))
 		{
 			this.specularStrength =  jsonObject.getDouble(JSON_KEYS.SPECULAR_STRENGTH);
 			this.color.scale(jsonObject.getDouble(JSON_KEYS.INTENSITY));

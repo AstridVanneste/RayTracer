@@ -2,6 +2,7 @@ package Util;
 
 import RayTracer.Hit.Hittable;
 import RayTracer.Lighting.Light;
+import RayTracer.Scene.Camera;
 import RayTracer.Scene.Objects.Cube;
 import RayTracer.Scene.Objects.Mesh;
 import RayTracer.Scene.Objects.Quad;
@@ -9,16 +10,14 @@ import RayTracer.Scene.Objects.Sphere;
 import RayTracer.Scene.World;
 import org.json.JSONArray;
 import org.json.JSONObject;
-import java.io.BufferedReader;
-import java.io.FileReader;
+
 import java.io.IOException;
-import java.security.Key;
 import java.util.ArrayList;
 import java.util.List;
 
 public class SceneParser
 {
-	public class Keys
+	public class JSON
 	{
 		public static final String CAMERA = "camera";
 		public static final String AMBIENT_LIGHT = "global_lights";
@@ -29,8 +28,6 @@ public class SceneParser
 		public static final String QUAD = "quad";
 		public static final String CUBE = "cube";
 		public static final String MESH = "mesh";
-
-
 	}
 
 	private String path;
@@ -38,6 +35,20 @@ public class SceneParser
 	public SceneParser(String path)
 	{
 		this.path = path;
+	}
+
+	public void parseSettings()
+	{
+
+	}
+
+	public Camera parseCamera() throws IOException
+	{
+		String file = IO.readAllLines(this.path);
+
+		JSONObject json = new JSONObject(file);
+
+		return new Camera(json.getJSONObject(JSON.CAMERA));
 	}
 
 	public World parseWorld() throws IOException
@@ -55,25 +66,25 @@ public class SceneParser
 	{
 		List<Hittable> entities = new ArrayList<>();
 
-		JSONArray jsonEntities = json.getJSONArray(Keys.OBJECT);
+		JSONArray jsonEntities = json.getJSONArray(JSON.OBJECT);
 
 		for (int i = 0; i < jsonEntities.length(); i++)
 		{
 			JSONObject jsonEntity = jsonEntities.getJSONObject(i);
-			String type = jsonEntity.getString(Keys.OBJECT_TYPE);
+			String type = jsonEntity.getString(JSON.OBJECT_TYPE);
 
 			switch (type)
 			{
-				case Keys.QUAD:
+				case JSON.QUAD:
 					entities.add(new Quad(jsonEntity, i));
 					break;
-				case Keys.CUBE:
+				case JSON.CUBE:
 					entities.add(new Cube(jsonEntity, i));
 					break;
-				case Keys.SPHERE:
+				case JSON.SPHERE:
 					entities.add(new Sphere(jsonEntity, i));
 					break;
-				case Keys.MESH:
+				case JSON.MESH:
 					entities.add(new Mesh(jsonEntity, i));
 					break;
 				default:
@@ -88,20 +99,20 @@ public class SceneParser
 	{
 		List<Light> lights = new ArrayList<>();
 
-		JSONArray jsonLights = json.getJSONArray(Keys.AMBIENT_LIGHT);
+		JSONArray jsonLights = json.getJSONArray(JSON.AMBIENT_LIGHT);
 
 		for(int i = 0; i < jsonLights.length(); i++)
 		{
 			JSONObject jsonLight = jsonLights.getJSONObject(i);
-			lights.add(new Light(jsonLight, Keys.AMBIENT_LIGHT));
+			lights.add(new Light(jsonLight, JSON.AMBIENT_LIGHT));
 		}
 
-		jsonLights = json.getJSONArray(Keys.POINT_LIGHT);
+		jsonLights = json.getJSONArray(JSON.POINT_LIGHT);
 
 		for(int i = 0; i < jsonLights.length(); i++)
 		{
 			JSONObject jsonLight = jsonLights.getJSONObject(i);
-			lights.add(new Light(jsonLight, Keys.POINT_LIGHT));
+			lights.add(new Light(jsonLight, JSON.POINT_LIGHT));
 		}
 
 		return lights;

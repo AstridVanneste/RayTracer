@@ -7,10 +7,10 @@
 
   "camera":
   {
-    "img_size": [1280, 100],
+    "img_size": [1280, 1000],
     "screen_size": [6.4, 5],
-    "position": [1, 4, 5],
-    "direction": [0, 0, -2]
+    "position": [0.5, 2.0, -0.5],
+    "direction": [0, -0.5, -1]
   },
 
   "global_lights": [
@@ -32,14 +32,14 @@
   "objects": [
     {
       "type": "sphere",
-      "center": [1.2, 2.0, 0.0],
+      "center": [1.2, 2.0, -2.0],
       "radius": 0.4,
       "color": [255, 255, 255],
       "material": "glass"
     },
     {
       "type": "sphere",
-      "center": [0.0, 2.0, 0.0],
+      "center": [0.0, 2.0, -1.7],
       "radius": 0.8,
       "color": [255, 255, 255],
       "material": "glass"

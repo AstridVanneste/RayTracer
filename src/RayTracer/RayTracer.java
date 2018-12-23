@@ -5,14 +5,17 @@ import Math.Vector;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import RayTracer.Hit.Hittable;
+import RayTracer.Scene.Camera;
 import RayTracer.Scene.World;
 import RayTracer.Screen.Pixel;
 import RayTracer.Screen.Screen;
 import Util.PPMWriter;
 import Math.Geometry;
+import Util.SceneParser;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.security.InvalidParameterException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
@@ -21,24 +24,22 @@ import java.util.List;
 
 public class RayTracer extends JPanel implements Tracer
 {
-	private Vector eye;
-	private Screen screen;
+	private Camera camera;
 	private World world;
 	private int traceLevel;
 
 	private List<Pixel> image;
 
-	public RayTracer(Vector eye, Screen screen, World world, int traceLevel) throws InvalidParameterException
+	public RayTracer(String scenePath) throws IOException
 	{
-		if(!VectorFactory.isPoint(eye))
-		{
-			throw new InvalidParameterException("Eye parameter is not a point");
+		SceneParser parser = new SceneParser(scenePath);
 
-		}
-		this.eye = eye;
-		this.world = world;
-		this.screen = screen;
-		this.traceLevel = traceLevel;
+		this.camera = parser.parseCamera();
+		this.world = parser.parseWorld();
+
+		parser.parseSettings();
+
+		this.traceLevel = Settings.TRACE_LEVEL;
 
 		this.image = this.trace();
 
@@ -56,7 +57,7 @@ public class RayTracer extends JPanel implements Tracer
 		{
 			// TODO anti-aliasing by averaging with the surrounding pixels
 			g2d.setColor(pixel.getColor().get());
-			g2d.drawLine(pixel.x(), this.screen.height() - pixel.y(), pixel.x(), this.screen.height() - pixel.y());
+			g2d.drawLine(pixel.x(), this.camera.getImageHeight() - pixel.y(), pixel.x(), this.camera.getImageHeight() - pixel.y());
 		}
 	}
 
@@ -64,7 +65,7 @@ public class RayTracer extends JPanel implements Tracer
 	{
 		System.out.println("TRACING...");
 		long start = System.nanoTime();
-		List<Pixel> pixels = this.screen.getPixels(Screen.PixelOrder.ROW_TDLR);
+		List<Pixel> pixels = this.camera.getPixels();
 		pixels = this.trace(pixels, this.traceLevel);
 		long end = System.nanoTime();
 		System.out.println("FINISHED!");
@@ -78,9 +79,9 @@ public class RayTracer extends JPanel implements Tracer
 		for(Pixel pixel: pixels)
 		{
 			Vector pixelPoint = pixel.getLoc();
-			Vector rayDirection = Vector.subtract(pixelPoint, this.eye);
+			Vector rayDirection = Vector.subtract(pixelPoint, this.camera.getEye());
 
-			Ray ray = new Ray(this.eye, rayDirection);
+			Ray ray = new Ray(this.camera.getEye(), rayDirection);
 
 			HitObject hit = this.trace(ray, traceLevel);
 
@@ -120,7 +121,7 @@ public class RayTracer extends JPanel implements Tracer
 					{
 						closestHit = hit;
 					}
-					else if (Geometry.distance(this.eye, hit.getHitpoint()) < Geometry.distance(this.eye, closestHit.getHitpoint()))
+					else if (Geometry.distance(this.camera.getEye(), hit.getHitpoint()) < Geometry.distance(this.camera.getEye(), closestHit.getHitpoint()))
 					{
 						closestHit = hit;
 					}
@@ -157,7 +158,7 @@ public class RayTracer extends JPanel implements Tracer
 		try
 		{
 			String time = new SimpleDateFormat("yyyy_MM_dd_HH_mm_ss").format(new Timestamp(System.currentTimeMillis()));
-			PPMWriter ppmWriter = new PPMWriter("traces/" + time + ".ppm", PPMWriter.Format.P3, this.screen.width(), this.screen.height());
+			PPMWriter ppmWriter = new PPMWriter("traces/" + time + ".ppm", PPMWriter.Format.P3, this.camera.getImageWidth(), this.camera.getImageHeight());
 			ppmWriter.write(this.image);
 		}
 		catch (Exception e)
