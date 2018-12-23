@@ -3,6 +3,7 @@ package RayTracer.Lighting;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
+import RayTracer.Settings;
 import RayTracer.Tracer;
 import RayTracer.Scene.Objects.Entity;
 import Util.Color;
@@ -20,8 +21,15 @@ public class LightManager
 	public LightManager(Entity entity)
 	{
 		double[] eta = {1000, 11.7077, 3.3385};
-		this.shader = new CookTorranceShader(1.0, 0.5, eta, 0.9);
-		//this.shader = new PhongShader(entity);
+
+		if(Settings.SHADER == ShaderType.COOK_TORRANCE)
+		{
+			this.shader = new CookTorranceShader(1.0, 0.5, eta, 0.9);
+		}
+		else if(Settings.SHADER == ShaderType.PHONG)
+		{
+			this.shader = new PhongShader();
+		}
 
 		this.reflector = new Reflector(0.9);
 		this.refractor = new Refractor(0.9, 0.5);

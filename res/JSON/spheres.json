@@ -2,6 +2,8 @@
   "general":
   {
     "lighting-model": "Cook-Torrance",
+    "trace-depth":3,
+    "background-color": [32, 32, 32],
     "concurrency": -1
   },
 
