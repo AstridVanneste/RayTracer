@@ -82,7 +82,7 @@ public class Plane extends Entity
 		{
 			Vector hitpoint = r.getPoint(k);
 
-			return new HitObject(this, hitpoint, k, this.getColor(), this.normal, k, traceLevel);
+			return new HitObject(this, hitpoint, false, this.getColor(), this.normal, k, traceLevel);
 		}
 		else
 		{

@@ -19,8 +19,8 @@ public class Main
 	public static void main(String args[]) throws IOException
 	{
 		// CAMERA
-		Vector eye = VectorFactory.createPointVector(2, 4, 4);
-		Vector screenOffset = VectorFactory.createPointVector(-3.25, -1, 2);
+		Vector eye = VectorFactory.createPointVector(1.5, 4, 4);
+		Vector screenOffset = VectorFactory.createPointVector(-3.25, -1, 0);
 		Screen screen = new Screen(WIDTH, HEIGHT, screenOffset, 0.005);
 
 		// READING SCENE

@@ -16,8 +16,9 @@ public class HitObject
 	private Vector normal;
 	private double k;
 	private int traceLevel;
+	private boolean insideHit;
 
-	public HitObject(Entity object, Vector hitpoint, double distance, Color color, Vector normal, double k, int traceLevel) throws InvalidParameterException
+	public HitObject(Entity object, Vector hitpoint, boolean insideHit, Color color, Vector normal, double k, int traceLevel) throws InvalidParameterException
 	{
 		if(!VectorFactory.isPoint(hitpoint))
 		{
@@ -30,11 +31,12 @@ public class HitObject
 		this.normal.normalize();
 		this.k = k;
 		this.traceLevel = traceLevel;
+		this.insideHit = insideHit;
 	}
 
 	public HitObject(HitObject hit)
 	{
-		this(hit.object, hit.hitpoint, hit.k, hit.color, hit.normal, hit.k, hit.traceLevel);
+		this(hit.object, hit.hitpoint, hit.insideHit, hit.color, hit.normal, hit.k, hit.traceLevel);
 	}
 
 	public Vector getHitpoint()
@@ -83,8 +85,8 @@ public class HitObject
 		this.normal.normalize();
 	}
 
-	public double getK()
+	public boolean isInsideHit()
 	{
-		return this.k;
+		return this.insideHit;
 	}
 }

@@ -26,6 +26,7 @@ public class Refractor
 
 	public Color calculateRefraction(Ray r, Tracer tracer, HitObject hit)
 	{
+
 		if(this.refractivity > 0.1)
 		{
 			Vector normal = hit.getNormal();
@@ -34,9 +35,19 @@ public class Refractor
 			Vector rayDir = r.getDir();
 			rayDir.normalize();
 
-			Vector refractionOrigin = Vector.add(hit.getHitpoint(), Vector.multiply(hit.getNormal(), 1e-10));
+			double refractionIndex = this.refractionIndex;
+			Vector refractionOrigin;
+			if(hit.isInsideHit())
+			{
+				refractionOrigin = Vector.add(hit.getHitpoint(), Vector.multiply(normal, 1e-10));
+			}
+			else
+			{
+				refractionIndex = 1/refractionIndex;
+				refractionOrigin = Vector.add(hit.getHitpoint(), Vector.multiply(normal, -1e-10));
+			}
 
-			Vector refractionDir = this.getRefractionDirection(normal, rayDir);
+			Vector refractionDir = this.getRefractionDirection(normal, rayDir, refractionIndex);
 
 			Ray refractRay = new Ray(refractionOrigin, refractionDir);
 
@@ -45,11 +56,12 @@ public class Refractor
 			if (refractHit != null)
 			{
 				double distance = Geometry.distance(hit.getHitpoint(), refractHit.getHitpoint());
-
 				if (distance > 1e-10)
 				{
 					Color color = new Color(refractHit.getColor());
+					//System.out.println("1. " + color);
 					color.scale(this.refractivity);
+					//System.out.println("2. " + color);
 					return color;
 				}
 			}
@@ -57,9 +69,10 @@ public class Refractor
 		return new Color(Color.BLACK);
 	}
 
-	public Vector getRefractionDirection(Vector normal, Vector rayDir)
+	public Vector getRefractionDirection(Vector normal, Vector rayDir, double refractionIndex)
 	{
-		double cos = this.snellsLaw(normal, rayDir);
+
+		double cos = this.snellsLaw(normal, rayDir, refractionIndex);
 
 		Vector term1 = Vector.multiply(rayDir, this.refractionIndex);
 		Vector term2 = Vector.multiply(normal, this.refractionIndex * Vector.dotProduct(normal, rayDir) - cos);
@@ -70,12 +83,11 @@ public class Refractor
 		return t;
 	}
 
-	public double snellsLaw(Vector normal, Vector rayDir)
+	public double snellsLaw(Vector normal, Vector rayDir, double refractionIndex)
 	{
 		double dot = Vector.dotProduct(normal, rayDir);
-		double term = Math.pow(this.refractionIndex, 2) * (1 - Math.pow(dot, 2));
+		double term = Math.pow(refractionIndex, 2) * (1 - Math.pow(dot, 2));
 		double a = 1 - term;
-		System.out.println(a);
 		double cos = Math.sqrt(a);
 		return cos;
 	}
