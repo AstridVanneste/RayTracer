@@ -18,7 +18,7 @@ public class LightManager
 	private Reflector reflector;
 	private Refractor refractor;
 
-	public LightManager(Entity entity)
+	public LightManager()
 	{
 		double[] eta = {1000, 11.7077, 3.3385};
 
