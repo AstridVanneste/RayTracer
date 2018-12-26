@@ -135,25 +135,20 @@ public class Mesh extends Entity
 	{
 		HitObject hit = null;
 
-		//return this.boundingBox.internalHit(r);
-		/*if(this.boundingBox.internalHit(r) != null)									// only check all faces if ray hits bounding box
-		{
-			*/
 		double distance = 0;
 		for(Hittable element: this.elements)
 		{
 			HitObject tempHit = element.hit(r, tracer, world, traceLevel);
 
-			if(tempHit != null)
+			if (tempHit != null)
 			{
-				if(Geometry.distance(r.getEye(), tempHit.getHitpoint()) < distance || distance == 0)
+				if (Geometry.distance(r.getEye(), tempHit.getHitpoint()) < distance || distance == 0)
 				{
 					hit = tempHit;
 					distance = Geometry.distance(r.getEye(), tempHit.getHitpoint());
 				}
 			}
 		}
-		//}
 		return hit;
 	}
 

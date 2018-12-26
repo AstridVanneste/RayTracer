@@ -3,6 +3,7 @@ package RayTracer.Scene.Objects;
 import RayTracer.Factories.TransformationFactory;
 import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
+import RayTracer.Hit.Hittable;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
@@ -26,6 +27,56 @@ public class Cube extends Entity
 	}
 
 	public Cube()
+	{
+		this.createUnitCube();
+	}
+
+	public Cube(Polygon sides[], Color color)
+	{
+		this(sides);
+		this.setColor(color);
+	}
+
+	public Cube(JSONObject jsonObject, int ID)
+	{
+		super(jsonObject, ID);
+		this.createUnitCube();
+	}
+
+	@Override
+	public void setColor(Color color)
+	{
+		super.setColor(color);
+
+		for(int i = 0; i < NUMBER_SIDES; i++)
+		{
+			this.sides[i].setColor(color);
+		}
+	}
+
+	@Override
+	public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel)
+	{
+		HitObject hit = null;
+
+		double distance = 0;
+		for(Hittable element: this.sides)
+		{
+			HitObject tempHit = element.hit(r, tracer, world, traceLevel);
+
+			if (tempHit != null)
+			{
+				if (Geometry.distance(r.getEye(), tempHit.getHitpoint()) < distance || distance == 0)
+				{
+					hit = tempHit;
+					distance = Geometry.distance(r.getEye(), tempHit.getHitpoint());
+				}
+			}
+		}
+		return hit;
+	}
+
+	private void createUnitCube()
 	{
 		Quad top = new Quad();
 		top.setTransformation(TransformationFactory.translationTransformation(0, 1, 0));
@@ -60,50 +111,5 @@ public class Cube extends Entity
 		this.sides[3] = right;
 		this.sides[4] = front;
 		this.sides[5] = back;
-	}
-
-	public Cube(Polygon sides[], Color color)
-	{
-		this(sides);
-		this.setColor(color);
-	}
-
-	public Cube(JSONObject jsonObject, int ID)
-	{
-		super(jsonObject, ID);
-		// TODO complete
-	}
-
-	@Override
-	public void setColor(Color color)
-	{
-		super.setColor(color);
-
-		for(int i = 0; i < NUMBER_SIDES; i++)
-		{
-			this.sides[i].setColor(color);
-		}
-	}
-
-	@Override
-	public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel)
-	{
-		HitObject hit = null;
-		for(int i = 0; i < NUMBER_SIDES; i++)
-		{
-			HitObject currentHit = this.sides[i].hit(r, tracer, world, traceLevel);
-			if(currentHit != null)
-			{
-				if (hit == null)
-				{
-					hit = currentHit;
-				} else if (Geometry.distance(r.getEye(), hit.getHitpoint()) > Geometry.distance(r.getEye(), currentHit.getHitpoint()))
-				{
-					hit = currentHit;
-				}
-			}
-		}
-
-		return hit;
 	}
 }

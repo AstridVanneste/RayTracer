@@ -23,7 +23,7 @@ public abstract class Entity implements Hittable
 		public static final String TEXTURE = "texture";
 	}
 
-	private int ID;
+	protected int ID;
 	private LightManager lighting;
 	protected Color color;
 	private boolean transform;
