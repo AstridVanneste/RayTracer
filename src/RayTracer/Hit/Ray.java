@@ -12,6 +12,8 @@ public class Ray
 	private Vector eye;
 	private Vector dir;
 
+	private int originID;
+
 	public Ray(Vector eye, Vector dir)
 	{
 		if(VectorFactory.isPoint(eye))
@@ -31,12 +33,21 @@ public class Ray
 		{
 			throw new InvalidParameterException("Direction should be a vector but is " + dir);
 		}
+
+		this.originID = -1;
+	}
+
+	public Ray(Vector eye, Vector dir, int originID)
+	{
+		this(eye, dir);
+		this.originID = originID;
 	}
 
 	public Ray(Ray r)
 	{
 		this.eye = r.eye;
 		this.dir = r.dir;
+		this.originID = r.originID;
 	}
 
 	public Vector getEye()
@@ -68,6 +79,11 @@ public class Ray
 	{
 		this.eye = transformation.inverse(this.eye);
 		this.dir = transformation.inverse(this.dir);
+	}
+
+	public int getOriginID()
+	{
+		return this.originID;
 	}
 
 	@Override

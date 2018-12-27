@@ -30,7 +30,7 @@ public class Reflector
 
 			Vector reflectionDir = Geometry.reflect(r.getDir(), hit.getNormal());
 
-			Ray reflection = new Ray(reflectionOrigin, reflectionDir);
+			Ray reflection = new Ray(reflectionOrigin, reflectionDir, hit.getObject().getID());
 
 			HitObject reflectionHit = tracer.trace(reflection, hit.getTraceLevel() - 1);
 

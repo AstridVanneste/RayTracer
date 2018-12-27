@@ -38,7 +38,7 @@ public class Refractor
 
 			double refractionIndex = this.refractionIndex;
 			Vector refractionOrigin;
-			if(hit.isInsideHit())
+			if(hit.getObject().getID() == r.getOriginID())
 			{
 				refractionOrigin = Vector.add(hit.getHitpoint(), Vector.multiply(normal, 1e-10));
 			}
@@ -50,7 +50,7 @@ public class Refractor
 
 			Vector refractionDir = this.getRefractionDirection(normal, rayDir, refractionIndex);
 
-			Ray refractRay = new Ray(refractionOrigin, refractionDir);
+			Ray refractRay = new Ray(refractionOrigin, refractionDir, hit.getObject().getID());
 
 			HitObject refractHit = tracer.trace(refractRay, hit.getTraceLevel() - 1);
 
