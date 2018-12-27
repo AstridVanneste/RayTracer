@@ -4,10 +4,7 @@ import RayTracer.Hit.Hittable;
 import RayTracer.Lighting.Light;
 import RayTracer.Lighting.ShaderType;
 import RayTracer.Scene.Camera;
-import RayTracer.Scene.Objects.Cube;
-import RayTracer.Scene.Objects.Mesh;
-import RayTracer.Scene.Objects.Quad;
-import RayTracer.Scene.Objects.Sphere;
+import RayTracer.Scene.Objects.*;
 import RayTracer.Scene.World;
 import RayTracer.Settings;
 import org.json.JSONArray;
@@ -32,6 +29,7 @@ public class SceneParser
 		public static final String QUAD = "quad";
 		public static final String CUBE = "cube";
 		public static final String MESH = "mesh";
+		public static final String CYLINDER = "cylinder";
 
 		public class SETTINGS
 		{
@@ -112,6 +110,9 @@ public class SceneParser
 					break;
 				case JSON.MESH:
 					entities.add(new Mesh(jsonEntity, i));
+					break;
+				case JSON.CYLINDER:
+					entities.add(new Cylinder(jsonEntity, i));
 					break;
 				default:
 					System.out.println("Unknown Entity type: " + type);

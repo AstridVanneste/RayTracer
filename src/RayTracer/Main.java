@@ -14,7 +14,7 @@ public class Main
 	{
 
 		// RAYTRACER
-		RayTracer rayTracer = new RayTracer("res/JSON/spheres.json");
+		RayTracer rayTracer = new RayTracer("res/JSON/test.json");
 
 		// VISUALIZATION
 		JFrame frame = new JFrame("RayTracer");
@@ -25,6 +25,4 @@ public class Main
 		frame.setVisible(true);
 		frame.setResizable(false);
 	}
-
-
 }

@@ -51,7 +51,6 @@ public class Sphere extends Entity
 	@Override
 	public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel)
 	{
-		boolean insideHit = false;
 
 		double A = Vector.dotProduct(r.getDir(), r.getDir());
 		double B = Vector.dotProduct(r.getDir(), r.getEye());
@@ -87,12 +86,10 @@ public class Sphere extends Entity
 			else if(compareK1)
 			{
 				k = k2;
-				insideHit = true;
 			}
 			else if(compareK2)
 			{
 				k = k1;
-				insideHit = true;
 			}
 			else
 			{
@@ -101,6 +98,6 @@ public class Sphere extends Entity
 		}
 
 		Vector hitpoint = r.getPoint(k);
-		return new HitObject(this, hitpoint, insideHit, this.color, hitpoint,k, traceLevel);
+		return new HitObject(this, hitpoint, this.color, hitpoint,k, traceLevel);
 	}
 }
