@@ -38,26 +38,7 @@ public abstract class Entity implements Hittable
 		this.color = Color.LIGHT_GRAY;
 		this.transform = false;
 		this.transformation = new Transformation(Matrix.identityMatrix(4), Matrix.identityMatrix(4));
-		this.lighting = new LightManager();		//TODO assign normal
-	}
-
-	public Entity(Color color)
-	{
-		this.ID = 0;
-		this.color = color;
-		this.transform = false;
-		this.transformation = new Transformation(Matrix.identityMatrix(4), Matrix.identityMatrix(4));
-		this.lighting = new LightManager();		//TODO assign normal
-
-	}
-
-	public Entity(Color color, Transformation transformation)
-	{
-		this.ID = 0;
-		this.color = color;
-		this.transform = true;
-		this.transformation = transformation;
-		this.lighting = new LightManager();		//TODO assign normal
+		this.lighting = new LightManager();
 	}
 
 	public Entity(JSONObject jsonObject, int ID)
@@ -73,6 +54,9 @@ public abstract class Entity implements Hittable
 		{
 			this.texture = TextureFactory.get(jsonObject.getJSONObject(JSON.TEXTURE));
 		}
+
+
+		// todo parse transformations
 	}
 
 	protected Color getColor()
@@ -123,6 +107,8 @@ public abstract class Entity implements Hittable
 			{
 				hit.setColor(this.texture.sample(hit.getHitpoint()));
 			}
+
+			hit.setObject(this);
 		}
 		return hit;
 	}

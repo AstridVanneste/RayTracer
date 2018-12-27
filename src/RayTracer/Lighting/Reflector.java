@@ -10,11 +10,11 @@ import Math.Geometry;
 
 public class Reflector
 {
-	private double intensity;
+	private double reflectivity;
 
-	public Reflector(double intensity)
+	public Reflector(double reflectivity)
 	{
-		this.intensity = intensity;
+		this.reflectivity = reflectivity;
 	}
 
 	public Reflector(Material material)
@@ -24,7 +24,7 @@ public class Reflector
 
 	public Color calculateReflection(Ray r, Tracer tracer, HitObject hit)
 	{
-		if(this.intensity > 0.1)
+		if(this.reflectivity > 0.1)
 		{
 			Vector reflectionOrigin = Vector.add(hit.getHitpoint(), Vector.multiply(hit.getNormal(), 1e-10));
 
@@ -41,14 +41,14 @@ public class Reflector
 				if (distance > 1e-10)
 				{
 					Color color = new Color(reflectionHit.getColor());
-					color.scale(this.intensity);
+					color.scale(this.reflectivity);
 					return color;
 				}
 			}
 			else
 			{
 				Color color = new Color(Settings.BACKGROUND_COLOR);
-				color.scale(this.intensity);
+				color.scale(this.reflectivity);
 				return color;
 			}
 		}

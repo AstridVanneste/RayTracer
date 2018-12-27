@@ -31,8 +31,8 @@ public class LightManager
 			this.shader = new PhongShader();
 		}
 
-		this.reflector = new Reflector(0.9);
-		this.refractor = new Refractor(0.9, 0.5);
+		this.reflector = new Reflector(0.0);
+		this.refractor = new Refractor(0.0, 0.0);
 	}
 
 	public LightManager(String materialName)

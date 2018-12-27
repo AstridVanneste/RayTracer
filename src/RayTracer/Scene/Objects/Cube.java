@@ -41,6 +41,7 @@ public class Cube extends Entity
 	{
 		super(jsonObject, ID);
 		this.createUnitCube();
+		this.setColor(this.color);
 	}
 
 	@Override

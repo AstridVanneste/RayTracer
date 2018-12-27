@@ -89,4 +89,9 @@ public class HitObject
 	{
 		return this.insideHit;
 	}
+
+	public void setObject(Entity object)
+	{
+		this.object = object;
+	}
 }
