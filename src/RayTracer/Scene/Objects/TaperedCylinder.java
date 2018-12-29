@@ -15,7 +15,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 
-public class Cylinder extends Entity
+public class TaperedCylinder extends Entity
 {
 	private class JSON
 	{
@@ -27,7 +27,7 @@ public class Cylinder extends Entity
 
 	private double s;
 
-	public Cylinder(JSONObject json, int ID)
+	public TaperedCylinder(JSONObject json, int ID)
 	{
 		super(json, ID);
 		this.base = new Plane(VectorFactory.createVector(0.0, 1.0, 0.0), VectorFactory.createPointVector(0.0, 1.0, 0.0));

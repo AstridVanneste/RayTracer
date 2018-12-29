@@ -13,7 +13,6 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 public class SceneParser
 {
@@ -112,7 +111,7 @@ public class SceneParser
 					entities.add(new Mesh(jsonEntity, i));
 					break;
 				case JSON.CYLINDER:
-					entities.add(new Cylinder(jsonEntity, i));
+					entities.add(new TaperedCylinder(jsonEntity, i));
 					break;
 				default:
 					System.out.println("Unknown Entity type: " + type);
