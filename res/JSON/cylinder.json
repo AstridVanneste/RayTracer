@@ -45,7 +45,7 @@
         },
         {
             "type": "cylinder",
-            "material": "custom",
+            "material": "glass",
             "s": 0.0,
             "color": [255, 0, 0]
         }

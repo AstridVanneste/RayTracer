@@ -133,7 +133,7 @@ public class TaperedCylinder extends Entity
 		}
 		if(Compare.compare(discriminant, 0.0) == 0)
 		{
-			k = -B/A;
+			k = -B/(2*A);
 		}
 		if(Compare.compare(discriminant, 0.0) > 0)
 		{
