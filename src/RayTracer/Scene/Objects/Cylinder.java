@@ -27,8 +27,8 @@ public class Cylinder extends Entity
 	public Cylinder(JSONObject json, int ID)
 	{
 		super(json, ID);
-		this.base = new Plane(VectorFactory.createVector(0.0, 0.0, -1.0), VectorFactory.createPointVector(0.0, 0.0, 0.0));
-		this.top = new Plane(VectorFactory.createVector(0.0, 0.0, 1.0), VectorFactory.createPointVector(0.0, 1.0, 0.0));
+		this.base = new Plane(VectorFactory.createVector(0.0, 0.0, 0.0), VectorFactory.createPointVector(0.0, -1.0, 0.0));
+		this.top = new Plane(VectorFactory.createVector(0.0, 1.0, 0.0), VectorFactory.createPointVector(0.0, 1.0, 0.0));
 
 		this.s = json.getDouble(JSON.S);
 	}
@@ -72,7 +72,7 @@ public class Cylinder extends Entity
 		{
 			Vector hitpoint = baseHit.getHitpoint();
 
-			if(hitpoint.length() < 1)
+			if(hitpoint.get(0) * hitpoint.get(0) + hitpoint.get(2) * hitpoint.get(2) < 1)
 			{
 				System.out.println("basehit");
 				return baseHit;
@@ -90,9 +90,9 @@ public class Cylinder extends Entity
 		{
 			Vector hitpoint = baseHit.getHitpoint();
 
-			if(hitpoint.length() < Math.pow(this.s, 2))
+			if( hitpoint.get(0) * hitpoint.get(0) + hitpoint.get(2) * hitpoint.get(2) < this.s * this.s)
 			{
-				System.out.println("tophit");
+				//System.out.println("tophit");
 				return baseHit;
 			}
 		}
@@ -106,19 +106,16 @@ public class Cylinder extends Entity
 		rayDir.normalize();
 		Vector eye = r.getEye();
 
-		double d = (this.s - 1) * rayDir.get(1);
-		double F = (this.s - 1) * eye.get(1);
+		double A = rayDir.get(0)*rayDir.get(0) + rayDir.get(2)*rayDir.get(2);
+		double B = 2 * (eye.get(0) * rayDir.get(0) + eye.get(2) * rayDir.get(2));
+		double C = eye.get(0)*eye.get(0) + eye.get(2) * eye.get(2) - this.s * this.s;
 
-		double A = Math.pow(rayDir.get(0), 2) + Math.pow(rayDir.get(2), 2) - Math.pow(d, 2);
-		double B = eye.get(0) * rayDir.get(0) + eye.get(2) * rayDir.get(2) - F * d;
-		double C = Math.pow(eye.get(0), 2) + Math.pow(eye.get(2), 2) - Math.pow(F, 2);
+		double discriminant = B * B - 4 * A * C;
 
-		double discriminant = Math.pow(B, 2) - 4 * A * C;
-
-		System.out.println("A = " + A);
+		/*System.out.println("A = " + A);
 		System.out.println("B = " + B);
 		System.out.println("C = " + C);
-		System.out.println("discriminant = " + discriminant);
+		System.out.println("discriminant = " + discriminant);*/
 
 		double k = 0.0;
 
@@ -159,12 +156,12 @@ public class Cylinder extends Entity
 
 		Vector hitpoint = r.getPoint(k);
 
-		if(hitpoint.get(2) < 1 && hitpoint.get(2) > 0)
+		if(0 <= hitpoint.get(1) && hitpoint.get(1) <= 1)
 		{
-			System.out.println("wall hit");
+			//System.out.println("wall hit");
 			double y = -(this.s - 1) * (1 + (this.s - 1) * hitpoint.get(1));
 
-			Vector normal = VectorFactory.createVector(hitpoint.get(0), y, hitpoint.get(2));
+			Vector normal = VectorFactory.createVector(hitpoint.get(0), 0.0, hitpoint.get(2));
 
 			return new HitObject(this, hitpoint, this.color, normal, k, traceLevel);
 		}

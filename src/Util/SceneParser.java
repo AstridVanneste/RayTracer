@@ -35,7 +35,7 @@ public class SceneParser
 		{
 			public static final String LIGHTING_MODEL = "lighting-model";
 			public static final String TRACE_DEPTH = "trace-depth";
-			public static final String BACKGROUND_COLOR = "background-color";
+			public static final String BACKGROUND_COLOR = "background";
 		}
 	}
 
