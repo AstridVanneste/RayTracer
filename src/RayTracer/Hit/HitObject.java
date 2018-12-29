@@ -88,4 +88,9 @@ public class HitObject
 	{
 		this.object = object;
 	}
+
+	public double getK()
+	{
+		return this.k;
+	}
 }

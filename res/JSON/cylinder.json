@@ -39,15 +39,15 @@
             "material": "custom",
             "texture":
             {
-                "type": "checkerboard",
+                "type": "sine-normal",
                 "size": [0.3, 0.3, 0.3]
             }
         },
         {
             "type": "cylinder",
-            "material": "glass",
-            "s": 0.0,
-            "color": [255, 0, 0]
+            "material": "custom",
+            "s": 1.0,
+            "color": [255, 0, 255]
         }
     ]
 }

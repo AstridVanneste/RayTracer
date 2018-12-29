@@ -1,5 +1,6 @@
 package RayTracer.Scene.Textures.SolidTextures;
 
+import RayTracer.Hit.HitObject;
 import RayTracer.Scene.Textures.Texture;
 import Util.Color;
 import Math.Vector;
@@ -26,16 +27,19 @@ public class CheckerBoard implements Texture
 	}
 
 	@Override
-	public Color sample(Vector position)
+	public HitObject sample(HitObject hit)
 	{
-		if(this.jump(position))
+		Color color;
+		if(this.jump(hit.getHitpoint()))
 		{
-			return new Color(Color.RED);
+			color = new Color(Color.RED);
 		}
 		else
 		{
-			return new Color(Color.BLUE);
+			color =  new Color(Color.BLUE);
 		}
+
+		return new HitObject(hit.getObject(), hit.getHitpoint(), color, hit.getNormal(), hit.getK(), hit.getTraceLevel());
 	}
 
 	public boolean jump(Vector position)
