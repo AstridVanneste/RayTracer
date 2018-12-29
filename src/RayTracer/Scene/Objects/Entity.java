@@ -107,6 +107,10 @@ public abstract class Entity implements Hittable
 			{
 				hit.setColor(this.texture.sample(hit.getHitpoint()));
 			}
+			else
+			{
+				hit.setColor(this.color);
+			}
 
 			hit.setObject(this);
 		}

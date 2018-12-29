@@ -1,5 +1,6 @@
 package RayTracer.Scene.Objects;
 
+import RayTracer.Factories.TransformationFactory;
 import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
@@ -8,6 +9,8 @@ import RayTracer.Tracer;
 import Math.Vector;
 import Math.Compare;
 import Math.Geometry;
+import RayTracer.Transformation;
+import Util.Color;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
@@ -27,7 +30,9 @@ public class Cylinder extends Entity
 	public Cylinder(JSONObject json, int ID)
 	{
 		super(json, ID);
-		this.base = new Plane(VectorFactory.createVector(0.0, 0.0, 0.0), VectorFactory.createPointVector(0.0, -1.0, 0.0));
+		this.base = new Plane(VectorFactory.createVector(0.0, 1.0, 0.0), VectorFactory.createPointVector(0.0, 1.0, 0.0));
+		Transformation transformation = TransformationFactory.translationTransformation(0.0, -1.0, 0.0);
+		this.base.setTransformation(transformation);
 		this.top = new Plane(VectorFactory.createVector(0.0, 1.0, 0.0), VectorFactory.createPointVector(0.0, 1.0, 0.0));
 
 		this.s = json.getDouble(JSON.S);
@@ -74,11 +79,11 @@ public class Cylinder extends Entity
 
 			if(hitpoint.get(0) * hitpoint.get(0) + hitpoint.get(2) * hitpoint.get(2) < 1)
 			{
-				System.out.println("basehit");
+				//System.out.println("basehit");
+				baseHit.setColor(Color.GREEN);
 				return baseHit;
 			}
 		}
-
 		return null;
 	}
 
@@ -106,9 +111,12 @@ public class Cylinder extends Entity
 		rayDir.normalize();
 		Vector eye = r.getEye();
 
-		double A = rayDir.get(0)*rayDir.get(0) + rayDir.get(2)*rayDir.get(2);
-		double B = 2 * (eye.get(0) * rayDir.get(0) + eye.get(2) * rayDir.get(2));
-		double C = eye.get(0)*eye.get(0) + eye.get(2) * eye.get(2) - this.s * this.s;
+		double d = (this.s - 1) * rayDir.get(1);
+		double F = 1 + (this.s - 1) * eye.get(1);
+
+		double A = rayDir.get(0) * rayDir.get(0) + rayDir.get(2) * rayDir.get(2) - d * d;
+		double B = 2 * (eye.get(0) * rayDir.get(0) + eye.get(2) * rayDir.get(2)  - F * d);
+		double C = eye.get(0) * eye.get(0) + eye.get(2) * eye.get(2) - F * F;
 
 		double discriminant = B * B - 4 * A * C;
 
@@ -129,8 +137,8 @@ public class Cylinder extends Entity
 		}
 		if(Compare.compare(discriminant, 0.0) > 0)
 		{
-			double k1 = (-B + Math.sqrt(discriminant))/(A);
-			double k2 = (-B - Math.sqrt(discriminant))/(A);
+			double k1 = (-B + Math.sqrt(discriminant))/(2*A);
+			double k2 = (-B - Math.sqrt(discriminant))/(2*A);
 
 			// hits behind eye
 			boolean compareK1 = Double.compare(k1, 0.0) < 0;
@@ -161,7 +169,7 @@ public class Cylinder extends Entity
 			//System.out.println("wall hit");
 			double y = -(this.s - 1) * (1 + (this.s - 1) * hitpoint.get(1));
 
-			Vector normal = VectorFactory.createVector(hitpoint.get(0), 0.0, hitpoint.get(2));
+			Vector normal = VectorFactory.createVector(hitpoint.get(0), y, hitpoint.get(2));
 
 			return new HitObject(this, hitpoint, this.color, normal, k, traceLevel);
 		}
