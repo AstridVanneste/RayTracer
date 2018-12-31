@@ -44,7 +44,12 @@
       "center": [0.0, 2.0, -1.7],
       "radius": 0.8,
       "color": [255, 255, 255],
-      "material": "glass"
+      "material": "glass",
+      "texture":
+      {
+        "type": "bump",
+        "size": [0.3, 0.3, 0.3]
+      }
     },
     {
       "type": "quad",

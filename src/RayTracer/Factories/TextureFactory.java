@@ -1,5 +1,6 @@
 package RayTracer.Factories;
 
+import RayTracer.Scene.Textures.SolidTextures.Bumps;
 import RayTracer.Scene.Textures.SolidTextures.CheckerBoard;
 import RayTracer.Scene.Textures.SolidTextures.RandomNormalAlteration;
 import RayTracer.Scene.Textures.SolidTextures.SinusoidNormalAlteration;
@@ -20,6 +21,7 @@ public class TextureFactory
 		public static final String CHECKERBOARD = "checkerboard";
 		public static final String RANDOM_NORMAL = "random-normal";
 		public static final String SINE_NORMAL = "sine-normal";
+		public static final String BUMP = "bump";
 	}
 
 	public static Texture get(JSONObject jsonObject)
@@ -33,6 +35,8 @@ public class TextureFactory
 				return new RandomNormalAlteration();
 			case TEXTURES.SINE_NORMAL:
 				return new SinusoidNormalAlteration();
+			case TEXTURES.BUMP:
+				return new Bumps();
 			default:
 				throw new InvalidParameterException(type + " is not a know texture type");
 		}
