@@ -2,6 +2,7 @@ package RayTracer.Factories;
 
 import Math.Matrix;
 import Math.Vector;
+import Math.Utils;
 import RayTracer.Transformation;
 import javafx.util.Pair;
 import org.json.JSONArray;
@@ -54,6 +55,7 @@ public class TransformationFactory
 			case JSON.ROTATION:
 				Vector axis = new Vector(json.getJSONArray(JSON.AXIS));
 				double angle = json.getDouble(JSON.ANGLE);
+				angle = Utils.degToRad(angle);
 				return rotationTransformation(axis, angle);
 			case JSON.SCALING:
 				value = json.getJSONArray(JSON.VALUE);

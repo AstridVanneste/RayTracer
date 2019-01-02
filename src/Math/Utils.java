@@ -6,4 +6,9 @@ public class Utils
 	{
 		return ( ( x || y ) && ! ( x && y ) );
 	}
+
+	public static double degToRad(double angle)
+	{
+		return (angle * Math.PI)/180;
+	}
 }
