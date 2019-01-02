@@ -28,7 +28,7 @@ public class TaperedCylinder extends Entity
 	public TaperedCylinder(JSONObject json, int ID)
 	{
 		super(json, ID);
-		this.base = new Plane(VectorFactory.createVector(0.0, 0.0, 0.0), VectorFactory.createPointVector(0.0, -1.0, 0.0));
+		this.base = new Plane(VectorFactory.createVector(0.0, -1.0, 0.0), VectorFactory.createPointVector(0.0, 0.0, 0.0));
 		this.top = new Plane(VectorFactory.createVector(0.0, 1.0, 0.0), VectorFactory.createPointVector(0.0, 1.0, 0.0));
 
 		this.s = json.getDouble(JSON.S);
