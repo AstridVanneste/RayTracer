@@ -33,24 +33,10 @@
 
     "objects": [
         {
-            "type": "quad",
-            "vertices": [[-3.5, -0.5, -3.5], [-3.5, -0.5, 3.5], [3.5, -0.5, 3.5], [3.5, -0.5, -3.5]],
-            "color": [128, 192, 255],
-            "material": "custom"
-        },
-        {
             "type": "cylinder",
             "material": "custom",
             "s": 1.0,
             "color": [255, 255, 255],
-            "transforms":
-            [
-                {
-                    "type": "rot",
-                    "axis": [1, 0, 0],
-                    "angle": 3.15
-                }
-            ]
         }
     ]
 }

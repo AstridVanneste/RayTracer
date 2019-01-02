@@ -1,6 +1,5 @@
 package RayTracer.Scene.Objects;
 
-import RayTracer.Factories.TransformationFactory;
 import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Ray;
@@ -9,7 +8,6 @@ import RayTracer.Tracer;
 import Math.Vector;
 import Math.Compare;
 import Math.Geometry;
-import RayTracer.Transformation;
 import Util.Color;
 import org.json.JSONObject;
 
