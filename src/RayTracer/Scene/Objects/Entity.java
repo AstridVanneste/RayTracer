@@ -1,6 +1,7 @@
 package RayTracer.Scene.Objects;
 
 import RayTracer.Factories.TextureFactory;
+import RayTracer.Factories.TransformationFactory;
 import RayTracer.Hit.HitObject;
 import RayTracer.Hit.Hittable;
 import RayTracer.Hit.Ray;
@@ -21,6 +22,7 @@ public abstract class Entity implements Hittable
 		public static final String COLOR = "color";
 		public static final String MATERIAL = "material";
 		public static final String TEXTURE = "texture";
+		public static final String TRANSFORMATION = "transforms";
 	}
 
 	protected int ID;
@@ -53,6 +55,11 @@ public abstract class Entity implements Hittable
 		if(jsonObject.has(JSON.TEXTURE))
 		{
 			this.texture = TextureFactory.get(jsonObject.getJSONObject(JSON.TEXTURE));
+		}
+
+		if(jsonObject.has(JSON.TRANSFORMATION))
+		{
+			this.setTransformation(TransformationFactory.transformation(jsonObject.getJSONArray(JSON.TRANSFORMATION)));
 		}
 
 

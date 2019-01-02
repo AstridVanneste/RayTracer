@@ -18,22 +18,28 @@ public class TransformationFactory
 
 	private class JSON
 	{
-		public static final String TRANSLATION = "translation";
-		public static final String ROTATION = "rotation";
+		public static final String TRANSLATION = "trans";
+		public static final String ROTATION = "rot";
 		public static final String SCALING = "scaling";
 		public static final String TYPE = "type";
+		public static final String VALUE = "val";
+		public static final String AXIS = "axis";
+		public static final String ANGLE = "angle";
 	}
 
 	public static Transformation transformation(JSONArray json)
 	{
+		Transformation transformation = new Transformation();
+
 		for(int i = 0; i < json.length(); i++)
 		{
-			JSONObject transformation = json.getJSONObject(i);
-
-			// TODO finish
+			JSONObject transf = json.getJSONObject(i);
+			transformation.add(transformation(transf));
 		}
 
-		return new Transformation();
+		System.out.println(transformation);
+
+		return transformation;
 	}
 
 	public static Transformation transformation(JSONObject json)
@@ -43,10 +49,18 @@ public class TransformationFactory
 		switch(type)
 		{
 			case JSON.TRANSLATION:
-
+				JSONArray value = json.getJSONArray(JSON.VALUE);
+				return translationTransformation(value.getDouble(0), value.getDouble(1), value.getDouble(2));
+			case JSON.ROTATION:
+				Vector axis = new Vector(json.getJSONArray(JSON.AXIS));
+				double angle = json.getDouble(JSON.ANGLE);
+				return rotationTransformation(axis, angle);
+			case JSON.SCALING:
+				value = json.getJSONArray(JSON.VALUE);
+				return scalingTransformation(value.getDouble(0), value.getDouble(1), value.getDouble(2));
+			default:
+				System.out.println("Unknown transformation type: " + type);
 		}
-
-		// TODO finish
 
 		return new Transformation();
 	}

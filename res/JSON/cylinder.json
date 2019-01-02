@@ -26,7 +26,7 @@
         {
             "color": [255, 255, 255],
             "intensity": 1.0,
-            "position": [0, 0, 6],
+            "position": [0, 6, 0],
             "specular_strength": 0.8
         }
     ],
@@ -36,18 +36,21 @@
             "type": "quad",
             "vertices": [[-3.5, -0.5, -3.5], [-3.5, -0.5, 3.5], [3.5, -0.5, 3.5], [3.5, -0.5, -3.5]],
             "color": [128, 192, 255],
-            "material": "silver"
+            "material": "custom"
         },
         {
             "type": "cylinder",
-            "material": "water",
+            "material": "custom",
             "s": 1.0,
             "color": [255, 255, 255],
-            "texture":
-            {
-                "type": "bump",
-                "size": [0.3, 0.3, 0.3]
-            }
+            "transforms":
+            [
+                {
+                    "type": "rot",
+                    "axis": [1, 0, 0],
+                    "angle": 3.15
+                }
+            ]
         }
     ]
 }

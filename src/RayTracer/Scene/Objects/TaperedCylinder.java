@@ -30,9 +30,7 @@ public class TaperedCylinder extends Entity
 	public TaperedCylinder(JSONObject json, int ID)
 	{
 		super(json, ID);
-		this.base = new Plane(VectorFactory.createVector(0.0, 1.0, 0.0), VectorFactory.createPointVector(0.0, 1.0, 0.0));
-		Transformation transformation = TransformationFactory.translationTransformation(0.0, -1.0, 0.0);
-		this.base.setTransformation(transformation);
+		this.base = new Plane(VectorFactory.createVector(0.0, 0.0, 0.0), VectorFactory.createPointVector(0.0, -1.0, 0.0));
 		this.top = new Plane(VectorFactory.createVector(0.0, 1.0, 0.0), VectorFactory.createPointVector(0.0, 1.0, 0.0));
 
 		this.s = json.getDouble(JSON.S);
@@ -120,11 +118,6 @@ public class TaperedCylinder extends Entity
 
 		double discriminant = B * B - 4 * A * C;
 
-		/*System.out.println("A = " + A);
-		System.out.println("B = " + B);
-		System.out.println("C = " + C);
-		System.out.println("discriminant = " + discriminant);*/
-
 		double k = 0.0;
 
 		if(Compare.compare(discriminant, 0.0) < 0)
@@ -135,7 +128,7 @@ public class TaperedCylinder extends Entity
 		{
 			k = -B/(2*A);
 		}
-		if(Compare.compare(discriminant, 0.0) > 0)
+		else if(Compare.compare(discriminant, 0.0) > 0)
 		{
 			double k1 = (-B + Math.sqrt(discriminant))/(2*A);
 			double k2 = (-B - Math.sqrt(discriminant))/(2*A);
@@ -166,7 +159,6 @@ public class TaperedCylinder extends Entity
 
 		if(0 <= hitpoint.get(1) && hitpoint.get(1) <= 1)
 		{
-			//System.out.println("wall hit");
 			double y = -(this.s - 1) * (1 + (this.s - 1) * hitpoint.get(1));
 
 			Vector normal = VectorFactory.createVector(hitpoint.get(0), y, hitpoint.get(2));
