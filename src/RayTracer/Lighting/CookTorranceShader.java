@@ -187,7 +187,6 @@ public class CookTorranceShader extends Shader
 		return Math.min(Math.min(1.0, Gm), Gs);
 	}
 
-	// TODO can be more efficient by combining with calc of mask geometry factor
 	private double calcShadeGeometryFactor(Vector surfaceNormal, Vector halfway, Vector viewDir, Vector lightDir)
 	{
 		double numerator = 2 * Vector.dotProduct(surfaceNormal, halfway) * Vector.dotProduct(surfaceNormal, viewDir);

@@ -33,7 +33,6 @@ public abstract class Entity implements Hittable
 	private Texture texture;
 
 
-	// TODO fix ID's
 	public Entity()
 	{
 		this.ID = 0;
@@ -61,9 +60,6 @@ public abstract class Entity implements Hittable
 		{
 			this.setTransformation(TransformationFactory.transformation(jsonObject.getJSONArray(JSON.TRANSFORMATION)));
 		}
-
-
-		// todo parse transformations
 	}
 
 	protected Color getColor()

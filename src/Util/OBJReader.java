@@ -22,8 +22,6 @@ public class OBJReader
 
 	public static Mesh read(String path)
 	{
-		// TODO check file path stuffs
-
 		try
 		{
 			BufferedReader reader = new BufferedReader(new FileReader(path));

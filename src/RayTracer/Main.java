@@ -14,7 +14,7 @@ public class Main
 	{
 
 		// RAYTRACER
-		RayTracer rayTracer = new RayTracer("res/JSON/cylinder.json");
+		RayTracer rayTracer = new RayTracer("res/JSON/spheres.json");
 
 		// VISUALIZATION
 		JFrame frame = new JFrame("RayTracer");

@@ -11,8 +11,8 @@
     {
         "img_size": [1280, 1000],
         "screen_size": [1.6, 0.9],
-        "position": [0.0, 10.0, 15.0],
-        "direction": [0.0, -1.0, -1.5]
+        "position": [0.0, 7.0, 15],
+        "direction": [0.0, -0.7, -1.5]
     },
 
     "global_lights": [
@@ -33,10 +33,28 @@
 
     "objects": [
         {
-            "type": "cylinder",
+            "type": "quad",
+            "vertices": [[-3.5, -1.0, -3.0], [-3.5, -1.0, 3.0], [3.5, -1.0, 3.0], [3.5, -1.0, -3.0]],
+            "color": [255, 0, 255],
             "material": "custom",
-            "s": 1.0,
-            "color": [255, 255, 255]
+            "texture":
+            {
+                "type": "checkerboard",
+                "size": [0.3, 0.3, 0.3]
+            }
+        },
+        {
+            "type": "cylinder",
+            "material": "water",
+            "s": 0.0,
+            "color": [255, 255, 255],
+            "transforms":
+            [
+                {
+                    "type": "trans",
+                    "val": [0, 0, 0]
+                }
+            ]
         }
     ]
 }

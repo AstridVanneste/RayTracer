@@ -21,7 +21,7 @@ public class HitObject
 	{
 		if(!VectorFactory.isPoint(hitpoint))
 		{
-			throw new InvalidParameterException("Hitpoint parameter is not a point");
+			throw new InvalidParameterException("Hitpoint parameter is not a point" + hitpoint);
 		}
 		this.object = object;
 		this.hitpoint = new Vector(hitpoint);
@@ -40,15 +40,6 @@ public class HitObject
 	public Vector getHitpoint()
 	{
 		return this.hitpoint;
-	}
-
-	public void setHitpoint(Vector hitpoint) throws InvalidParameterException
-	{
-		if(!VectorFactory.isPoint(hitpoint))
-		{
-			throw new InvalidParameterException("Hitpoint parameter is not a point");
-		}
-		this.hitpoint = hitpoint;
 	}
 
 	public Color getColor()

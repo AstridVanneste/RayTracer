@@ -102,7 +102,7 @@ public class SceneParser
 					entities.add(new Quad(jsonEntity, i));
 					break;
 				case JSON.CUBE:
-					entities.add(new Cube(jsonEntity, i));
+					entities.add(new CubeV2(jsonEntity, i));
 					break;
 				case JSON.SPHERE:
 					entities.add(new Sphere(jsonEntity, i));

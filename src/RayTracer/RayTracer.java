@@ -29,12 +29,15 @@ public class RayTracer extends JPanel implements Tracer
 
 	public RayTracer(String scenePath) throws IOException
 	{
+		System.out.println("PARSING SCENE...");
 		SceneParser parser = new SceneParser(scenePath);
 
 		this.camera = parser.parseCamera();
 		this.world = parser.parseWorld();
 
 		parser.parseSettings();
+
+		System.out.println("SCENE PARSED!");
 
 		this.traceLevel = Settings.TRACE_LEVEL;
 

@@ -21,11 +21,11 @@ public class Geometry
 	{
 		if(!VectorFactory.isPoint(vec1))
 		{
-			throw new InvalidParameterException("First vector parameter is not a point");
+			throw new InvalidParameterException("First vector parameter is not a point" + vec1);
 		}
 		if(!VectorFactory.isPoint(vec2))
 		{
-			throw new InvalidParameterException("Second vector parameter is not a point");
+			throw new InvalidParameterException("Second vector parameter is not a point" + vec2);
 		}
 
 		double x, y, z;

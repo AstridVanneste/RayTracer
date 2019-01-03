@@ -72,7 +72,9 @@ public class Ray
 
 	public Vector getPoint(double k)
 	{
-		return Vector.add(this.eye, Vector.multiply(this.dir, k));
+		Vector point =  Vector.add(this.eye, Vector.multiply(this.dir, k));
+		point.makePoint();
+		return point;
 	}
 
 	public void inverseTransform(Transformation transformation)

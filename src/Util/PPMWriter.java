@@ -58,13 +58,13 @@ public class PPMWriter
 
 	private void writeP3(Pixel pixels[][]) throws IOException
 	{
-		this.writer.write("P3\n"); // TODO cleanup
+		this.writer.write("P3\n");
 
 		this.writer.write(Integer.toString(this.width));
 		this.writer.write(" ");
 		this.writer.write(Integer.toString(this.height));
 		this.writer.write("\n");
-		this.writer.write("255\n"); // TODO cleanup
+		this.writer.write("255\n");
 
 		for(int y = 0; y < this.height; y++ )
 		{
