@@ -14,7 +14,7 @@ public class Main
 	{
 
 		// RAYTRACER
-		RayTracer rayTracer = new RayTracer("res/JSON/refraction.json");
+		RayTracer rayTracer = new RayTracer("res/JSON/reflection.json");
 
 		// VISUALIZATION
 		JFrame frame = new JFrame("RayTracer");
