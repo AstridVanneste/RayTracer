@@ -31,11 +31,10 @@ public class RayTracer extends JPanel implements Tracer
 	{
 		System.out.println("PARSING SCENE...");
 		SceneParser parser = new SceneParser(scenePath);
+		parser.parseSettings();
 
 		this.camera = parser.parseCamera();
 		this.world = parser.parseWorld();
-
-		parser.parseSettings();
 
 		System.out.println("SCENE PARSED!");
 

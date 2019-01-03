@@ -55,4 +55,9 @@ public class Reflector
 
 		return new Color(Color.BLACK);
 	}
+
+	public double getReflectivity()
+	{
+		return this.reflectivity;
+	}
 }

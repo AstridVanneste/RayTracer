@@ -71,7 +71,18 @@ public class LightManager
 		scale.add(reflection);
 
 		// REFRACTION
-		Color refraction = new Color(this.refractor.calculateRefraction(ray, tracer, hit));
+		Color refraction = this.refractor.calculateRefraction(ray, tracer, hit);
+		if(refraction == null)
+		{
+			// total internal reflection => intensity refraction has to be added to intensity reflection
+			refraction = new Color(reflection);
+			//refraction.scale(1/this.reflector.getReflectivity());
+			refraction.scale(this.refractor.getRefractivity());
+		}
+		else
+		{
+			refraction = new Color(refraction);
+		}
 		scale.add(refraction);
 
 		color.scale(scale);

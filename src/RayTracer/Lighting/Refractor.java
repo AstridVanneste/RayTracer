@@ -7,6 +7,7 @@ import RayTracer.Tracer;
 import Util.Color;
 import Math.Vector;
 import Math.Geometry;
+import Math.Utils;
 
 public class Refractor
 {
@@ -50,6 +51,11 @@ public class Refractor
 
 			Vector refractionDir = this.getRefractionDirection(normal, rayDir, refractionIndex);
 
+			if(refractionDir == null)
+			{
+				return null;
+			}
+
 			Ray refractRay = new Ray(refractionOrigin, refractionDir, hit.getObject().getID());
 
 			HitObject refractHit = tracer.trace(refractRay, hit.getTraceLevel() - 1);
@@ -78,8 +84,13 @@ public class Refractor
 
 	public Vector getRefractionDirection(Vector normal, Vector rayDir, double refractionIndex)
 	{
-
 		double cos = this.snellsLaw(normal, rayDir, refractionIndex);
+
+
+		if(Double.isNaN(cos))
+		{
+			return null;
+		}
 
 		Vector term1 = Vector.multiply(rayDir, this.refractionIndex);
 		Vector term2 = Vector.multiply(normal, this.refractionIndex * Vector.dotProduct(normal, rayDir) - cos);
@@ -97,5 +108,10 @@ public class Refractor
 		double a = 1 - term;
 		double cos = Math.sqrt(a);
 		return cos;
+	}
+
+	public double getRefractivity()
+	{
+		return this.refractivity;
 	}
 }
