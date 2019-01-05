@@ -2,8 +2,8 @@
     "general":
     {
         "lighting-model": "Cook-Torrance",
-        "trace-depth":3,
-        "background": [0, 50, 150],
+        "trace-depth": 3,
+        "background": [15, 32, 132],
         "concurrency": -1
     },
 
@@ -11,8 +11,8 @@
     {
         "img_size": [1280, 1000],
         "screen_size": [6.4, 5],
-        "position": [0.5, 2.0, -0.5],
-        "direction": [0, -0.5, -1]
+        "position": [0.0, 5.0, 6.5],
+        "direction": [0.0, -3.0, -3.0]
     },
 
     "global_lights": [
@@ -26,7 +26,7 @@
         {
             "color": [255, 255, 255],
             "intensity": 0.5,
-            "position": [0, 4, -3],
+            "position": [0, 4, 3],
             "specular_strength": 0.8
         }
     ],
@@ -34,9 +34,9 @@
     "objects": [
         {
             "type": "sphere",
-            "center": [0.0, 2.0, -2.0],
+            "center": [0.0, 0.0, 0.0],
             "radius": 1.0,
-            "color": [255, 255, 255],
+            "color": [255, 215, 0],
             "material": "gold"
         },
         {
@@ -49,30 +49,6 @@
                 "type": "checkerboard",
                 "size": [0.3, 0.3, 0.3]
             }
-        },
-        {
-            "type": "quad",
-            "vertices": [[-3.5, 5.0, 3.0], [-3.5, -1.0, 3.0], [-3.5, -1.0, -3.0], [-3.5, 5.0, -3.0]],
-            "color": [0, 0, 200],
-            "material": "custom"
-        },
-        {
-            "type": "quad",
-            "vertices": [[3.5, -1.0, 3.0], [3.5, 5.0, 3.0], [3.5, 5.0, -3.0], [3.5, -1.0, -3.0]],
-            "color": [0, 200, 200],
-            "material": "custom"
-        },
-        {
-            "type": "quad",
-            "vertices": [[-3.5, 5.0, -3.0], [-3.5, -1.0, -3.0], [3.5, -1.0, -3.0], [3.5, 5.0, -3.0]],
-            "color": [200, 200, 0],
-            "material": "custom"
-        },
-        {
-            "type": "quad",
-            "vertices": [[-3.5, 5.0, -3.0], [-3.5, 5.0, 3.0], [3.5, 5.0, 3.0], [3.5, 5.0, -3.0]],
-            "color": [200, 0, 200],
-            "material": "custom"
         }
     ]
 }

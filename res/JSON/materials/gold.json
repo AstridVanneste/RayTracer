@@ -1,6 +1,6 @@
 {
   "name": "Gold",
-  "roughness": 0.5,
+  "roughness": 0.3,
   "refractionIndex": [10000.0, 11.7077, 3.3385],
   "kSpecular": 0.1,
   "reflectivity": 1.0,

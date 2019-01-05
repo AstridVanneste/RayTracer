@@ -1,0 +1,42 @@
+{
+    "general":
+    {
+        "lighting-model": "Cook-Torrance",
+        "trace-depth": 3,
+        "background": [15, 32, 132],
+        "concurrency": -1
+    },
+
+    "camera":
+    {
+        "img_size": [1280, 1000],
+        "screen_size": [6.4, 5],
+        "position": [0.0, 10, 15.0],
+        "direction": [0.0, -2.0, -3.0]
+    },
+
+    "global_lights": [
+        {
+            "color": [255, 255, 255],
+            "intensity": 0.2
+        }
+    ],
+
+    "point_lights": [
+        {
+            "color": [255, 255, 255],
+            "intensity": 0.5,
+            "position": [0, 10, 10],
+            "specular_strength": 0.8
+        }
+    ],
+
+    "objects": [
+        {
+            "type": "mesh",
+            "filename": "shuttle.obj",
+            "color": [200, 200, 200],
+            "material": "custom"
+        }
+    ]
+}
