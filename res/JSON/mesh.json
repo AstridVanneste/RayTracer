@@ -26,7 +26,7 @@
         {
             "color": [255, 255, 255],
             "intensity": 0.5,
-            "position": [0, 10, 10],
+            "position": [0, 15.0, 15.0],
             "specular_strength": 0.8
         }
     ],
@@ -36,7 +36,30 @@
             "type": "mesh",
             "filename": "shuttle.obj",
             "color": [200, 200, 200],
-            "material": "custom"
+            "material": "custom",
+            "transforms":
+            [
+                {
+                    "type": "scaling",
+                    "val": [0.8, 0.8, 0.8]
+                },
+                {
+                    "type": "rot",
+                    "axis": [0.0, 1.0, 0.0],
+                    "angle": 90
+                }
+            ]
+        },
+        {
+            "type": "quad",
+            "vertices": [[-10.0, -5.0, -10.0], [-10.0, -5.0, 10.0], [10.0, -5.0, 10.0], [10.0, -5.0, -10.0]],
+            "color": [100, 55, 55],
+            "material": "custom",
+            "texture":
+            {
+                "type": "checkerboard",
+                "size": [0.3, 0.3, 0.3]
+            }
         }
     ]
 }

@@ -38,8 +38,6 @@ public class TransformationFactory
 			transformation.add(transformation(transf));
 		}
 
-		System.out.println(transformation);
-
 		return transformation;
 	}
 
