@@ -35,6 +35,16 @@ public class OBJReader
 
 	public static Mesh read(BufferedReader reader) throws IOException
 	{
+
+		List<Polygon> faces = OBJReader.parseFaces(reader);
+		//System.out.println("#Vertices: " + points.size());
+		//System.out.println("#Faces: " + faces.size());
+
+		return new Mesh(faces);
+	}
+
+	public static List<Polygon> parseFaces(BufferedReader reader) throws IOException
+	{
 		List<Polygon> faces = new ArrayList<>();
 
 		String line;
@@ -53,10 +63,7 @@ public class OBJReader
 			}
 		}
 
-		//System.out.println("#Vertices: " + points.size());
-		//System.out.println("#Faces: " + faces.size());
-
-		return new Mesh(faces);
+		return faces;
 	}
 
 

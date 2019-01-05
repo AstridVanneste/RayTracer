@@ -9,13 +9,25 @@ import RayTracer.Scene.World;
 import RayTracer.Tracer;
 import Util.Color;
 import Math.Geometry;
+import Util.OBJReader;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Mesh extends Entity
 {
+	private static final String OBJ_LOC = "res/OBJ/";
+
+	private class JSON
+	{
+		public static final String FILENAME = "filename";
+	}
+
 	private Cube boundingBox;
 	private List<Polygon> elements;
 
@@ -35,10 +47,13 @@ public class Mesh extends Entity
 		this.boundingBox = m.boundingBox;
 	}
 
-	public Mesh(JSONObject jsonObject, int ID)
+	public Mesh(JSONObject jsonObject, int ID) throws IOException
 	{
 		super(jsonObject, ID);
-		// TODO complete
+
+		String path = OBJ_LOC + jsonObject.getString(JSON.FILENAME);
+
+		this.elements = OBJReader.parseFaces(new BufferedReader(new FileReader(path)));
 	}
 
 	private Cube calculateBoundingBox()

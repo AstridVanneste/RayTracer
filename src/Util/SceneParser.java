@@ -77,7 +77,7 @@ public class SceneParser
 		return new Camera(this.json.getJSONObject(JSON.CAMERA));
 	}
 
-	public World parseWorld()
+	public World parseWorld() throws IOException
 	{
 		List<Hittable> entities = this.parseEntities();
 		List<Light> lights =  this.parseLights();
@@ -85,7 +85,7 @@ public class SceneParser
 		return new World(entities, lights);
 	}
 
-	private List<Hittable> parseEntities()
+	private List<Hittable> parseEntities() throws IOException
 	{
 		List<Hittable> entities = new ArrayList<>();
 
