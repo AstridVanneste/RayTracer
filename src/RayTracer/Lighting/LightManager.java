@@ -79,10 +79,7 @@ public class LightManager
 			//refraction.scale(1/this.reflector.getReflectivity());
 			refraction.scale(this.refractor.getRefractivity());
 		}
-		else
-		{
-			refraction = new Color(refraction);
-		}
+
 		scale.add(refraction);
 
 		color.scale(scale);

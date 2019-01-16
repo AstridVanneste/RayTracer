@@ -7,7 +7,6 @@ import RayTracer.Scene.Textures.Texture;
 
 import java.util.Random;
 
-// TODO try Perlin noise
 public class RandomNormalAlteration implements Texture
 {
 	@Override

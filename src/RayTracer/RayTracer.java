@@ -54,7 +54,6 @@ public class RayTracer extends JPanel implements Tracer
 
 		for(Pixel pixel: this.image)
 		{
-			// TODO anti-aliasing by averaging with the surrounding pixels
 			g2d.setColor(pixel.getColor().get());
 			g2d.drawLine(pixel.x(), this.camera.getImageHeight() - pixel.y(), pixel.x(), this.camera.getImageHeight() - pixel.y());
 		}
@@ -140,17 +139,6 @@ public class RayTracer extends JPanel implements Tracer
 		return closestHit;
 	}
 
-	public Pixel[][] frameBuffer(List<Pixel> pixels, int width, int height)
-	{
-		Pixel[][] buffer = new Pixel[height][width];
-		for(Pixel pixel: pixels)
-		{
-			buffer[pixel.x()][pixel.y()] = pixel;
-		}
-
-		return buffer;
-	}
-
 	private void save()
 	{
 		// SAVING
@@ -165,18 +153,4 @@ public class RayTracer extends JPanel implements Tracer
 			e.printStackTrace();
 		}
 	}
-
-	/*public List<Pixel> antiAliasing(Pixel[][] pixels)
-	{
-		List<Pixel> antiAliasing = new ArrayList<>();
-
-		for(int i = 0; i < pixels.length; i++)
-		{
-			for(int j = 0; j < pixels[0].length; j++)
-			{
-				Pixel pixel = pixels[i][j]. + pixels[i - 1][j] + pixels[i + 1][j] + pixels[i][j - 1] + pixels[i][j + 1] + pixels[i + 1][j - 1] + pixels[i + 1][j + 1];
-				antiAliasing.add()
-			}
-		}
-	}*/
 }

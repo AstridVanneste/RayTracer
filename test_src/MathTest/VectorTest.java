@@ -86,16 +86,18 @@ public class VectorTest
 	@Test
 	public void dotProduct()
 	{
-		Vector vec1 = new Vector(3);
-		Vector vec2 = new Vector(3);
+		Vector vec1 = new Vector(4);
+		Vector vec2 = new Vector(4);
 
 		vec1.set(0, 3);
 		vec1.set(1, 0);
 		vec1.set(2, 2);
+		vec1.set(3, 0);
 
 		vec2.set(0, 4);
 		vec2.set(1, 1);
 		vec2.set(2, 8);
+		vec2.set(3, 0);
 
 		double result = Vector.dotProduct(vec1, vec2);
 

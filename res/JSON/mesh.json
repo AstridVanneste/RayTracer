@@ -10,9 +10,9 @@
     "camera":
     {
         "img_size": [1280, 1000],
-        "screen_size": [6.4, 5],
-        "position": [0.0, 10, 15.0],
-        "direction": [0.0, -2.0, -3.0]
+        "screen_size": [1.6, 0.9],
+        "position": [0.0, 14.0, 30],
+        "direction": [0.0, -0.7, -1.5]
     },
 
     "global_lights": [
@@ -34,19 +34,23 @@
     "objects": [
         {
             "type": "mesh",
-            "filename": "shuttle.obj",
-            "color": [200, 200, 200],
+            "filename": "tree01.obj",
+            "color": [32, 200, 32],
             "material": "custom",
             "transforms":
             [
                 {
+                    "type": "trans",
+                    "val": [3.0, -3.0, 0.0]
+                },
+                {
                     "type": "scaling",
-                    "val": [0.8, 0.8, 0.8]
+                    "val": [2.0, 2.0, 2.0]
                 },
                 {
                     "type": "rot",
-                    "axis": [0.0, 1.0, 0.0],
-                    "angle": 90
+                    "axis": [1.0, 0.0, 0.0],
+                    "angle": -90
                 }
             ]
         },

@@ -15,7 +15,6 @@ abstract public class Shader
 
 	public Color getLight(World world, Ray r, Tracer tracer, HitObject hit)
 	{
-		int maskCount = 0;
 		Color component = new Color(Color.BLACK);
 		for(Light light: world.getLights())
 		{
@@ -23,7 +22,6 @@ abstract public class Shader
 			{
 				if (!this.masked(light, tracer, hit))
 				{
-					maskCount++;
 					component.add(this.getLighterComponent(light, r, hit));
 				}
 				else
@@ -36,7 +34,6 @@ abstract public class Shader
 				component.add(this.getAmbientComponent(light));
 			}
 		}
-		//return new Color(maskCount*64, maskCount*64, maskCount*64);
 		return component;
 	}
 

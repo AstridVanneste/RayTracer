@@ -1,7 +1,7 @@
 {
     "general":
     {
-        "lighting-model": "Cook-Torrance",
+        "lighting-model": "Phong",
         "trace-depth":3,
         "background": [32, 32, 32],
         "concurrency": -1
@@ -26,7 +26,7 @@
         {
             "color": [255, 255, 255],
             "intensity": 1.0,
-            "position": [0, 6, 0],
+            "position": [2, 6, 2],
             "specular_strength": 0.8
         }
     ],
@@ -39,20 +39,29 @@
             "material": "custom",
             "texture":
             {
-                "type": "random-normal",
+                "type": "checkerboard",
                 "size": [0.3, 0.3, 0.3]
-            }
+            },
+            "transforms":
+            [
+                {
+                    "type": "scaling",
+                    "val": [2, 2, 2]
+                }
+            ]
         },
         {
             "type": "cylinder",
             "material": "custom",
             "s": 0.0,
-            "color": [255, 255, 255],
+            "center": [0.0, 0.0, 0.0],
+            "radius": 1.0,
+            "color": [32, 200, 32],
             "transforms":
             [
                 {
-                    "type": "trans",
-                    "val": [0, 0, 0]
+                    "type": "scaling",
+                    "val": [2, 2, 2]
                 }
             ]
         }

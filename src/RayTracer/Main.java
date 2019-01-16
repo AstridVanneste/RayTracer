@@ -11,9 +11,17 @@ public class Main
 
 	public static void main(String args[]) throws IOException
 	{
+		String scene;
 
-		// RAYTRACER
-		RayTracer rayTracer = new RayTracer("res/JSON/mesh.json");
+		if(args.length != 0)
+		{
+			scene = args[0];
+		}
+		else
+		{
+			scene = "res/JSON/mesh.json";
+		}
+		RayTracer rayTracer = new RayTracer(scene);
 
 		// VISUALIZATION
 		JFrame frame = new JFrame("RayTracer");

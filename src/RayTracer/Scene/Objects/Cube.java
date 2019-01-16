@@ -1,116 +1,96 @@
 package RayTracer.Scene.Objects;
 
-import RayTracer.Factories.TransformationFactory;
+import Math.Vector;
 import RayTracer.Factories.VectorFactory;
 import RayTracer.Hit.HitObject;
-import RayTracer.Hit.Hittable;
 import RayTracer.Hit.Ray;
 import RayTracer.Scene.World;
 import RayTracer.Tracer;
-import RayTracer.Transformation;
 import Util.Color;
 import org.json.JSONObject;
-import Math.Geometry;
 
 public class Cube extends Entity
 {
-	private static final int NUMBER_SIDES = 6;
-
-	private Polygon sides[];
-
-	public Cube(Polygon sides[])
-	{
-		if(sides.length == NUMBER_SIDES)
-		{
-			this.sides = sides;
-		}
-	}
-
-	public Cube()
-	{
-		this.createUnitCube();
-	}
-
-	public Cube(Polygon sides[], Color color)
-	{
-		this(sides);
-		this.setColor(color);
-	}
+	private Vector min;
+	private Vector max;
 
 	public Cube(JSONObject jsonObject, int ID)
 	{
 		super(jsonObject, ID);
-		this.createUnitCube();
-		this.setColor(this.color);
-	}
+		double[] m = {-1.0, -0.5, -1.0};
+		this.min = new Vector(m);
 
-	@Override
-	public void setColor(Color color)
-	{
-		super.setColor(color);
-
-		for(int i = 0; i < NUMBER_SIDES; i++)
-		{
-			this.sides[i].setColor(color);
-		}
+		double[] M = {1.0, 1.0, 1.0};
+		this.max = new Vector(M);
 	}
 
 	@Override
 	public HitObject internalHit(Ray r, Tracer tracer, World world, int traceLevel)
 	{
-		HitObject hit = null;
+		double tmin = (this.min.get(0) - r.getEye().get(0))/r.getDir().get(0);
+		double tmax = (this.max.get(0) - r.getEye().get(0))/r.getDir().get(0);
 
-		double distance = 0;
-		for(Hittable element: this.sides)
+		if(tmin > tmax)
 		{
-			HitObject tempHit = element.hit(r, tracer, world, traceLevel);
-
-			if (tempHit != null)
-			{
-				if (Geometry.distance(r.getEye(), tempHit.getHitpoint()) < distance || distance == 0)
-				{
-					hit = tempHit;
-					distance = Geometry.distance(r.getEye(), tempHit.getHitpoint());
-				}
-			}
+			double tmp = tmin;
+			tmin = tmax;
+			tmax = tmp;
 		}
-		return hit;
+
+		double tymin = (this.min.get(1) - r.getEye().get(1))/r.getDir().get(1);
+		double tymax = (this.max.get(1) - r.getEye().get(1))/r.getDir().get(1);
+
+		if(tymin > tymax)
+		{
+			double tmp = tymin;
+			tymin = tymax;
+			tymax = tmp;
+		}
+
+		if((tymax < tmin) || (tmax < tymin))
+		{
+			return null;
+		}
+
+		if(tmin < tymin)
+		{
+			tmin = tymin;
+		}
+
+		if(tmax > tymax)
+		{
+			tmax = tymax;
+		}
+
+		double tzmin = (this.min.get(2) - r.getEye().get(2))/r.getDir().get(2);
+		double tzmax = (this.max.get(2) - r.getEye().get(2))/r.getDir().get(2);
+
+		if(tzmin > tzmax)
+		{
+			double tmp = tzmin;
+			tzmin = tzmax;
+			tzmax = tmp;
+		}
+
+		if((tzmax < tmin) || (tmax < tzmin))
+		{
+			return null;
+		}
+
+		if(tmin < tzmin)
+		{
+			tmin = tzmin;
+		}
+
+		Vector hitpoint = r.getPoint(tmin);
+		Vector normal = VectorFactory.createVector(1.0/2.0, 1.0/2.0, 1.0/2.0);
+
+		normal.set(0, hitpoint.get(0) == this.min.get(0) ? -normal.get(0) : normal.get(0));
+		normal.set(1, hitpoint.get(1) == this.min.get(1) ? -normal.get(1) : normal.get(1));
+		normal.set(2, hitpoint.get(2) == this.min.get(2) ? -normal.get(2) : normal.get(2));
+
+		return new HitObject(this, hitpoint, new Color(Color.BLACK), normal, tmin, traceLevel);
 	}
 
-	private void createUnitCube()
-	{
-		Quad top = new Quad();
-		top.setTransformation(TransformationFactory.translationTransformation(0, 1, 0));
 
-		Quad bottom = new Quad();
-		bottom.setTransformation(TransformationFactory.translationTransformation(0, -1, 0));
-
-		Quad left = new Quad();
-		Transformation transformation1 = TransformationFactory.rotationTransformation(VectorFactory.createVector(0, 0, 1), 3.14/2);
-		transformation1.add(TransformationFactory.translationTransformation(-1, 0, 0));
-		left.setTransformation(transformation1);
-
-		Quad right = new Quad();
-		Transformation transformation2 = TransformationFactory.rotationTransformation(VectorFactory.createVector(0, 0, 1), 3.14/2);
-		transformation2.add(TransformationFactory.translationTransformation(1, 0, 0));
-		right.setTransformation(transformation2);
-
-		Quad front = new Quad();
-		Transformation transformation3 = TransformationFactory.rotationTransformation(VectorFactory.createVector(1, 0, 0), 3.14/2);
-		transformation3.add(TransformationFactory.translationTransformation(0, 0, 1));
-		front.setTransformation(transformation3);
-
-		Quad back = new Quad();
-		Transformation transformation4 = TransformationFactory.rotationTransformation(VectorFactory.createVector(1, 0, 0), 3.14/2);
-		transformation4.add(TransformationFactory.translationTransformation(0, 0, -1));
-		back.setTransformation(transformation4);
-
-		this.sides = new Polygon[NUMBER_SIDES];
-		this.sides[0] = bottom;
-		this.sides[1] = top;
-		this.sides[2] = left;
-		this.sides[3] = right;
-		this.sides[4] = front;
-		this.sides[5] = back;
-	}
 }
