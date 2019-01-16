@@ -1,7 +1,7 @@
 {
     "general":
     {
-        "lighting-model": "Phong",
+        "lighting-model": "Cook-Torrance",
         "trace-depth":3,
         "background": [32, 32, 32],
         "concurrency": -1

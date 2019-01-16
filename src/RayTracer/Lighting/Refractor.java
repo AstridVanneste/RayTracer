@@ -7,7 +7,6 @@ import RayTracer.Tracer;
 import Util.Color;
 import Math.Vector;
 import Math.Geometry;
-import Math.Utils;
 
 public class Refractor
 {

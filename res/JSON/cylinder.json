@@ -35,19 +35,20 @@
         {
             "type": "quad",
             "vertices": [[-3.5, -1.0, -3.0], [-3.5, -1.0, 3.0], [3.5, -1.0, 3.0], [3.5, -1.0, -3.0]],
-            "color": [255, 0, 255],
+            "color": [200, 0, 200],
             "material": "custom",
             "texture":
             {
-                "type": "random-normal",
+                "type": "sine-normal",
                 "size": [0.3, 0.3, 0.3]
             }
+
         },
         {
             "type": "cylinder",
             "material": "custom",
             "s": 0.0,
-            "color": [255, 255, 255],
+            "color": [32, 200, 32],
             "transforms":
             [
                 {

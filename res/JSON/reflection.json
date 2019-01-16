@@ -3,7 +3,7 @@
     {
         "lighting-model": "Cook-Torrance",
         "trace-depth": 3,
-        "background": [15, 32, 132],
+        "background": [32, 32, 32],
         "concurrency": -1
     },
 
@@ -37,7 +37,7 @@
             "center": [0.0, 0.0, 0.0],
             "radius": 1.0,
             "color": [255, 215, 0],
-            "material": "gold"
+            "material": "silver"
         },
         {
             "type": "quad",
